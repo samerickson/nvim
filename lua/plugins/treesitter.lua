@@ -7,9 +7,7 @@ return {
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
       { 'nvim-treesitter/nvim-treesitter-context' },
-      { 'nvim-treesitter/nvim-treesitter-refactor' },
     },
-    build = ":TSUpdate",
     config = function()
       require 'nvim-treesitter.install'.compilers = { "clang" }
       require 'nvim-treesitter.install'.prefer_git = true
