@@ -4,10 +4,10 @@ return {
   init = function()
     local opts = { noremap = true, silent = true }
 
-    vim.keymap.set('i', '<A-DOWN>', ':MoveLine(1)<CR>', opts)
-    vim.keymap.set('i', '<A-UP>', ':MoveLine(-1)<CR>', opts)
-    vim.keymap.set('i', '<A-LEFT>', ':MoveHChar(-1)<CR>', opts)
-    vim.keymap.set('i', '<A-RIGHT>', ':MoveHChar(1)<CR>', opts)
+    vim.keymap.set('i', '<A-DOWN>', '<Esc>:MoveLine(1)<CR>', opts)
+    vim.keymap.set('i', '<A-UP>', '<Esc>:MoveLine(-1)<CR>', opts)
+    vim.keymap.set('i', '<A-LEFT>', '<Esc>:MoveHChar(-1)<CR>', opts)
+    vim.keymap.set('i', '<A-RIGHT>', '<Esc>:MoveHChar(1)<CR>', opts)
 
     vim.keymap.set('n', '<A-DOWN>', ':MoveLine(1)<CR>', opts)
     vim.keymap.set('n', '<A-UP>', ':MoveLine(-1)<CR>', opts)
