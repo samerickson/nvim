@@ -16,7 +16,6 @@ vim.keymap.set('n', '<C-g>', ':')
 vim.keymap.set('i', '<C-g>', '<Esc>:')
 
 -- Terminal mode keybindings
-vim.keymap.set('', '<C-_>', ':terminal<CR>', opts)
 vim.keymap.set('t', '<C-d>', '<C-\\><C-n>', opts)
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', opts)
 vim.keymap.set('t', 'jk', '<C-\\><C-n>', opts)
