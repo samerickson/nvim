@@ -37,11 +37,12 @@ set.listchars = {tab='» ', extends='⟩', precedes='⟨', trail='•'}
 
 set.colorcolumn = "120"
 
--- Always open help files in a left vertical pane
-vim.api.nvim_exec(
-[[augroup helpfiles
-au!
-au BufRead,BufEnter */doc/* wincmd L
-augroup END]],
-false)
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+
+-- Ensure help files always open as a vertical split
+autocmd("FileType", {
+  pattern = "help",
+  command = "wincmd L"
+})
 
