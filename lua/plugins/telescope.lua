@@ -3,6 +3,8 @@ return {
     'nvim-telescope/telescope.nvim',
     cmd = 'Telescope',
     dependencies = {
+      -- Dependency becuase I keep forgetting my telescope keybindings
+      { "folke/which-key.nvim" },
       {
         'nvim-telescope/telescope-fzf-native.nvim',
         build =
@@ -81,6 +83,55 @@ return {
         end
       end
 
+      local wk = require("which-key")
+      wk.register({
+        ["<C-p>"] = "🔍 git Files",
+        ["<A-p>"] = "🔍 quickfix",
+        ["<C-t>"] = "🔍 find files",
+        ["<C-f>"] = "🔍 find in current file",
+        ["<A-f>"] = "🔍 live grep",
+        ["<A-t>"] = "🏗️ vim options",
+        ["A-p"] = "🔭 telescope commands",
+        ["C-b"] = "🔍 buffers",
+        ["<leader>"] = {
+          t = {
+            name = " 🔭 Telescope",
+            t = "🔭 telescope",
+            o = "🔍 git files",
+            O = "🔎 old files",
+            q = "🔍 quickfix",
+            T = "🔍 find file",
+            f = "🔍 find in current file",
+            r = "🔍 live grep",
+            b = "🔍 search buffers",
+            d = "🐡 dotfiles",
+            n = "🐠 neovim configuration files",
+            v = {
+              name = "🦙 vim configuration",
+              o = "vim options",
+              c = "vim commands"
+            },
+            g = {
+              name = "git",
+              f = "🔍 files",
+              b = "🔍 branches",
+              c = "🔍 commits",
+              s = "🔍 stashes",
+              i = "🔎 status"
+            }
+          }
+        }
+      })
+
+      vim.keymap.set('n', '<leader>to', ':Telescope fd hidden=true<CR>', opts)
+      vim.keymap.set('n', '<leader>tb', ':Telescope buffers<CR>', opts)
+      vim.keymap.set('n', '<leader>tc', ':Telescope commands<CR>', opts)
+      vim.keymap.set('n', '<leader>tf', ':Telescope current_buffer_fuzzy_find<CR>', opts)
+      vim.keymap.set('n', '<leader>ts', ':Telescope live_grep<CR>', opts)
+      vim.keymap.set('n', '<leader>tq', ':Telescope quickfix<CR>', opts)
+      vim.keymap.set('n', '<leader>tO', ':Telescope oldfiles<CR>', opts)
+      vim.keymap.set('n', '<leader>tt', ':Telescope<CR>', opts)
+
       vim.keymap.set('', '<C-p>', ':Telescope git_files<CR>', opts)
       vim.keymap.set('', '<A-p>', ':Telescope quickfix<CR>', opts)
       vim.keymap.set('', '<C-t>', ':Telescope fd hidden=true<CR>', opts)
@@ -90,6 +141,9 @@ return {
       vim.keymap.set('', '<A-p>', ':Telescope commands<CR>', opts)
       vim.keymap.set('', '<C-b>', ':Telescope buffers<CR>', opts)
       vim.keymap.set('', '<C-h>', ':Telescope oldfiles<CR>', opts)
+
+      vim.keymap.set('n', '<leader>tvo', ':Telescope vim_options<CR>', opts)
+      vim.keymap.set('n', '<leader>tvc', ':Telescope commands<CR>', opts)
 
       vim.keymap.set('n', '<leader>tgf', ':Telescope git_files hidden=true<CR>', opts)
       vim.keymap.set('n', '<leader>tgb', ':Telescope git_branches<CR>', opts)
@@ -115,17 +169,6 @@ return {
             custom_picker_directory("🗽 Neovim Configuration Files🗼", "~/dev/personal/dotfiles/nvim/.config/nvim"))
         end
       end);
-
-      vim.keymap.set('n', '<leader>tvo', ':Telescope oldfiles<CR>', opts)
-
-      vim.keymap.set('n', '<leader>to', ':Telescope fd hidden=true<CR>', opts)
-      vim.keymap.set('n', '<leader>tb', ':Telescope buffers<CR>', opts)
-      vim.keymap.set('n', '<leader>tc', ':Telescope commands<CR>', opts)
-      vim.keymap.set('n', '<leader>tf', ':Telescope current_buffer_fuzzy_find<CR>', opts)
-      vim.keymap.set('n', '<leader>ts', ':Telescope live_grep<CR>', opts)
-      vim.keymap.set('n', '<leader>tq', ':Telescope quickfix<CR>', opts)
-      vim.keymap.set('n', '<leader>to', ':Telescope vim_options<CR>', opts)
-      vim.keymap.set('n', '<leader>tt', ':Telescope<CR>', opts)
     end
   }
 }
