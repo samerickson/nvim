@@ -3,7 +3,14 @@ return {
     'nvim-telescope/telescope.nvim',
     cmd = 'Telescope',
     dependencies = {
-      { 'nvim-lua/plenary.nvim' },
+      {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build =
+        'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+        config = function()
+          require("telescope").load_extension("fzf")
+        end
+      }
     },
     opts = {
       pickers = {
@@ -101,7 +108,6 @@ return {
 
       -- Open neovim files in telescope
       vim.keymap.set('n', '<leader>tn', function()
-
         local neovim_config_dir = get_environement_variable("NVIM_CONFIG")
 
         if neovim_config_dir ~= nil then
