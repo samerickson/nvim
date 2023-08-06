@@ -77,7 +77,7 @@ return {
         local env_var = os.getenv(env_variable)
 
         if env_var ~= nil then
-          return env_variable
+          return env_var
         else
           print("Error: Environment variable '" .. env_variable .. "' is not set.")
         end
@@ -154,6 +154,8 @@ return {
       vim.keymap.set('n', '<leader>td', function()
         local dotfiles_dir = get_environement_variable("DOTFILES")
 
+        print(dotfiles_dir)
+
         if dotfiles_dir ~= nil then
           builtin.git_files(custom_picker_directory("🐡 Dotfiles 🐠", dotfiles_dir))
         end
@@ -162,6 +164,7 @@ return {
       -- Open neovim files in telescope
       vim.keymap.set('n', '<leader>tn', function()
         local neovim_config_dir = get_environement_variable("NVIM_CONFIG")
+        print(neovim_config_dir)
 
         if neovim_config_dir ~= nil then
           builtin.find_files(
