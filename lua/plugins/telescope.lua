@@ -91,7 +91,6 @@ return {
         ["<C-f>"] = "🔍 find in current file",
         ["<A-f>"] = "🔍 live grep",
         ["<A-t>"] = "🏗️ vim options",
-        ["A-p"] = "🔭 telescope commands",
         ["C-b"] = "🔍 buffers",
         ["<leader>"] = {
           t = {
