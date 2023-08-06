@@ -38,6 +38,10 @@ return {
       },
       defaults = {
         prompt_prefix = "🔎 ",
+        layout_stategy = "horizontal",
+        layout_config = { prompt_position = "top" },
+        sorting_strategy = "ascending",
+        winblend = 0,
         vimgrep_arguments = {
           "rg",
           "--color=never",
