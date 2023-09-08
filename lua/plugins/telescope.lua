@@ -109,6 +109,7 @@ return {
             b = "🔍 search buffers",
             d = "🐡 dotfiles",
             n = "🐠 neovim configuration files",
+            i = "⚠️  View diagnostics",
             v = {
               name = "🦙 vim configuration",
               o = "vim options",
@@ -134,6 +135,7 @@ return {
       vim.keymap.set('n', '<leader>tq', ':Telescope quickfix<CR>', opts)
       vim.keymap.set('n', '<leader>tO', ':Telescope oldfiles<CR>', opts)
       vim.keymap.set('n', '<leader>tt', ':Telescope<CR>', opts)
+      vim.keymap.set('n', '<leader>ti', ':Telescope diagnostics<CR>', opts)
 
       vim.keymap.set('', '<C-p>', ':Telescope git_files<CR>', opts)
       vim.keymap.set('', '<A-p>', ':Telescope quickfix<CR>', opts)
