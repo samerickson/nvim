@@ -105,7 +105,7 @@ return {
             q = "🔍 quickfix",
             T = "🔍 find file",
             f = "🔍 find in current file",
-            r = "🔍 live grep",
+            s = "🔍 live grep",
             b = "🔍 search buffers",
             d = "🐡 dotfiles",
             n = "🐠 neovim configuration files",
