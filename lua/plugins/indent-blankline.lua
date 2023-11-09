@@ -3,26 +3,31 @@ return {
     -- Shows the indentation level of lines.
     "lukas-reineke/indent-blankline.nvim",
     lazy = false,
-    opts = {
-      show_current_context = true,
-      show_current_context_start = true,
-      char_highlight_list = {
-        "IndentBlanklineIndent1",
-        "IndentBlanklineIndent2",
-        "IndentBlanklineIndent3",
-        "IndentBlanklineIndent4",
-        "IndentBlanklineIndent5",
-        "IndentBlanklineIndent6",
+    config = function()
+      local highlight = {
+        "RainbowRed",
+        "RainbowYellow",
+        "RainbowBlue",
+        "RainbowOrange",
+        "RainbowGreen",
+        "RainbowViolet",
+        "RainbowCyan",
       }
-    },
-    init = function ()
-      vim.opt.termguicolors = true
-      vim.cmd [[highlight IndentBlanklineIndent1 guifg=#6E171E gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent2 guifg=#765517 gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent3 guifg=#3B5727 gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent4 guifg=#1E4C52 gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent5 guifg=#0C497A gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent6 guifg=#5A1b6D gui=nocombine]]
+
+      local hooks = require "ibl.hooks"
+      -- create the highlight groups in the highlight setup hook, so they are reset
+      -- every time the colorscheme changes
+      hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+        vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#6E171E" })
+        vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#765517" })
+        vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#1E4C52" })
+        vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#603d1d" })
+        vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#3B5727" })
+        vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#5A1b6D" })
+        vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+      end)
+
+      require("ibl").setup { indent = { highlight = highlight } }
     end
   }
 }
