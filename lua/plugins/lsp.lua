@@ -2,8 +2,7 @@ return {
   {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
-    lazy = false,
-    priority = 51,
+    lazy = true,
     dependencies = {
       -- LSP Support
       { 'neovim/nvim-lspconfig' },
