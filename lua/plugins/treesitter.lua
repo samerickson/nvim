@@ -1,6 +1,7 @@
 return {
   {
     'nvim-treesitter/playground',
+    lazy = true,
     cmd = 'TSPlaygroundToggle'
   },
   {
@@ -8,6 +9,7 @@ return {
     dependencies = {
       { 'nvim-treesitter/nvim-treesitter-context' },
     },
+    lazy = false,
     config = function()
       require 'nvim-treesitter.install'.compilers = { "clang" }
       require 'nvim-treesitter.install'.prefer_git = true
