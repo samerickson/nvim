@@ -1,5 +1,5 @@
 return {
   'windwp/nvim-autopairs',
-  lazy = false,
+  keys = "i",
   opts = {}
 }

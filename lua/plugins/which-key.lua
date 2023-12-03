@@ -1,6 +1,7 @@
 return {
   "folke/which-key.nvim",
-  init = function()
+  keys = { "<leader>" },
+  config = function()
     vim.o.timeout = true
     vim.o.timeoutlen = 300
   end,

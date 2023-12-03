@@ -9,7 +9,8 @@ return {
     dependencies = {
       { 'nvim-treesitter/nvim-treesitter-context' },
     },
-    lazy = false,
+    lazy = true,
+    event = "VeryLazy",
     config = function()
       require 'nvim-treesitter.install'.compilers = { "clang" }
       require 'nvim-treesitter.install'.prefer_git = true

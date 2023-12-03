@@ -2,9 +2,11 @@ return {
   {
     'nvim-telescope/telescope.nvim',
     cmd = 'Telescope',
+    keys = { "<leader>t", "<C-P>", "<C-T>" },
     dependencies = {
       -- Dependency becuase I keep forgetting my telescope keybindings
       { "folke/which-key.nvim" },
+      { "nvim-lua/plenary.nvim"},
       {
         'nvim-telescope/telescope-fzf-native.nvim',
         build =
@@ -62,7 +64,7 @@ return {
         }
       }
     },
-    init = function()
+    config = function()
       -- Telescope remappings
       local opts = { noremap = true }
       local builtin = require("telescope.builtin")

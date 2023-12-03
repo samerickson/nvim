@@ -4,8 +4,8 @@ return {
     dependencies = {
       'nvim-tree/nvim-web-devicons'
     },
-    lazy = false,
-    init = function ()
+    event = "VeryLazy",
+    config = function ()
       local lualine = require('lualine')
 
       -- Color table for highlights
@@ -161,7 +161,7 @@ return {
       }
 
       ins_left {
-        -- Lsp server name .
+        -- Lsp server name
         function()
           local msg = 'No Active Lsp'
           local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')

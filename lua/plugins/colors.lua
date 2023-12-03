@@ -1,8 +1,6 @@
 return {
   {
     "rebelot/kanagawa.nvim",
-    lazy = false,
-    priority = 900,
     init = function()
       vim.cmd("colorscheme kanagawa")
       vim.cmd("highlight TelescopeBorder guibg=none")
