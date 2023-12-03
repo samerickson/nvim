@@ -160,21 +160,21 @@ return {
       vim.keymap.set('n', '<leader>td', function()
         local dotfiles_dir = get_environement_variable("DOTFILES")
 
-        print(dotfiles_dir)
-
         if dotfiles_dir ~= nil then
           builtin.git_files(custom_picker_directory("🐡 Dotfiles 🐠", dotfiles_dir))
+        else
+          print("Environment variable 'DOTFILES' variable is not set.")
         end
       end, opts)
 
       -- Open neovim files in telescope
       vim.keymap.set('n', '<leader>tn', function()
         local neovim_config_dir = get_environement_variable("NVIM_CONFIG")
-        print(neovim_config_dir)
 
         if neovim_config_dir ~= nil then
-          builtin.find_files(
-            custom_picker_directory("🗽 Neovim Configuration Files🗼", "~/dev/personal/dotfiles/nvim/.config/nvim"))
+          builtin.find_files( custom_picker_directory("🗽 Neovim Configuration Files🗼", neovim_config_dir))
+        else
+          print("Environment variable 'NVIM_CONFIG' is not set.");
         end
       end);
     end
