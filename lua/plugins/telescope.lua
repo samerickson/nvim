@@ -4,8 +4,6 @@ return {
     cmd = 'Telescope',
     keys = { "<leader>t", "<C-P>", "<C-T>" },
     dependencies = {
-      -- Dependency becuase I keep forgetting my telescope keybindings
-      { "folke/which-key.nvim" },
       { "nvim-lua/plenary.nvim"},
       {
         'nvim-telescope/telescope-fzf-native.nvim',
@@ -16,55 +14,57 @@ return {
         end
       }
     },
-    opts = {
-      pickers = {
-        live_grep = {
-          only_sort_text = true,
-          additional_args = function(opts)
-            return { "--hidden" }
-          end
+    config = function()
+
+      require('telescope').setup{
+        pickers = {
+          live_grep = {
+            only_sort_text = true,
+            additional_args = function(opts)
+              return { "--hidden" }
+            end
+          },
+          grep_string = {
+            only_sort_text = true
+          },
+          find_files = {
+            hidden = true
+          },
+          git_files = {
+            hidden = true,
+            show_untracked = true
+          },
+          colorscheme = {
+            enable_preview = true,
+          },
         },
-        grep_string = {
-          only_sort_text = true
-        },
-        find_files = {
-          hidden = true
-        },
-        git_files = {
-          hidden = true,
-          show_untracked = true
-        },
-        colorscheme = {
-          enable_preview = true,
-        },
-      },
-      defaults = {
-        prompt_prefix = "🔎 ",
-        layout_stategy = "horizontal",
-        layout_config = { prompt_position = "top" },
-        sorting_strategy = "ascending",
-        winblend = 0,
-        vimgrep_arguments = {
-          "rg",
-          "--color=never",
-          "--no-heading",
-          "--with-filename",
-          "--line-number",
-          "--column",
-          "--smart-case",
-          "--hidden",
-          "--glob=!.git/",
-        },
-        file_ignore_patterns = {
-          "node_modules",
-          "x64",
-          "coverage",
-          "help",
-          "Help"
+        defaults = {
+          prompt_prefix = "🔎 ",
+          layout_stategy = "horizontal",
+          layout_config = { prompt_position = "top" },
+          sorting_strategy = "ascending",
+          winblend = 0,
+          vimgrep_arguments = {
+            "rg",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+            "--hidden",
+            "--glob=!.git/",
+          },
+          file_ignore_patterns = {
+            "node_modules",
+            "package%-lock.json",
+            "x64",
+            "coverage",
+            ".git",
+          }
         }
       }
-    },
-    config = function()
+
       -- Telescope remappings
       local opts = { noremap = true }
       local builtin = require("telescope.builtin")
@@ -88,46 +88,6 @@ return {
           print("Error: Environment variable '" .. env_variable .. "' is not set.")
         end
       end
-
-      local wk = require("which-key")
-      wk.register({
-        ["<C-p>"] = "🔍 git Files",
-        ["<A-p>"] = "🔍 quickfix",
-        ["<C-t>"] = "🔍 find files",
-        ["<C-f>"] = "🔍 find in current file",
-        ["<A-f>"] = "🔍 live grep",
-        ["<A-t>"] = "🏗️ vim options",
-        ["C-b"] = "🔍 buffers",
-        ["<leader>"] = {
-          t = {
-            name = " 🔭 Telescope",
-            t = "🔭 telescope",
-            o = "🔍 git files",
-            O = "🔎 old files",
-            q = "🔍 quickfix",
-            T = "🔍 find file",
-            f = "🔍 find in current file",
-            s = "🔍 live grep",
-            b = "🔍 search buffers",
-            d = "🐡 dotfiles",
-            n = "🐠 neovim configuration files",
-            i = "⚠️  View diagnostics",
-            v = {
-              name = "🦙 vim configuration",
-              o = "vim options",
-              c = "vim commands"
-            },
-            g = {
-              name = "git",
-              f = "🔍 files",
-              b = "🔍 branches",
-              c = "🔍 commits",
-              s = "🔍 stashes",
-              i = "🔎 status"
-            }
-          }
-        }
-      })
 
       vim.keymap.set('n', '<leader>to', ':Telescope fd hidden=true<CR>', opts)
       vim.keymap.set('n', '<leader>tb', ':Telescope buffers<CR>', opts)
