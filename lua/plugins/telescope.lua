@@ -15,7 +15,6 @@ return {
       }
     },
     config = function()
-
       require('telescope').setup{
         pickers = {
           live_grep = {
@@ -81,27 +80,6 @@ return {
 
       -- Telescope remappings
       local opts = { noremap = true }
-      local builtin = require("telescope.builtin")
-      local themes = require('telescope.themes');
-
-      -- Module helper functions
-      local custom_picker_directory = function(title, directory)
-        return themes.get_dropdown {
-          previewer = false,
-          cwd = directory,
-          prompt_title = title,
-        }
-      end
-
-      local get_environement_variable = function(env_variable)
-        local env_var = os.getenv(env_variable)
-
-        if env_var ~= nil then
-          return env_var
-        else
-          print("Error: Environment variable '" .. env_variable .. "' is not set.")
-        end
-      end
 
       vim.keymap.set('n', '<leader>to', ':Telescope fd hidden=true<CR>', opts)
       vim.keymap.set('n', '<leader>tb', ':Telescope buffers<CR>', opts)
@@ -133,26 +111,10 @@ return {
       vim.keymap.set('n', '<leader>tgi', ':Telescope git_status<CR>', opts)
 
       -- Open dotfiles in telescope
-      vim.keymap.set('n', '<leader>td', function()
-        local dotfiles_dir = get_environement_variable("DOTFILES")
-
-        if dotfiles_dir ~= nil then
-          builtin.git_files(custom_picker_directory("🐡 Dotfiles 🐠", dotfiles_dir))
-        else
-          print("Environment variable 'DOTFILES' variable is not set.")
-        end
-      end, opts)
+      vim.keymap.set('n', '<leader>td', function () require("util").telescope.get_dotfiles() end, opts)
 
       -- Open neovim files in telescope
-      vim.keymap.set('n', '<leader>tn', function()
-        local neovim_config_dir = get_environement_variable("NVIM_CONFIG")
-
-        if neovim_config_dir ~= nil then
-          builtin.find_files( custom_picker_directory("🗽 Neovim Configuration Files🗼", neovim_config_dir))
-        else
-          print("Environment variable 'NVIM_CONFIG' is not set.");
-        end
-      end);
+      vim.keymap.set('n', '<leader>tn', function() require("util").telescope.get_configfiles() end)
     end
   }
 }

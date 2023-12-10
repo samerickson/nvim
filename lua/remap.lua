@@ -9,7 +9,6 @@ vim.keymap.set('', '<C-u>', '<C-u>zz', opts)
 vim.keymap.set('', '<C-d>', '<C-d>zz', opts)
 
 vim.keymap.set('i', 'jk', '<Esc>', opts)
-vim.keymap.set('n', '<leader>s', ':%s/', opts)
 
 vim.keymap.set('n', '<C-g>', ':')
 vim.keymap.set('i', '<C-g>', '<Esc>:')
