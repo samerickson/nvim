@@ -2,6 +2,7 @@ return {
   {
     'nvim-telescope/telescope.nvim',
     cmd = 'Telescope',
+    build = ":TSUpdate",
     dependencies = {
       -- Dependency becuase I keep forgetting my telescope keybindings
       { "folke/which-key.nvim" },
