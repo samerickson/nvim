@@ -1,7 +1,8 @@
 return {
   'fedepujol/move.nvim', -- Move blocks of text easily
   cmd = { 'MoveLine', 'MoveBlock', 'MoveHChar', 'MoveHBlock', 'MoveWord' },
-  init = function()
+  keys = { '<A-UP>', '<A-DOWN>', '<A-LEFT>', '<A-RIGHT>'},
+  config = function()
     local opts = { noremap = true, silent = true }
 
     vim.keymap.set('i', '<A-DOWN>', '<Esc>:MoveLine(1)<CR>', opts)

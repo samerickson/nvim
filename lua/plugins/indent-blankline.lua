@@ -2,7 +2,7 @@ return {
   {
     -- Shows the indentation level of lines.
     "lukas-reineke/indent-blankline.nvim",
-    lazy = false,
+    event = "VeryLazy",
     config = function()
       local highlight = {
         "RainbowRed",

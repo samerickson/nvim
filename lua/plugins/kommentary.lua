@@ -1,4 +1,4 @@
 return {
   'b3nj5m1n/kommentary',
-  lazy = false
+  keys = { "gc", "gcc" }
 }
