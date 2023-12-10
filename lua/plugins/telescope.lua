@@ -55,6 +55,7 @@ return {
         },
         file_ignore_patterns = {
           "node_modules",
+          "zig%-cache",
           "x64",
           "coverage",
           "help",
