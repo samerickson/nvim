@@ -73,7 +73,8 @@ return {
             "x64",
             "coverage",
             "help",
-            "Help"
+            "Help",
+            "_build"
           }
         }
       }
