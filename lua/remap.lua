@@ -3,6 +3,7 @@ vim.g.mapleader = ' '
 local opts = { noremap = true, silent = true }
 
 vim.keymap.set('', 'gx', '<Esc>:Explore<Cr>', opts)
+vim.keymap.set('n', '<leader>e', '<Esc>:Explore<Cr>', opts)
 
 -- Keep the cursor in the middle of the screen when scrolling
 vim.keymap.set('', '<C-u>', '<C-u>zz', opts)
