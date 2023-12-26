@@ -4,6 +4,7 @@ local set = vim.opt
 set.relativenumber = true
 set.number = true
 
+---@diagnostic disable-next-line: undefined-field
 local osname = vim.loop.os_uname().sysname
 
 if osname == "Linux" then
@@ -11,6 +12,8 @@ if osname == "Linux" then
 elseif osname == "Windows_NT" then
   set.shell = "pwsh"
 end
+
+set.undofile = true
 
 set.shellcmdflag="-command"
 
