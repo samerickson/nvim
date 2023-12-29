@@ -20,6 +20,8 @@ set.shellcmdflag="-command"
 set.shellquote="\""
 set.shellxquote=""
 
+set.autochdir = true
+
 set.tabstop = tabSize
 set.shiftwidth = tabSize
 set.softtabstop = tabSize
