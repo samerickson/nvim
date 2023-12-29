@@ -2,7 +2,6 @@ return {
   {
     'nvim-telescope/telescope.nvim',
     cmd = 'Telescope',
-    build = ":TSUpdate",
     keys = { "<leader>t", "<C-P>", "<C-T>" },
     dependencies = {
       { "nvim-lua/plenary.nvim"},
