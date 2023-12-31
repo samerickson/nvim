@@ -1,5 +1,5 @@
 return {
   'windwp/nvim-autopairs',
-  keys = "i",
+  event = "InsertEnter",
   opts = {}
 }
