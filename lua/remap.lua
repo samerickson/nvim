@@ -24,7 +24,7 @@ wk.register({
       n = { require("util").telescope.get_config_files, "🐠 neovim configuration files" },
       h = { require("util").telescope.get_home_files, "🏠 Home folder" },
     },
-    e = { ":Explore<CR>", "📂 File Explorer"},
+    e = { ":Explore<CR>", "📂 File Explorer" },
     t = {
       name = " 🔭 Telescope",
       t = { ":Telescope<CR>", "🔭 telescope" },
@@ -48,6 +48,10 @@ wk.register({
         s = { ":Telescope git_stash<CR>", "💼 stashes" },
         i = { ":Telescope git_status<CR>", "🗽 status" },
       }
+    },
+    d = {
+      name = "📃 Documentation",
+      g = { ":lua require('neogen').generate()<cr>", "🧬 Generate documentation" }
     }
   }
 })
