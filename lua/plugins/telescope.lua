@@ -78,7 +78,7 @@ return {
             "help",
             "Help",
             "_build",
-            ".git"
+            "%.git/"
           }
         }
       }
