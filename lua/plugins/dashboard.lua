@@ -2,6 +2,7 @@ return {
   "nvimdev/dashboard-nvim",
   event = "VimEnter",
   opts = function()
+    local get_config_files = require("util").telescope.get_config_files
 
     local opts = {
       theme = "doom",
@@ -13,14 +14,14 @@ return {
       config = {
         -- stylua: ignore
         center = {
-          { action = "Telescope find_files",              desc = " Find file",        icon = " ", key = "f" },
-          { action = "Explore",                           desc = " Explore",          icon = " ", key = "e" },
-          { action = "ene | startinsert",                 desc = " New file",         icon = " ", key = "n" },
-          { action = "Telescope oldfiles",                desc = " Recent files",     icon = " ", key = "r" },
-          { action = "Telescope live_grep",               desc = " Find text",        icon = " ", key = "g" },
-          { action = [[lua require("util").telescope()]], desc = " Config",           icon = " ", key = "c" },
-          { action = "Lazy",                              desc = " Lazy",             icon = "󰒲 ", key = "l" },
-          { action = "qa",                                desc = " Quit",             icon = " ", key = "q" },
+          { action = "Telescope find_files",  desc = " Find file",      icon = " ", key = "f" },
+          { action = "Explore",               desc = " Explore",        icon = " ", key = "e" },
+          { action = "ene | startinsert",     desc = " New file",       icon = " ", key = "n" },
+          { action = "Telescope oldfiles",    desc = " Recent files",   icon = " ", key = "r" },
+          { action = "Telescope live_grep",   desc = " Find text",      icon = " ", key = "g" },
+          { action = get_config_files,        desc = " Config",         icon = " ", key = "c" },
+          { action = "Lazy",                  desc = " Lazy",           icon = "󰒲 ", key = "l" },
+          { action = "qa",                    desc = " Quit",           icon = " ", key = "q" },
         },
         footer = function()
           local stats = require("lazy").stats()

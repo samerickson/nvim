@@ -1,4 +1,6 @@
+vim.g.mapleader = ' '
+
 require("opts")
-require("remap")
 require("plugins")
+require("remap")
 

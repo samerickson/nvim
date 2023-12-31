@@ -4,6 +4,15 @@ return {
   config = true,
   event = "VeryLazy",
   init = function()
-    vim.api.nvim_set_keymap("n", "<leader>nf", ":lua require('neogen').generate()<cr>", { noremap = true, silent = true })
+    local wk = require("which-key")
+
+    wk.register({
+      ["<leader>d"] = {
+        name = "📃 Documentation",
+        g = "🧬 Generate documentation"
+      }
+    })
+
+    vim.api.nvim_set_keymap("n", "<leader>dg", ":lua require('neogen').generate()<cr>", { noremap = true, silent = true })
   end
 }
