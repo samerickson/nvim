@@ -24,7 +24,7 @@ return {
         vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#603d1d" })
         vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#3B5727" })
         vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#5A1b6D" })
-        vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+        vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#2D737B" })
       end)
 
       require("ibl").setup {
