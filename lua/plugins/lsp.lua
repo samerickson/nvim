@@ -20,6 +20,9 @@ return {
 
       -- Snippets
       { 'L3MON4D3/LuaSnip' },
+
+      -- To register keybindings
+      { "folke/which-key.nvim" },
     },
     config = function()
       local lsp_zero = require('lsp-zero')
@@ -45,25 +48,30 @@ return {
         }
       })
 
+
       vim.api.nvim_create_autocmd('LspAttach', {
         desc = 'LSP actions',
         callback = function(event)
           local opts = { buffer = event.buf }
 
-          vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-          vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-          vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-          vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
-          vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-          vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-          vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-          vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-          vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-          vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
-
-          vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
-          vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
-          vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
+          local wk = require("which-key")
+          wk.register({
+            g = {
+              k = { '<cmd>lua vim.lsp.buf.hover()<cr>', "🛸 Lsp Hover", opts },
+              d = { '<cmd>lua vim.lsp.buf.definition()<cr>', "🗺️ Jump to definition", opts },
+              D = { '<cmd>lua vim.lsp.buf.declaration()<cr>', "📍 Jump to declaration", opts },
+              i = { '<cmd>lua vim.lsp.buf.implementation()<cr>', "🧱 Jump to implementation", opts },
+              o = { '<cmd>lua vim.lsp.buf.type_definition()<cr>', "🌀 Jump to type definition", opts },
+              r = { '<cmd>lua vim.lsp.buf.references()<cr>', "📃 See references", opts },
+              s = { '<cmd>lua vim.lsp.buf.signature_help()<cr>', "✒️ Signature help",opts },
+              f = { '<cmd>lua vim.diagnostic.open_float()<cr>', "🛟 Open diagnostics", opts },
+            },
+            ["[d"] = { '<cmd>lua vim.diagnostic.goto_prev()<cr>', "🦘 Jump to previous diagnostic", opts },
+            ["]d"] = { '<cmd>lua vim.diagnostic.goto_next()<cr>', " 🦘 Jump to next diagnostic", opts },
+            ["<F4>"] = { '<cmd>lua vim.lsp.buf.code_action()<cr>', "🤖 See code action", opts },
+            ["<F3>"] = { '<cmd>lua vim.lsp.buf.format({async = true})<cr>', "📝 Format document", opts },
+            ["<F2>"] = { '<cmd>lua vim.lsp.buf.rename()<cr>', "✍️  Rename", opts },
+          })
         end
       })
 
