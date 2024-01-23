@@ -6,12 +6,27 @@ set.number = true
 
 ---@diagnostic disable-next-line: undefined-field
 local osname = vim.loop.os_uname().sysname
+local node_bin
+local home_dir
 
 if osname == "Linux" then
+  node_bin = "/.local/share/fnm/node-versions/v21.6.1/installation/bin"
+  home_dir = os.getenv( "HOME" )
   set.shell = "bash"
+
 elseif osname == "Windows_NT" then
+  node_bin = "/AppData/Roaming/fnm/node-versions/v21.6.1/installation"
+  home_dir = os.getenv("HOMEPATH")
   set.shell = "pwsh"
 end
+
+-- https://jaketrent.com/post/set-node-version-nvim/
+vim.g.node_host_prog = home_dir .. node_bin .. "/node"
+
+-- for mason.nvim
+-- prereq - install lsp server in that node/bin npm i -g typescript-language-server
+-- (handled by :Mason currently)
+vim.cmd("let $PATH = '" .. home_dir .. node_bin .. ":' . $PATH")
 
 set.undofile = true
 
