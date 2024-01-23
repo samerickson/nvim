@@ -15,18 +15,18 @@ if osname == "Linux" then
   set.shell = "bash"
 
 elseif osname == "Windows_NT" then
-  node_bin = "/AppData/Roaming/fnm/node-versions/v21.6.1/installation"
-  home_dir = os.getenv("HOMEPATH")
+  node_bin = "\\AppData\\Roaming\\fnm\\node-versions\\v21.6.1\\installation"
+  home_dir = "C:" .. os.getenv("HOMEPATH")
   set.shell = "pwsh"
 end
 
 -- https://jaketrent.com/post/set-node-version-nvim/
-vim.g.node_host_prog = home_dir .. node_bin .. "/node"
+vim.g.node_host_prog = home_dir .. node_bin .. "/neovim-node-host"
 
 -- for mason.nvim
 -- prereq - install lsp server in that node/bin npm i -g typescript-language-server
 -- (handled by :Mason currently)
-vim.cmd("let $PATH = '" .. home_dir .. node_bin .. ":' . $PATH")
+vim.cmd("let $PATH = '" .. home_dir .. node_bin .. ";' . $PATH")
 
 set.undofile = true
 
