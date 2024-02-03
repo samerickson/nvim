@@ -85,9 +85,11 @@ wk.register({
       n = { require("util").telescope.get_config_files, "🐠 neovim configuration files" },
       h = { require("util").telescope.get_home_files, "🏠 Home folder" },
     },
-    e = { ":Explore<CR>", "📂 File Explorer" },
+    e = { ":Telescope file_browser<CR>", "🗃️ Telescope File Browser" },
+    E = { ":Explore<CR>", "📂 File Explorer" },
     t = {
       name = " 🔭 Telescope",
+      p = { function() require'telescope'.extensions.project.project{} end, "🏗️ Projects"},
       t = { ":Telescope<CR>", "🔭 telescope" },
       o = { ":Telescope fd hidden=true<CR>", "📜 find files" },
       O = { ":Telescope oldfiles<CR>", "👴 old files" },
