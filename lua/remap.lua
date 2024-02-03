@@ -1,3 +1,15 @@
+local M = {
+  troubleNextBinding = {
+    function () require("trouble").next({ skip_groups = true, jump = true }) end, "🚦 Trouble Next"
+  },
+  troublePreviousBinding = {
+    function () require("trouble").previous({ skip_groups = true, jump = true }) end, "🚦 Trouble Previous"
+  },
+  searchForWordUnderCursor = function ()
+    require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>") })
+  end,
+}
+
 local opts = { noremap = true, silent = true }
 
 -- Keep the cursor in the middle of the screen when scrolling
@@ -37,14 +49,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end
 })
 
-local troubleNextBinding = {
-  require("trouble").next({ skip_groups = true, jump = true }), "🚦 Trouble Next"
-}
-
-local troublePreviousBinding = {
-  require("trouble").previous({ skip_groups = true, jump = true }), "🚦 Trouble Previous"
-}
-
 local wk = require("which-key")
 wk.register({
   ["<C-p>"] = { ":Telescope git_files<CR>", "📝 git Files" },
@@ -52,10 +56,10 @@ wk.register({
   ["<C-h>"] = { ":Telescope help_tags<CR>", "❓ Help Docs" },
   ["C-b"] = { ":Telescope buffers<CR>", "🦬 Buffers" },
   ["]"] = {
-    t = troubleNextBinding
+    t = M.troubleNextBinding
   },
   ["["] = {
-    t = troublePreviousBinding
+    t = M.troublePreviousBinding
   },
   ["<leader>"] = {
     T = { ":TroubleToggle<CR>", "🚦 Trouble Toggle" },
@@ -89,6 +93,7 @@ wk.register({
       O = { ":Telescope oldfiles<CR>", "👴 old files" },
       q = { ":Telescope quickfix<CR>", "🛠️ quickfix" },
       f = { ":Telescope current_buffer_fuzzy_find<CR>", "📃 find in current file" },
+      F = { M.searchForWordUnderCursor, "👇 Search for word under cursor" },
       s = { ":Telescope live_grep<CR>", "🐚 live grep" },
       b = { ":Telescope buffers<CR>", "🗃️ search buffers" },
       d = { ":Telescope diagnostics<CR>", "⚠️  View diagnostics" },
