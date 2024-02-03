@@ -1,89 +1,107 @@
 return {
-  {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v3.x',
-    event = "VeryLazy",
-    lazy = true,
-    dependencies = {
-      -- LSP Support
-      { 'neovim/nvim-lspconfig' },
-      { 'williamboman/mason.nvim' },
-      { 'williamboman/mason-lspconfig.nvim' },
+  "neovim/nvim-lspconfig",
+  dependencies = {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-path",
+    "hrsh7th/cmp-cmdline",
+    "hrsh7th/nvim-cmp",
+    "L3MON4D3/LuaSnip",
+    "saadparwaiz1/cmp_luasnip",
+    "j-hui/fidget.nvim",
+  },
 
-      -- Autocompletion
-      { 'hrsh7th/nvim-cmp' },
-      { 'hrsh7th/cmp-nvim-lsp' },
-      { 'hrsh7th/cmp-buffer' },
-      { 'hrsh7th/cmp-path' },
-      { 'hrsh7th/cmp-nvim-lua' },
-      { 'hrsh7th/cmp-nvim-lsp-signature-help' },
+  config = function()
+    local cmp = require('cmp')
+    local cmp_lsp = require("cmp_nvim_lsp")
+    local capabilities = vim.tbl_deep_extend(
+      "force",
+      {},
+      vim.lsp.protocol.make_client_capabilities(),
+      cmp_lsp.default_capabilities())
 
-      -- Snippets
-      { 'L3MON4D3/LuaSnip' },
+    require("fidget").setup({})
+    require("mason").setup()
+    require("mason-lspconfig").setup({
+      ensure_installed = {
+        "lua_ls",
+        "rust_analyzer",
+        "tsserver",
+        "lua_ls",
+        "volar",
+        "eslint",
+        "bashls",
+        "zls",
+      },
+      handlers = {
+        function(server_name) -- default handler (optional)
 
-      -- To register keybindings
-      { "folke/which-key.nvim" },
-    },
-    config = function()
-      local lsp_zero = require('lsp-zero')
+          require("lspconfig")[server_name].setup {
+            capabilities = capabilities
+          }
+        end,
 
-      local util = require'lspconfig.util'
-
-      require('mason').setup({})
-      require('mason-lspconfig').setup({
-        ensure_installed = { 'tsserver', 'rust_analyzer' },
-        handlers = {
-          lsp_zero.default_setup,
-          lua_ls = function()
-            local lua_opts = lsp_zero.nvim_lua_ls()
-            require('lspconfig').lua_ls.setup(lua_opts)
-          end,
-          gopls = function()
-            require("lspconfig").gopls.setup {
-              root_dir = function(fname)
-                return util.root_pattern 'go.work' (fname) or util.root_pattern('go.mod', '.git')(fname)
-              end,
+        ["lua_ls"] = function()
+          local lspconfig = require("lspconfig")
+          lspconfig.lua_ls.setup {
+            capabilities = capabilities,
+            settings = {
+              Lua = {
+                diagnostics = {
+                  globals = { "vim", "it", "describe", "before_each", "after_each" },
+                }
+              }
             }
-          end
-        }
-      })
+          }
+        end,
 
-
-      vim.api.nvim_create_autocmd('LspAttach', {
-        desc = 'LSP actions',
-        callback = function(event)
-          local opts = { buffer = event.buf }
-
-          local wk = require("which-key")
-          wk.register({
-            g = {
-              k = { '<cmd>lua vim.lsp.buf.hover()<cr>', "🛸 Lsp Hover", opts },
-              d = { '<cmd>lua vim.lsp.buf.definition()<cr>', "🗺️ Jump to definition", opts },
-              D = { '<cmd>lua vim.lsp.buf.declaration()<cr>', "📍 Jump to declaration", opts },
-              i = { '<cmd>lua vim.lsp.buf.implementation()<cr>', "🧱 Jump to implementation", opts },
-              o = { '<cmd>lua vim.lsp.buf.type_definition()<cr>', "🌀 Jump to type definition", opts },
-              r = { '<cmd>lua vim.lsp.buf.references()<cr>', "📃 See references", opts },
-              s = { '<cmd>lua vim.lsp.buf.signature_help()<cr>', "✒️ Signature help",opts },
-              f = { '<cmd>lua vim.diagnostic.open_float()<cr>', "🛟 Open diagnostics", opts },
-            },
-            ["[d"] = { '<cmd>lua vim.diagnostic.goto_prev()<cr>', "🦘 Jump to previous diagnostic", opts },
-            ["]d"] = { '<cmd>lua vim.diagnostic.goto_next()<cr>', " 🦘 Jump to next diagnostic", opts },
-            ["<F4>"] = { '<cmd>lua vim.lsp.buf.code_action()<cr>', "🤖 See code action", opts },
-            ["<F3>"] = { '<cmd>lua vim.lsp.buf.format({async = true})<cr>', "📝 Format document", opts },
-            ["<F2>"] = { '<cmd>lua vim.lsp.buf.rename()<cr>', "✍️  Rename", opts },
-          })
+        ["gopls"] = function ()
+          require("lspconfig").gopls.setup {
+            root_dir = function(fname)
+              local util = require('lspconfig.util')
+              return util.root_pattern 'go.work' (fname) or util.root_pattern('go.mod', '.git')(fname)
+            end,
+          }
         end
-      })
+      }
+    })
 
-      local cmp = require('cmp')
-      cmp.setup({
-        formatting = lsp_zero.cmp_format(),
-        mapping = cmp.mapping.preset.insert({
-          ['<C-Space>'] = cmp.mapping.complete(),
-          ['<Tab>'] = cmp.mapping.confirm({ select = true }),
-          ['<CR>'] = cmp.mapping.confirm({ select = false }),
-        })
+    local cmp_select = { behavior = cmp.SelectBehavior.Select }
+
+    cmp.setup({
+      snippet = {
+        expand = function(args)
+          require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        end,
+      },
+      mapping = cmp.mapping.preset.insert({
+        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+        ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+        ['<CR>'] = cmp.mapping.confirm({ select = false }),
+        ["<C-Space>"] = cmp.mapping.complete(),
+      }),
+      sources = cmp.config.sources({
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' }, -- For luasnip users.
+      }, {
+        { name = 'buffer' },
       })
-    end
-  }
+    })
+
+    vim.diagnostic.config({
+      -- update_in_insert = true,
+      float = {
+        focusable = false,
+        style = "minimal",
+        border = "rounded",
+        source = "always",
+        header = "",
+        prefix = "",
+      },
+    })
+  end
 }

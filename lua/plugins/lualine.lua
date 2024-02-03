@@ -102,13 +102,11 @@ return {
             n = colors.red,
             i = colors.green,
             v = colors.blue,
-            [''] = colors.blue,
             V = colors.blue,
             c = colors.magenta,
             no = colors.red,
             s = colors.orange,
             S = colors.orange,
-            [''] = colors.orange,
             ic = colors.yellow,
             R = colors.violet,
             Rv = colors.violet,
@@ -162,17 +160,18 @@ return {
 
       ins_left {
         -- Lsp server name
-        function()
-          local msg = 'No Active Lsp'
-          local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+        function ()
+          local msg = ''
           local clients = vim.lsp.get_active_clients()
+
           if next(clients) == nil then
-            return msg
+            return 'No Active Lsp'
           end
           for _, client in ipairs(clients) do
-            local filetypes = client.config.filetypes
-            if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-              return client.name
+            if msg == "" then
+              msg = client.name
+            else
+              msg = msg .. ", " .. client.name
             end
           end
           return msg
@@ -215,7 +214,7 @@ return {
       }
 
       ins_right {
-        function()
+        function ()
           return '▊'
         end,
         color = { fg = colors.blue },

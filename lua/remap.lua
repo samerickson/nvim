@@ -11,13 +11,54 @@ vim.keymap.set('t', '<C-d>', '<C-\\><C-n>', opts)
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', opts)
 vim.keymap.set('t', 'jk', '<C-\\><C-n>', opts)
 
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = '💬 LSP actions',
+  callback = function(event)
+    local lsp_remap_opts = { buffer = event.buf }
+
+    local wk = require("which-key")
+    wk.register({
+      g = {
+        k = { '<cmd>lua vim.lsp.buf.hover()<cr>', "🛸 Lsp Hover", lsp_remap_opts },
+        d = { '<cmd>lua vim.lsp.buf.definition()<cr>', "🗺️ Jump to definition", lsp_remap_opts },
+        D = { '<cmd>lua vim.lsp.buf.declaration()<cr>', "📍 Jump to declaration", lsp_remap_opts },
+        i = { '<cmd>lua vim.lsp.buf.implementation()<cr>', "🧱 Jump to implementation", lsp_remap_opts },
+        o = { '<cmd>lua vim.lsp.buf.type_definition()<cr>', "🌀 Jump to type definition", lsp_remap_opts },
+        r = { '<cmd>lua vim.lsp.buf.references()<cr>', "📃 See references", lsp_remap_opts },
+        s = { '<cmd>lua vim.lsp.buf.signature_help()<cr>', "✒️ Signature help",lsp_remap_opts },
+        f = { '<cmd>lua vim.diagnostic.open_float()<cr>', "🛟 Open diagnostics", lsp_remap_opts },
+      },
+      ["[d"] = { '<cmd>lua vim.diagnostic.goto_prev()<cr>', "🦘 Jump to previous diagnostic", lsp_remap_opts },
+      ["]d"] = { '<cmd>lua vim.diagnostic.goto_next()<cr>', " 🦘 Jump to next diagnostic", lsp_remap_opts },
+      ["<F4>"] = { '<cmd>lua vim.lsp.buf.code_action()<cr>', "🤖 See code action", lsp_remap_opts },
+      ["<F3>"] = { '<cmd>lua vim.lsp.buf.format({async = true})<cr>', "📝 Format document", lsp_remap_opts },
+      ["<F2>"] = { '<cmd>lua vim.lsp.buf.rename()<cr>', "✍️  Rename", lsp_remap_opts },
+    })
+  end
+})
+
+local troubleNextBinding = {
+  require("trouble").next({ skip_groups = true, jump = true }), "🚦 Trouble Next"
+}
+
+local troublePreviousBinding = {
+  require("trouble").previous({ skip_groups = true, jump = true }), "🚦 Trouble Previous"
+}
+
 local wk = require("which-key")
 wk.register({
   ["<C-p>"] = { ":Telescope git_files<CR>", "📝 git Files" },
   ["<C-f"] = { ":Telescope current_buffer_fuzzy_find<CR>", "📃 Search in current file" },
   ["<C-h>"] = { ":Telescope help_tags<CR>", "❓ Help Docs" },
   ["C-b"] = { ":Telescope buffers<CR>", "🦬 Buffers" },
+  ["]"] = {
+    t = troubleNextBinding
+  },
+  ["["] = {
+    t = troublePreviousBinding
+  },
   ["<leader>"] = {
+    T = { ":TroubleToggle<CR>", "🚦 Trouble Toggle" },
     g = {
       name = "📑 Git",
       s = {":Gitsigns stage_hunk<CR>", "➕ Stage hunk"},
@@ -53,7 +94,7 @@ wk.register({
       d = { ":Telescope diagnostics<CR>", "⚠️  View diagnostics" },
       v = {
         name = "🦙 vim configuration",
-        o = { ":Telescope vim_options<CR>", " ⚙️ vim options" },
+        o = { ":Telescope vim_options<CR>", "⚙️  vim options" },
         c = { ":Telescope commands<CR>", "🎬 vim commands" },
       },
       g = {
@@ -67,8 +108,8 @@ wk.register({
     },
     d = {
       name = "📃 Documentation",
-      g = { ":lua require('neogen').generate()<cr>", "🧬 Generate documentation" }
+      g = { ":lua require('neogen').generate()<CR>", "🧬 Generate documentation" }
     }
-  }
+  },
 })
 
