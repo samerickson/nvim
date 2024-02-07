@@ -20,13 +20,19 @@ elseif osname == "Windows_NT" then
   set.shell = "pwsh"
 end
 
--- https://jaketrent.com/post/set-node-version-nvim/
-vim.g.node_host_prog = home_dir .. node_bin .. "/neovim-node-host"
+local node_path = home_dir .. node_bin
 
--- for mason.nvim
--- prereq - install lsp server in that node/bin npm i -g typescript-language-server
--- (handled by :Mason currently)
-vim.cmd("let $PATH = '" .. home_dir .. node_bin .. ";' . $PATH")
+if require("util").os.exists(node_path) then
+  -- https://jaketrent.com/post/set-node-version-nvim/
+  vim.g.node_host_prog = node_path .. "/neovim-node-host"
+
+  -- for mason.nvim
+  -- prereq - install lsp server in that node/bin npm i -g typescript-language-server
+  -- (handled by :Mason currently)
+  vim.cmd("let $PATH = '" .. node_path .. ";' . $PATH")
+else
+  error("Node version v21.6.1 is not installed.")
+end
 
 set.undofile = true
 
