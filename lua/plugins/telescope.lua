@@ -81,11 +81,6 @@ return {
             "zig%-cache",
             ".cache",
             "x64",
-            "coverage",
-            "help",
-            "Help",
-            "_build",
-            "%.git/"
           }
         }
       }
