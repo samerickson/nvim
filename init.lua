@@ -14,6 +14,9 @@ elseif osname == "Windows_NT" then
   node_bin = "\\AppData\\Roaming\\fnm\\node-versions\\v21.6.1\\installation"
   home_dir = "C:" .. os.getenv("HOMEPATH")
   vim.opt.shell = "pwsh"
+	vim.opt.shellcmdflag = '-c'
+	vim.opt.shellquote=''
+	vim.opt.shellxquote=''
 end
 
 local node_path = home_dir .. node_bin
