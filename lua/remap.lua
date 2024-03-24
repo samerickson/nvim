@@ -92,7 +92,7 @@ wk.register({
       p = { function() require'telescope'.extensions.project.project{} end, "🏗️ Projects"},
       t = { ":Telescope<CR>", "🔭 telescope" },
       o = { ":Telescope fd hidden=true<CR>", "📜 find files" },
-      O = { ":Telescope oldfiles<CR>", "👴 old files" },
+      r = { ":Telescope oldfiles<CR>", "👴 old files" },
       q = { ":Telescope quickfix<CR>", "🛠️ quickfix" },
       f = { ":Telescope current_buffer_fuzzy_find<CR>", "📃 find in current file" },
       F = { M.searchForWordUnderCursor, "👇 Search for word under cursor" },
