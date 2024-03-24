@@ -92,7 +92,7 @@ wk.register({
       p = { function() require'telescope'.extensions.project.project{} end, "🏗️ Projects"},
       t = { ":Telescope<CR>", "🔭 telescope" },
       o = { ":Telescope fd hidden=true<CR>", "📜 find files" },
-      r = { ":Telescope oldfiles<CR>", "👴 old files" },
+      O = { ":Telescope oldfiles<CR>", "👴 old files" },
       q = { ":Telescope quickfix<CR>", "🛠️ quickfix" },
       r = { ":Telescope registers<CR>", "®️ registers" },
       f = { ":Telescope current_buffer_fuzzy_find<CR>", "📃 find in current file" },
@@ -117,6 +117,13 @@ wk.register({
     d = {
       name = "📃 Documentation",
       g = { ":lua require('neogen').generate()<CR>", "🧬 Generate documentation" }
+    },
+    w = {
+      name = "🪟 Windows",
+      h = { "<C-w>h", "👈 Move left" },
+      l = { "<C-w>l", "👉 Move right" },
+      j = { "<C-w>j", "👇 Move down" },
+      k = { "<C-w>k", "👉 Move up" },
     }
   },
 })
