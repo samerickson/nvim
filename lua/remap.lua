@@ -94,6 +94,7 @@ wk.register({
       o = { ":Telescope fd hidden=true<CR>", "📜 find files" },
       r = { ":Telescope oldfiles<CR>", "👴 old files" },
       q = { ":Telescope quickfix<CR>", "🛠️ quickfix" },
+      r = { ":Telescope registers<CR>", "®️ registers" },
       f = { ":Telescope current_buffer_fuzzy_find<CR>", "📃 find in current file" },
       F = { M.searchForWordUnderCursor, "👇 Search for word under cursor" },
       s = { ":Telescope live_grep<CR>", "🐚 live grep" },

@@ -8,15 +8,15 @@ local home_dir
 if osname == "Linux" then
   node_bin = "/.local/share/fnm/node-versions/v21.6.1/installation/bin"
   home_dir = os.getenv( "HOME" )
-  vim.opt.shell = "bash"
+  -- vim.opt.shell = "bash"
 
 elseif osname == "Windows_NT" then
   node_bin = "\\AppData\\Roaming\\fnm\\node-versions\\v21.6.1\\installation"
   home_dir = "C:" .. os.getenv("HOMEPATH")
   vim.opt.shell = "pwsh"
-	vim.opt.shellcmdflag = '-c'
-	vim.opt.shellquote=''
-	vim.opt.shellxquote=''
+  vim.opt.shellcmdflag = '-c'
+  vim.opt.shellquote=''
+  vim.opt.shellxquote=''
 end
 
 local node_path = home_dir .. node_bin
