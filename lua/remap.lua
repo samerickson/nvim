@@ -62,7 +62,8 @@ wk.register({
     t = M.troublePreviousBinding
   },
   ["<leader>"] = {
-    T = { ":TroubleToggle<CR>", "🚦 Trouble Toggle" },
+    z = { ":ZenMode<CR>", "🧘 Zen mode"},
+    T = { ":TroubleToggle<CR>", "🚦 Trouble toggle" },
     g = {
       name = "📑 Git",
       s = {":Gitsigns stage_hunk<CR>", "➕ Stage hunk"},
@@ -124,7 +125,7 @@ wk.register({
       l = { "<C-w>l", "👉 Move right" },
       j = { "<C-w>j", "👇 Move down" },
       k = { "<C-w>k", "👉 Move up" },
-    }
+    },
   },
 })
 
