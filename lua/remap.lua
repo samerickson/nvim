@@ -54,7 +54,7 @@ wk.register({
   ["<C-p>"] = { ":Telescope git_files<CR>", "📝 git Files" },
   ["<C-f"] = { ":Telescope current_buffer_fuzzy_find<CR>", "📃 Search in current file" },
   ["<C-h>"] = { ":Telescope help_tags<CR>", "❓ Help Docs" },
-  ["C-b"] = { ":Telescope buffers<CR>", "🦬 Buffers" },
+  ["<C-b>"] = { ":Neotree toggle<CR>", "🌳 File tree" },
   ["]"] = {
     t = M.troubleNextBinding
   },
