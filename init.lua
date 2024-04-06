@@ -1,3 +1,5 @@
+require("disable")
+
 vim.g.mapleader = ' '
 
 ---@diagnostic disable-next-line: undefined-field
