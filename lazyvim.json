@@ -3,7 +3,8 @@
     "lazyvim.plugins.extras.editor.harpoon2"
   ],
   "news": {
-    "NEWS.md": "3314"
+    "NEWS.md": "3314",
+    "doc/news.txt": "9327"
   },
   "version": 3
 }
