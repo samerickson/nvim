@@ -33,3 +33,7 @@ if require("samerickson.util").os.exists(node_path) then
 else
   error("Node version v21.6.1 is not installed.")
 end
+
+-- Disable auto format
+vim.g.autoformat = false -- globally
+vim.b.autoformat = false -- buffer-local
