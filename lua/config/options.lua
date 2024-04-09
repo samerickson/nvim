@@ -25,10 +25,6 @@ local node_path = home_dir .. node_bin
 if require("samerickson.util").os.exists(node_path) then
   -- https://jaketrent.com/post/set-node-version-nvim/
   vim.g.node_host_prog = node_path .. "/neovim-node-host"
-
-  -- for mason.nvim
-  -- prereq - install lsp server in that node/bin npm i -g typescript-language-server
-  -- (handled by :Mason currently)
   vim.cmd("let $PATH = '" .. node_path .. ";' . $PATH")
 else
   error("Node version v21.6.1 is not installed.")
