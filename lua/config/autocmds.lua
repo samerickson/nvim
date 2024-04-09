@@ -9,3 +9,11 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.formatoptions:remove({ "r", "o" })
   end,
 })
+
+-- Selectively enable autoformat for some file types
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "lua" },
+  callback = function()
+    vim.b.autoformat = true
+  end,
+})
