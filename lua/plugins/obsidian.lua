@@ -1,3 +1,9 @@
+local personal_obsidian_path = os.getenv("OBSIDIAN_PERSONAL")
+
+if personal_obsidian_path == nil then
+  return {}
+end
+
 return {
   "epwalsh/obsidian.nvim",
   version = "*", -- recommended, use latest release instead of latest commit
