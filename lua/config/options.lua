@@ -36,3 +36,5 @@ end
 -- Disable auto format
 vim.g.autoformat = false -- globally
 vim.b.autoformat = false -- buffer-local
+
+vim.opt.updatetime = 150
