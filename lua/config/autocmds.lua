@@ -17,3 +17,12 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.b.autoformat = true
   end,
 })
+
+-- close some filetypes with <q>
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "oil" },
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+  end,
+})
