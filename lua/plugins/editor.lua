@@ -25,6 +25,7 @@ return {
     opts = {
       defaults = {
         ["<leader>gd"] = { name = "Diff" },
+        ["<leader>n"] = { name = "Notes" },
       },
     },
   },
