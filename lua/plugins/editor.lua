@@ -33,6 +33,7 @@ return {
     opts = {},
     keys = {
       { "<leader>o", "<cmd>Oil --float<cr>", desc = "Open Oil" },
+      { "-", "<cmd>Oil --float<cr>", desc = "Open Oil" },
     },
     -- Optional dependencies
     dependencies = { "nvim-tree/nvim-web-devicons" },
