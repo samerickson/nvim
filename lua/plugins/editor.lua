@@ -26,6 +26,7 @@ return {
       defaults = {
         ["<leader>gd"] = { name = "Diff" },
         ["<leader>n"] = { name = "Notes" },
+        ["<leader>r"] = { name = "refactoring" },
       },
     },
   },
@@ -34,6 +35,7 @@ return {
     opts = {},
     keys = {
       { "<leader>o", "<cmd>Oil --float<cr>", desc = "Open Oil" },
+      { "-", "<cmd>Oil --float<cr>", desc = "Open Oil" },
     },
     -- Optional dependencies
     dependencies = { "nvim-tree/nvim-web-devicons" },
