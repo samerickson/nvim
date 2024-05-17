@@ -1,8 +1,10 @@
 return {
   {
     "danymat/neogen",
-    event = "VeryLazy",
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = true,
+    keys = {
+      { "gc", "<cmd>Neogen<cr>", desc = "Generate documentation" },
+    },
   },
 }
