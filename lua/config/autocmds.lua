@@ -10,19 +10,18 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- Selectively enable autoformat for some file types
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "lua" },
-  callback = function()
-    vim.b.autoformat = true
-  end,
-})
-
 -- close some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "oil" },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
     vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "go", "cpp", "c" },
+  callback = function()
+    vim.opt.sw = 4
   end,
 })
