@@ -20,6 +20,7 @@ return {
     { "<leader>nn", "<cmd>ObsidianNew<cr>", desc = "New note" },
     { "<leader>ns", "<cmd>ObsidianSearch<cr>", desc = "Grep search notes" },
     { "<leader>ns", "<cmd>ObsidianQuickSwitch<cr>", desc = "Find note" },
+    { "<leader>nt", "<cmd>ObsidianToday<cr>", desc = "Open todays note" },
   },
   cmd = {
     "ObsidianNew",
@@ -38,6 +39,7 @@ return {
         path = personal_obsidian_path,
       },
     },
+    notes_subdir = "notes",
     daily_notes = {
       -- Optional, if you keep daily notes in a separate directory.
       folder = "dailies",
@@ -56,5 +58,12 @@ return {
     },
     new_notes_location = "notes",
     preferred_link_style = "markdown",
+
+    -- Optional, customize how note IDs are generated given an optional title.
+    ---@param title string|?
+    ---@return string
+    note_id_func = function(title)
+      return tostring(title)
+    end,
   },
 }
