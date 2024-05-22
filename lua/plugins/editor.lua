@@ -33,9 +33,12 @@ return {
   {
     "stevearc/oil.nvim",
     opts = {},
+    cmd = {
+      "Oil",
+    },
     keys = {
       { "<leader>o", "<cmd>Oil --float<cr>", desc = "Open Oil" },
-      { "-", "<cmd>Oil --float<cr>", desc = "Open Oil" },
+      { "-", "<cmd>Oil<cr>", desc = "Open Oil" },
     },
     -- Optional dependencies
     dependencies = { "nvim-tree/nvim-web-devicons" },
