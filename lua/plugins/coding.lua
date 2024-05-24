@@ -7,4 +7,9 @@ return {
       { "gc", "<cmd>Neogen<cr>", desc = "Generate documentation" },
     },
   },
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {},
+  },
 }
