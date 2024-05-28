@@ -1,12 +1,16 @@
 {
   "extras": [
+    "lazyvim.plugins.extras.coding.luasnip",
     "lazyvim.plugins.extras.coding.yanky",
     "lazyvim.plugins.extras.lang.markdown",
-    "lazyvim.plugins.extras.lang.typescript"
+    "lazyvim.plugins.extras.lang.typescript",
+    "lazyvim.plugins.extras.lang.vue",
+    "lazyvim.plugins.extras.lang.yaml",
+    "lazyvim.plugins.extras.linting.eslint"
   ],
   "news": {
-    "NEWS.md": "5114",
-    "doc/news.txt": "25793"
+    "NEWS.md": "4964",
+    "doc/news.txt": "25893"
   },
   "version": 4
 }
