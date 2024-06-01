@@ -29,7 +29,7 @@ return function(opts)
       patterns = { "folke", "LazyVim" },
       fallback = jit.os:find("Windows"),
     },
-    install = { colorscheme = { "tokyonight", "habamax" } },
+    install = { colorscheme = { "ayu-mirage", "tokyonight", "habamax" } },
     checker = { enabled = true },
     diff = {
       cmd = "terminal_git",
