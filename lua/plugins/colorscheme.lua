@@ -1,7 +1,7 @@
 return {
-  { "Shatur/neovim-ayu" },
-  { "catppuccin/nvim" },
-  { "rebelot/kanagawa.nvim" },
+  { "Shatur/neovim-ayu", enabled = false },
+  { "catppuccin/nvim", enabled = false },
+  { "rebelot/kanagawa.nvim", enabled = false },
   -- {
   --   "LazyVim/LazyVim",
   --   opts = {
