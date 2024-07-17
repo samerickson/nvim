@@ -40,7 +40,5 @@ return {
       { "<leader>o", "<cmd>Oil --float<cr>", desc = "Open Oil" },
       { "-", "<cmd>Oil<cr>", desc = "Open Oil" },
     },
-    -- Optional dependencies
-    dependencies = { "nvim-tree/nvim-web-devicons" },
   },
 }
