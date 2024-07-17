@@ -23,10 +23,10 @@ return {
   {
     "which-key.nvim",
     opts = {
-      defaults = {
-        ["<leader>gd"] = { name = "Diff" },
-        ["<leader>n"] = { name = "Notes" },
-        ["<leader>r"] = { name = "refactoring" },
+      spec = {
+        { "<leader>gd", group = "diff", icon = { icon = "󰦓", color = "green" } },
+        { "<leader>n", group = "notes", icon = { icon = "", color = "green" } },
+        { "<leader>r", group = "refactoring", icon = { icon = "", color = "red" } },
       },
     },
   },
