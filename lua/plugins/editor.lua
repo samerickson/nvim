@@ -41,4 +41,12 @@ return {
       { "-", "<cmd>Oil<cr>", desc = "Open Oil" },
     },
   },
+  {
+    "https://github.com/samerickson/markdown-title-fetch.nvim",
+    opts = {},
+    cmd = "MarkdownLinkPaste",
+    keys = {
+      { "<c-v>", "<cmd>MarkdownLinkPaste<cr>" },
+    },
+  },
 }

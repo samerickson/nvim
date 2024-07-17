@@ -25,3 +25,10 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt.sw = 4
   end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown" },
+  callback = function()
+    vim.keymap.set("i", "<C-v>", "<cmd>MarkdownLinkPaste<cr>", { buffer = true, silent = true })
+  end,
+})
