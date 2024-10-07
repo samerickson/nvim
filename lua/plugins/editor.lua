@@ -21,6 +21,16 @@ return {
     },
   },
   {
+    "nvim-telescope/telescope.nvim",
+    keys = {
+      {
+        "<leader>sB",
+        "<cmd>Telescope git_branches<cr>",
+        desc = "Git branches",
+      },
+    },
+  },
+  {
     "which-key.nvim",
     opts = {
       spec = {
