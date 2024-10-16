@@ -81,6 +81,29 @@ return {
     },
   },
   {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "marilari88/neotest-vitest",
+    },
+    opts = {
+      adapters = {
+        ["neotest-vitest"] = {},
+      },
+    },
+  },
+  {
+    "theprimeagen/refactoring.nvim",
+    keys = {
+      {
+        "<leader>rr",
+        function()
+          require("telescope").extensions.refactoring.refactors()
+        end,
+        mode = { "n", "x" },
+      },
+    },
+  },
+  {
     "stevearc/oil.nvim",
     opts = {},
     cmd = {
@@ -102,6 +125,18 @@ return {
     cmd = "MarkdownLinkPaste",
     keys = {
       { "<c-v>", "<cmd>MarkdownLinkPaste<cr>" },
+    },
+  },
+  {
+    "Wansmer/treesj",
+    dependencies = { "nvim-treesitter/nvim-treesitter" }, -- if you install parsers with `nvim-treesitter`
+    config = function()
+      require("treesj").setup({
+        use_default_keymaps = false,
+      })
+    end,
+    keys = {
+      { "gS", "<cmd>TSJToggle<cr>", desc = "Toggle parameter split/join" },
     },
   },
 }
