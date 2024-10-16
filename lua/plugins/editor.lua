@@ -1,5 +1,45 @@
 return {
   {
+    "chrisgrieser/nvim-scissors",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "garymjr/nvim-snippets",
+      {
+        "rafamadriz/friendly-snippets",
+        config = function()
+          require("luasnip.loaders.from_vscode").lazy_load({
+            paths = { snippetsDir },
+          })
+        end,
+      },
+    },
+    opts = {
+      snippetDir = snippetsDir,
+    },
+    cmd = {
+      "ScissorsAddNewSnippet",
+      "ScissorsCreateSnippetsForSnipperVars",
+      "ScissorsEditSnippet",
+    },
+    keys = {
+      {
+        "<leader>S",
+        function()
+          require("scissors").editSnippet()
+        end,
+        desc = "Snippet edit",
+      },
+      {
+        "<leader>A",
+        function()
+          require("scissors").addNewSnippet()
+        end,
+        mode = { "n", "x" },
+        desc = "Add new snippet",
+      },
+    },
+  },
+  {
     "sindrets/diffview.nvim",
     event = "LazyFile",
     keys = {
