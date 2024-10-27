@@ -71,6 +71,39 @@ return {
     },
   },
   {
+    "ruifm/gitlinker.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    opts = {
+      mapping = nil,
+    },
+    keys = {
+      {
+        "<leader>gy",
+        function()
+          require("gitlinker.actions").copy_to_clipboard()
+        end,
+        mode = { "n", "x" },
+        desc = "Copy link to file location",
+      },
+      {
+        "<leader>gY",
+        function()
+          require("gitlinker").get_buf_range_url("n", { action_callback = vim.ui.open })
+        end,
+        mode = { "n" },
+        desc = "Open file in remote",
+      },
+      {
+        "<leader>gY",
+        function()
+          require("gitlinker").get_buf_range_url("v", { action_callback = vim.ui.open })
+        end,
+        mode = { "x" },
+        desc = "Open file in remote",
+      },
+    },
+  },
+  {
     "which-key.nvim",
     opts = {
       spec = {
