@@ -23,4 +23,22 @@ M.os = {
   end,
 }
 
+M.toggleTest = function()
+  -- TODO: Ideally this would be more intelligent than just looking
+  -- for a test file in the same directory. But this is all I need
+  -- for now.
+  local typescriptFileName = vim.fn.expand("%"):match("(.*)%.ts$")
+  local targetFile = ""
+
+  -- Check if we are in a test file already
+  local testFileName = typescriptFileName:match("([^/\\])%.test$")
+  if testFileName then
+    targetFile = string.gsub(typescriptFileName, "%.test", ".ts")
+  else
+    targetFile = typescriptFileName .. ".test.ts"
+  end
+
+  vim.api.nvim_command("edit " .. targetFile)
+end
+
 return M
