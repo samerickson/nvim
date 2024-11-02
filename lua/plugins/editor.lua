@@ -1,3 +1,5 @@
+local snippetsDir = vim.fn.stdpath("config") .. "/snippets"
+
 return {
   {
     "chrisgrieser/nvim-scissors",
@@ -23,14 +25,14 @@ return {
     },
     keys = {
       {
-        "<leader>S",
+        "<leader>Se",
         function()
           require("scissors").editSnippet()
         end,
         desc = "Snippet edit",
       },
       {
-        "<leader>A",
+        "<leader>Sa",
         function()
           require("scissors").addNewSnippet()
         end,
