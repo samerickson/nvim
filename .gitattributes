@@ -1,6 +1,0 @@
-[core]
-  autocrlf=false
-  eol=lf
-
-* text eol=auto
-* text eol=lf
