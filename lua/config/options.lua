@@ -36,3 +36,4 @@ end
 
 vim.opt.updatetime = 150
 vim.opt.clipboard = ""
+vim.opt.spell = true
