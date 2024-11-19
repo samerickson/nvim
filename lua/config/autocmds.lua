@@ -23,6 +23,7 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "go", "cpp", "c" },
   callback = function()
     vim.opt.sw = 4
+    vim.opt.tabstop = 4
   end,
 })
 
