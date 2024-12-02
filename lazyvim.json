@@ -1,5 +1,6 @@
 {
   "extras": [
+    "lazyvim.plugins.extras.coding.blink",
     "lazyvim.plugins.extras.coding.luasnip",
     "lazyvim.plugins.extras.coding.mini-surround",
     "lazyvim.plugins.extras.coding.neogen",
@@ -7,6 +8,7 @@
     "lazyvim.plugins.extras.dap.core",
     "lazyvim.plugins.extras.dap.nlua",
     "lazyvim.plugins.extras.editor.fzf",
+    "lazyvim.plugins.extras.editor.mini-move",
     "lazyvim.plugins.extras.editor.refactoring",
     "lazyvim.plugins.extras.lang.git",
     "lazyvim.plugins.extras.lang.go",
@@ -20,7 +22,7 @@
     "lazyvim.plugins.extras.util.dot"
   ],
   "news": {
-    "NEWS.md": "7429",
+    "NEWS.md": "7637",
     "doc/news.txt": "25893"
   },
   "version": 7
