@@ -18,6 +18,7 @@ elseif osname == "Windows_NT" then
   home_dir = "C:" .. os.getenv("HOMEPATH")
   neovim_node_prog = "neovim-node-host.cmd"
   -- LazyVim.terminal.setup("pwsh")
+  LazyVim.terminal.setup("nu")
 end
 
 local node_path = home_dir .. node_bin
