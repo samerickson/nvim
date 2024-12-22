@@ -369,8 +369,8 @@ local groups = vim.tbl_extend("error", statusline_groups, {
   MiniFilesTitleFocused = { bold = true, fg = colors.cyan },
 
   -- Nicer yanky highlights.
-  YankyPut = { link = "Visual" },
-  YankyYanked = { link = "Visual" },
+  -- YankyPut = { link = "Visual" },
+  -- YankyYanked = { link = "Visual" },
 
   -- Highlight for the Treesitter sticky context.
   TreesitterContextBottom = { underline = true, sp = colors.lilac },
