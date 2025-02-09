@@ -2,10 +2,10 @@ return {
   { "Shatur/neovim-ayu", enabled = false },
   { "catppuccin/nvim", enabled = false },
   { "rebelot/kanagawa.nvim", enabled = false },
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "miss-dracula",
-    },
-  },
+  -- {
+  --   "LazyVim/LazyVim",
+  --   opts = {
+  --     colorscheme = "miss-dracula",
+  --   },
+  -- },
 }
