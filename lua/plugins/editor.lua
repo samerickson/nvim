@@ -1,5 +1,3 @@
-local snippetsDir = vim.fn.stdpath("config") .. "/snippets"
-
 return {
   {
     "sindrets/diffview.nvim",
