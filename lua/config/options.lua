@@ -36,5 +36,4 @@ end
 -- vim.b.autoformat = false -- buffer-local
 
 vim.opt.updatetime = 150
-vim.opt.clipboard = ""
 vim.opt.spell = true
