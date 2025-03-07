@@ -104,9 +104,6 @@ return {
     "https://github.com/samerickson/markdown-title-fetch.nvim",
     opts = {},
     cmd = "MarkdownLinkPaste",
-    keys = {
-      { "<c-v>", "<cmd>MarkdownLinkPaste<cr>" },
-    },
   },
   {
     "Wansmer/treesj",
