@@ -28,7 +28,7 @@ function M.translate_selection(target_lang)
     local translated_text = result.stdout:match('%[%[%["(.-)"')
     if translated_text then
       translated_text = translated_text:gsub("\\u([0-9a-fA-F]+)", function(hex)
-        return utf8.char(tonumber(hex, 16))
+        return require("utf8").char(tonumber(hex, 16))
       end)
 
       -- Replace the visual selection with translated text
