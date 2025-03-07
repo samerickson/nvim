@@ -16,7 +16,20 @@ function M.translate_selection(target_lang)
   local url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl="
     .. target_lang
     .. "&dt=t&q="
-    .. vim.fn.escape(text, " ")
+    .. vim.fn
+      .system({
+        "curl",
+        "-G",
+        "-s",
+        "-o",
+        "/dev/null",
+        "-w",
+        "%{url_effective}",
+        "--data-urlencode",
+        "q=" .. text,
+        "http://localhost",
+      })
+      :match("q=(.*)")
 
   vim.system({ "curl", "-s", url }, { text = true }, function(result)
     if result.code ~= 0 then
