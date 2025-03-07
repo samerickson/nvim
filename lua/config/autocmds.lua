@@ -33,3 +33,8 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("i", "<C-v>", "<cmd>MarkdownLinkPaste<cr>", { buffer = true, silent = true })
   end,
 })
+
+vim.api.nvim_create_user_command("YankToClipboard", function()
+  local yank_text = vim.fn.getreg('"') -- Get yanked text
+  vim.fn.system("clip.exe", yank_text)
+end, {})
