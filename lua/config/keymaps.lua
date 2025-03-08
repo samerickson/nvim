@@ -16,3 +16,11 @@ end, { silent = true, desc = "Toggle between test/implementation" })
 map({ "v" }, "<leader>t", function()
   require("samerickson.translate").translate_selection("fr")
 end, { noremap = true, silent = true, desc = "Translate" })
+
+map("n", "<leader>fC", function()
+  Snacks.picker.files({ cwd = "~/.local/share/nvim/lazy" })
+end, { desc = "Search plugin files" })
+
+map("n", "<leader>fG", function()
+  Snacks.picker.grep({ cwd = "~/.local/share/nvim/lazy" })
+end, { desc = "Grep plugin files" })
