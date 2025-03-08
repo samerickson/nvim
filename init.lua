@@ -8,5 +8,6 @@ if vim.g.neovide then
   vim.g.neovide_cursor_animation_length = 0.03
 end
 
-require("samerickson.translate")
 require("config.lazy")
+require("samerickson.translate")
+require("samerickson.test_file")
