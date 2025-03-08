@@ -72,7 +72,7 @@ return {
     },
     config = function()
       local tsjs_statements = {
-        'console.log("%s :", %s)',
+        'console.log("%s", %s)',
       }
       require("refactoring").setup({
         -- overriding printf statement for cpp
