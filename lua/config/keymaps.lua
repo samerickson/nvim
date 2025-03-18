@@ -26,3 +26,6 @@ map("n", "<leader>fG", function()
 end, { desc = "Grep plugin files" })
 
 map({ "v" }, "<leader>x", '"_d', { desc = "Delete without polluting registers" })
+map("n", "<leader>gj", function()
+  require("samerickson.util").open_jira()
+end, { desc = "Open JIRA ticket" })

@@ -41,4 +41,27 @@ M.toggleTest = function()
   vim.api.nvim_command("edit " .. targetFile)
 end
 
+M.open_jira = function()
+  local jira_url = os.getenv("JIRA_URL")
+
+  if jira_url then
+    local git_branch = vim.fn.system("git rev-parse --abbrev-ref HEAD")
+    if git_branch then
+      local jira_ticket = git_branch:match("(%w+-%d+)")
+
+      print(jira_url .. jira_ticket)
+
+      if jira_ticket then
+        vim.fn.system("wslview " .. jira_url .. jira_ticket)
+      else
+        print("Could not parse jira ticket")
+      end
+    else
+      print("Not in a git repo.")
+    end
+  else
+    print("Environment variable JIRA_URL not set")
+  end
+end
+
 return M
