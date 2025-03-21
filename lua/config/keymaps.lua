@@ -18,9 +18,9 @@ map({ "v" }, "<leader>t", function()
 end, { noremap = true, silent = true, desc = "Translate" })
 
 map("n", "<leader>fC", function()
-  Snacks.picker.files({ cwd = "~/.local/share/nvim/lazy" })
+  Snacks.picker.files({ cwd = "~/.local/share/nvim" })
 end, { desc = "Search plugin files" })
 
 map("n", "<leader>fG", function()
-  Snacks.picker.grep({ cwd = "~/.local/share/nvim/lazy" })
+  Snacks.picker.grep({ cwd = "~/.local/share/nvim" })
 end, { desc = "Grep plugin files" })
