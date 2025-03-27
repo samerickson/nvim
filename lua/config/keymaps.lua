@@ -24,3 +24,5 @@ end, { desc = "Search plugin files" })
 map("n", "<leader>fG", function()
   Snacks.picker.grep({ cwd = "~/.local/share/nvim" })
 end, { desc = "Grep plugin files" })
+
+map({ "v" }, "<leader>x", '"_d', { desc = "Delete without polluting registers" })
