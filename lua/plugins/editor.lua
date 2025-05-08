@@ -96,11 +96,6 @@ return {
     },
   },
   {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    config = true,
-  },
-  {
     "https://github.com/samerickson/markdown-title-fetch.nvim",
     opts = {},
     cmd = "MarkdownLinkPaste",
