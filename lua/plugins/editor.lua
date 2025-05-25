@@ -105,4 +105,12 @@ return {
       { "gS", "<cmd>TSJToggle<cr>", desc = "Toggle parameter split/join" },
     },
   },
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = true,
+    opts = {
+      enable_moveright = false,
+    },
+  },
 }
