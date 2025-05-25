@@ -10,4 +10,3 @@ end
 
 require("config.lazy")
 require("samerickson.translate")
-require("samerickson.test_file")
