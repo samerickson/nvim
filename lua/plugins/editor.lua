@@ -52,31 +52,6 @@ return {
     },
   },
   {
-    "theprimeagen/refactoring.nvim",
-    keys = {
-      {
-        "<leader>rr",
-        function()
-          require("telescope").extensions.refactoring.refactors()
-        end,
-        mode = { "n", "x" },
-      },
-    },
-    config = function()
-      local tsjs_statements = {
-        'console.log("%s", %s)',
-      }
-      require("refactoring").setup({
-        -- overriding printf statement for cpp
-        print_var_statements = {
-          -- add a custom print var statement for cpp
-          javascript = tsjs_statements,
-          typescript = tsjs_statements,
-        },
-      })
-    end,
-  },
-  {
     "stevearc/oil.nvim",
     opts = {},
     cmd = {
