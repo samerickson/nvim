@@ -29,3 +29,31 @@ map({ "v" }, "<leader>x", '"_d', { desc = "Delete without polluting registers" }
 map("n", "<leader>gj", function()
   require("samerickson.util").open_jira()
 end, { desc = "Open JIRA ticket" })
+
+map("i", "<CR>", function()
+  local _, col = unpack(vim.api.nvim_win_get_cursor(0))
+  local line = vim.api.nvim_get_current_line()
+
+  local left = line:sub(1, col):match("[^%s]%s*$")
+  local right = line:sub(col + 1):match("^%s*([^%s])")
+
+  local pairs = {
+    ["{"] = "}",
+    ["["] = "]",
+    ["<"] = ">",
+    ["("] = ")",
+  }
+
+  local pair = pairs[left]
+
+  if pair ~= nil and right == pair then
+    -- Exit insert mode and open a new line below
+    vim.api.nvim_feedkeys("\n" .. vim.api.nvim_replace_termcodes("<Esc>O", true, true, true), "n", false)
+  else
+    -- Insert a newline directly (use actual newline char instead of <CR>)
+    vim.api.nvim_feedkeys("\n", "i", false)
+  end
+end, {
+  desc = "Smart <CR> between braces in insert mode",
+  noremap = true, -- very important to prevent recursive map loop
+})
