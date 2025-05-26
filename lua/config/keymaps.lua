@@ -51,6 +51,11 @@ end, {
   noremap = true, -- Prevents recursive loop
 })
 
+map("i", "<C-l>", "<Right>")
+map("i", "<C-h>", "<Left>")
+map("i", "<C-k>", "<Up>")
+map("i", "<C-j>", "<Down>")
+
 map("i", "<CR>", function()
   local _, col = unpack(vim.api.nvim_win_get_cursor(0))
   local line = vim.api.nvim_get_current_line()
