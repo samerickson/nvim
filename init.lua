@@ -9,4 +9,3 @@ if vim.g.neovide then
 end
 
 require("config.lazy")
-require("samerickson.translate")
