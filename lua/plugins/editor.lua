@@ -68,16 +68,20 @@ return {
     cmd = "MarkdownLinkPaste",
   },
   {
-    "Wansmer/treesj",
-    dependencies = { "nvim-treesitter/nvim-treesitter" }, -- if you install parsers with `nvim-treesitter`
-    config = function()
-      require("treesj").setup({
-        use_default_keymaps = false,
-        max_join_length = 4096,
-      })
-    end,
+    "echasnovski/mini.splitjoin",
     keys = {
-      { "gS", "<cmd>TSJToggle<cr>", desc = "Toggle parameter split/join" },
+      {
+        "<leader>cj",
+        function()
+          require("mini.splitjoin").toggle()
+        end,
+        desc = "Join/split code block",
+      },
+    },
+    opts = {
+      mappings = {
+        toggle = "<leader>cj",
+      },
     },
   },
   {
