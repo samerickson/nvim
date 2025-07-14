@@ -40,3 +40,14 @@ vim.o.timeoutlen = 300
 -- Configure how new splits should be opened
 vim.o.splitright = true
 vim.o.splitbelow = true
+
+-- Sync clipboard between the OS and Neovim.
+vim.o.clipboard = 'unnamedplus'
+
+vim.api.nvim_create_autocmd('TextYankPost', {
+    desc = 'Highlight when yanking text',
+    group = vim.api.nvim_create_augroup('hl-yank', { clear = true }),
+    callback = function()
+        vim.hl.on_yank()
+    end,
+})

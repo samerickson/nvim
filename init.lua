@@ -1,4 +1,4 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   -- bootstrap lazy.nvim
@@ -7,16 +7,17 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
-require("options")
+require 'options'
 
-require("lazy").setup({
-  spec = {
-    { import = "plugins" },
-  },
-  defaults = {
-    lazy = true,
-    version = false,
-  },
-  checker = { enabled = false },
-})
-
+require('lazy').setup {
+    spec = {
+        { import = 'plugins' },
+    },
+    change_detection = { notify = false },
+    install = { colorscheme = { 'kanagawa' } },
+    defaults = {
+        lazy = true,
+        version = false,
+    },
+    checker = { enabled = false },
+}
