@@ -1,11 +1,22 @@
-if vim.env.VSCODE then
-  vim.g.vscode = true
-end
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
-if vim.g.neovide then
-  -- Put anything you want to happen only in Neovide here
-  -- vim.g.neovide_fullscreen = true
-  vim.g.neovide_cursor_animation_length = 0.03
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  -- bootstrap lazy.nvim
+  -- stylua: ignore
+  vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
 end
+vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
-require("config.lazy")
+require("options")
+
+require("lazy").setup({
+  spec = {
+    { import = "plugins" },
+  },
+  defaults = {
+    lazy = true,
+    version = false,
+  },
+  checker = { enabled = false },
+})
+

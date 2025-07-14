@@ -1,11 +1,10 @@
 return {
-  { "Shatur/neovim-ayu", enabled = false },
-  { "catppuccin/nvim", enabled = false },
-  { "rebelot/kanagawa.nvim", enabled = false },
-  -- {
-  --   "LazyVim/LazyVim",
-  --   opts = {
-  --     colorscheme = "miss-dracula",
-  --   },
-  -- },
+    {
+        "rebelot/kanagawa.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function ()
+            vim.cmd("colorscheme kanagawa")
+        end
+    },
 }
