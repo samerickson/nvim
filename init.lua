@@ -8,6 +8,7 @@ end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 require 'options'
+require 'keymaps'
 
 require('lazy').setup {
     spec = {
@@ -18,6 +19,11 @@ require('lazy').setup {
     defaults = {
         lazy = true,
         version = false,
+    },
+    dev = {
+        path = '~/dev/nvim-plugins',
+        patterns = { 'samerickson' },
+        fallback = false,
     },
     checker = { enabled = false },
 }
