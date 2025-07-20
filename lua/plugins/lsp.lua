@@ -1,13 +1,13 @@
 return {
     {
         'mason-org/mason.nvim',
-        lazy = false,
+        event = 'UIEnter',
         opts = {},
     },
     {
         -- Main LSP Configuration
         'neovim/nvim-lspconfig',
-        lazy = false,
+        event = 'UIEnter',
         dependencies = {
             -- Automatically install LSPs and related tools to stdpath for Neovim
             -- Mason must be loaded before its dependents so we need to set it up here.
