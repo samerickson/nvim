@@ -1,6 +1,7 @@
 return {
     'ibhagwan/fzf-lua',
     dependencies = { 'echasnovski/mini.icons' },
-    event = 'VimEnter',
+    event = 'UIEnter',
+    enabled = false,
     opts = {},
 }
