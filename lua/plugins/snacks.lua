@@ -1,8 +1,7 @@
 return {
     {
-        'folke/snacks.nvim',
-        priority = 1000,
-        lazy = false,
+        'samerickson/snacks.nvim',
+        event = 'VimEnter',
         ---@type snacks.Config
         opts = {
             bigfile = { enabled = true },
