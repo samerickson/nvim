@@ -65,3 +65,4 @@ map('n', '[w', diagnostic_goto(false, 'WARN'), { desc = 'Prev Warning' })
 -- Terminal Mappings
 map('t', '<C-/>', '<cmd>close<cr>', { desc = 'Hide Terminal' })
 map('t', '<c-_>', '<cmd>close<cr>', { desc = 'which_key_ignore' })
+map('t', '<Esc><Esc>', '<C-/><C-n>', { desc = 'Exit Terminal Mode' })
