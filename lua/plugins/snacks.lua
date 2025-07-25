@@ -35,6 +35,13 @@ return {
         keys = {
             -- Top Pickers & Explorer
             {
+                '<leader>P',
+                function()
+                    Snacks.picker()
+                end,
+                desc = 'List pickers',
+            },
+            {
                 '<leader><space>',
                 function()
                     Snacks.picker.smart()
