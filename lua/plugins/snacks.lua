@@ -44,6 +44,13 @@ return {
             {
                 '<leader><space>',
                 function()
+                    Snacks.picker.files()
+                end,
+                desc = 'Find files',
+            },
+            {
+                '<leader>fS',
+                function()
                     Snacks.picker.smart()
                 end,
                 desc = 'Smart Find Files',
