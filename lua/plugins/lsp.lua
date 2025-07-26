@@ -163,6 +163,19 @@ return {
                             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
                         end, '[T]oggle Inlay [H]ints')
                     end
+
+                    if
+                        client
+                        and client_supports_method(
+                            client,
+                            vim.lsp.protocol.Methods.textDocument_signatureHelp,
+                            event.buf
+                        )
+                    then
+                        map('<C-s>', function()
+                            return vim.lsp.buf.signature_help()
+                        end, 'Signature Help', 'i')
+                    end
                 end,
             })
 
