@@ -175,6 +175,10 @@ return {
                         map('<C-s>', function()
                             return vim.lsp.buf.signature_help()
                         end, 'Signature Help', 'i')
+
+                        map('<C-k>', function()
+                            return vim.lsp.buf.signature_help()
+                        end, 'Signature Help', { 'i', 'n' })
                     end
                 end,
             })
