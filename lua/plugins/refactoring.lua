@@ -9,12 +9,6 @@ return {
         keys = {
             { '<leader>r', '', desc = '+refactor', mode = { 'n', 'v' } },
             {
-                '<leader>rs',
-                pick,
-                mode = 'v',
-                desc = 'Refactor',
-            },
-            {
                 '<leader>ri',
                 function()
                     require('refactoring').refactor 'Inline Variable'
