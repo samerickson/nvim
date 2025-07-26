@@ -64,6 +64,7 @@ return {
                 'vim',
                 'vimdoc',
                 'yaml',
+                'vue',
             },
             highlight = { enable = true },
             incremental_selection = {
