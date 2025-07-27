@@ -67,12 +67,51 @@ return {
                     map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
                     map('<leader>cr', vim.lsp.buf.rename, 'Rename')
 
+                    map('<leader>co', function()
+                        vim.lsp.buf.execute_command {
+                            command = 'typescript.organizeImports',
+                            arguments = { vim.api.nvim_buf_get_name(0) }, -- current file path
+                        }
+                    end, 'Organize Imports')
+
+                    map('<leader>cM', function()
+                        vim.lsp.buf.execute_command {
+                            command = 'typescript.addMissingImports',
+                            arguments = { vim.api.nvim_buf_get_name(0) }, -- current file path
+                        }
+                    end, 'Add missing imports')
+
+                    map('<leader>cu', function()
+                        vim.lsp.buf.execute_command {
+                            command = 'typescript.removeUnused',
+                            arguments = { vim.api.nvim_buf_get_name(0) }, -- current file path
+                        }
+                    end, 'Remove unused imports')
+
+                    map('<leader>cD', function()
+                        vim.lsp.buf.execute_command {
+                            command = 'typescript.fixAll',
+                            arguments = { vim.api.nvim_buf_get_name(0) }, -- current file path
+                        }
+                    end, 'Fix all diagnostics')
+
+                    local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+                    -- Sets a key mapping just for a specific language server
+                    if client and client.name == 'vtsls' then
+                        map('<leader>cV', function()
+                            client:exec_cmd {
+                                title = 'Select TS workspace version',
+                                command = 'typescript.selectTypeScriptVersion',
+                            }
+                        end, 'Select TS workspace version')
+                    end
+
                     -- The following two autocommands are used to highlight references of the
                     -- word under your cursor when your cursor rests there for a little while.
                     --    See `:help CursorHold` for information about when this is executed
                     --
                     -- When you move your cursor, the highlights will be cleared (the second autocommand).
-                    local client = vim.lsp.get_client_by_id(event.data.client_id)
                     if
                         client
                         and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf)
@@ -207,58 +246,6 @@ return {
                                     variableTypes = { enabled = false },
                                 },
                             },
-                        },
-                        keys = {
-                            -- {
-                            --     'gD',
-                            --     function()
-                            --         local params = vim.lsp.util.make_position_params()
-                            --         LazyVim.lsp.execute {
-                            --             command = 'typescript.goToSourceDefinition',
-                            --             arguments = { params.textDocument.uri, params.position },
-                            --             open = true,
-                            --         }
-                            --     end,
-                            --     desc = 'Goto Source Definition',
-                            -- },
-                            -- {
-                            --     'gR',
-                            --     function()
-                            --         LazyVim.lsp.execute {
-                            --             command = 'typescript.findAllFileReferences',
-                            --             arguments = { vim.uri_from_bufnr(0) },
-                            --             open = true,
-                            --         }
-                            --     end,
-                            --     desc = 'File References',
-                            -- },
-                            -- {
-                            --     '<leader>co',
-                            --     LazyVim.lsp.action['source.organizeImports'],
-                            --     desc = 'Organize Imports',
-                            -- },
-                            -- {
-                            --     '<leader>cM',
-                            --     LazyVim.lsp.action['source.addMissingImports.ts'],
-                            --     desc = 'Add missing imports',
-                            -- },
-                            -- {
-                            --     '<leader>cu',
-                            --     LazyVim.lsp.action['source.removeUnused.ts'],
-                            --     desc = 'Remove unused imports',
-                            -- },
-                            -- {
-                            --     '<leader>cD',
-                            --     LazyVim.lsp.action['source.fixAll.ts'],
-                            --     desc = 'Fix all diagnostics',
-                            -- },
-                            -- {
-                            --     '<leader>cV',
-                            --     function()
-                            --         LazyVim.lsp.execute { command = 'typescript.selectTypeScriptVersion' }
-                            --     end,
-                            --     desc = 'Select TS workspace version',
-                            -- },
                         },
                     },
 
