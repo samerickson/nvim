@@ -215,6 +215,13 @@ return {
             },
             -- search
             {
+                '<leader>p',
+                function()
+                    Snacks.picker.registers()
+                end,
+                desc = 'Registers',
+            },
+            {
                 '<leader>s"',
                 function()
                     Snacks.picker.registers()
