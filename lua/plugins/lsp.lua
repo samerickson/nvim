@@ -196,6 +196,14 @@ return {
                 },
             }
 
+            -- The servers table comprises of the following sub-tables:
+            -- 1. mason
+            -- 2. others
+            -- Both these tables have an identical structure of language server names as keys and
+            -- a table of language server configuration as values.
+            ---@class LspServersConfig
+            ---@field mason table<string, vim.lsp.Config>
+            ---@field others table<string, vim.lsp.Config>
             local servers = {
                 mason = {
                     clangd = {},
