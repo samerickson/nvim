@@ -40,6 +40,7 @@ return {
                 'bash',
                 'c',
                 'cpp',
+                'css',
                 'fish',
                 'gitcommit',
                 'graphql',
