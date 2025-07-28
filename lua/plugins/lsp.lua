@@ -195,6 +195,8 @@ return {
                     end,
                 },
             }
+            local vue_language_server_path = vim.fn.stdpath 'data'
+                .. '/mason/packages/vue-language-server/node_modules/@vue/language-server'
 
             -- The servers table comprises of the following sub-tables:
             -- 1. mason
@@ -219,43 +221,23 @@ return {
                     -- ts_ls = {},
                     --
                     vtsls = {
-                        filetypes = {
-                            'javascript',
-                            'javascriptreact',
-                            'javascript.jsx',
-                            'typescript',
-                            'typescriptreact',
-                            'typescript.tsx',
-                            'vue',
-                        },
                         settings = {
-                            complete_function_calls = true,
                             vtsls = {
-                                enableMoveToFileCodeAction = true,
-                                autoUseWorkspaceTsdk = true,
-                                experimental = {
-                                    maxInlayHintLength = 30,
-                                    completion = {
-                                        enableServerSideFuzzyMatch = true,
+                                tsserver = {
+                                    globalPlugins = {
+                                        {
+                                            name = '@vue/typescript-plugin',
+                                            location = vue_language_server_path,
+                                            languages = { 'vue' },
+                                            configNamespace = 'typescript',
+                                        },
                                     },
                                 },
                             },
-                            typescript = {
-                                updateImportsOnFileMove = { enabled = 'always' },
-                                suggest = {
-                                    completeFunctionCalls = true,
-                                },
-                                inlayHints = {
-                                    enumMemberValues = { enabled = true },
-                                    functionLikeReturnTypes = { enabled = true },
-                                    parameterNames = { enabled = 'literals' },
-                                    parameterTypes = { enabled = true },
-                                    propertyDeclarationTypes = { enabled = true },
-                                    variableTypes = { enabled = false },
-                                },
-                            },
                         },
+                        filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
                     },
+                    vue_ls = {},
 
                     lua_ls = {
                         -- cmd = { ... },
@@ -280,6 +262,7 @@ return {
             local ensure_installed = vim.tbl_keys(servers.mason or {})
             vim.list_extend(ensure_installed, {
                 'stylua', -- Used to format Lua code
+                'eslint-lsp',
             })
             require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
