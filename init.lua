@@ -23,7 +23,7 @@ require('lazy').setup {
     dev = {
         path = '~/dev/nvim-plugins',
         patterns = { 'samerickson' },
-        fallback = false,
+        fallback = true,
     },
     checker = { enabled = false },
 }
