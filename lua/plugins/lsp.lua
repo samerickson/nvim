@@ -237,7 +237,7 @@ return {
                         },
                         filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
                     },
-                    vue_ls = {},
+                    vue_ls = { init_options = { typescript = {} }, filetypes = { 'vue' } },
 
                     lua_ls = {
                         -- cmd = { ... },
