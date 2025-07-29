@@ -107,6 +107,9 @@ return {
                         end, 'Select TS workspace version')
                     end
 
+                    if client and client.name == 'eslint' then
+                        map('<leader>ce', ':LspEslintFixAll<CR>', 'Select TS workspace version')
+                    end
                     -- The following two autocommands are used to highlight references of the
                     -- word under your cursor when your cursor rests there for a little while.
                     --    See `:help CursorHold` for information about when this is executed
