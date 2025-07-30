@@ -62,6 +62,10 @@ return {
                         Snacks.picker.lsp_workspace_symbols()
                     end, 'LSP Workspace Symbols')
 
+                    map('<leader>ca', function()
+                        vim.lsp.buf.code_action()
+                    end, 'Code Action', { 'n', 'v' })
+
                     -- Rename the variable under your cursor.
                     --  Most Language Servers support renaming across files, etc.
                     map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
