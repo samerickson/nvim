@@ -30,28 +30,41 @@ return {
             show_success_message = true,
         },
         config = function()
+            vim.keymap.set({ 'n', 'x' }, '<leader>rp', function()
+                return require('refactoring').debug.print_var { normal = true }
+            end, { desc = 'Print variable' })
+
+            vim.keymap.set({ 'n', 'x' }, '<leader>rc', function()
+                return require('refactoring').debug.cleanup {}
+            end, { desc = 'Clean up debug statements' })
+
             vim.keymap.set({ 'n', 'x' }, '<leader>re', function()
                 return require('refactoring').refactor 'Extract Function'
-            end, { expr = true })
+            end, { expr = true, desc = 'Extract function' })
+
             vim.keymap.set({ 'n', 'x' }, '<leader>rf', function()
                 return require('refactoring').refactor 'Extract Function To File'
-            end, { expr = true })
+            end, { expr = true, desc = 'Extract function to file' })
+
             vim.keymap.set({ 'n', 'x' }, '<leader>rv', function()
                 return require('refactoring').refactor 'Extract Variable'
-            end, { expr = true })
+            end, { expr = true, desc = 'Extract variable' })
+
             vim.keymap.set({ 'n', 'x' }, '<leader>rI', function()
                 return require('refactoring').refactor 'Inline Function'
-            end, { expr = true })
+            end, { expr = true, desc = 'Inline function' })
+
             vim.keymap.set({ 'n', 'x' }, '<leader>ri', function()
                 return require('refactoring').refactor 'Inline Variable'
-            end, { expr = true })
+            end, { expr = true, desc = 'Inline variable' })
 
             vim.keymap.set({ 'n', 'x' }, '<leader>rbb', function()
                 return require('refactoring').refactor 'Extract Block'
-            end, { expr = true })
+            end, { expr = true, desc = 'Extract block' })
+
             vim.keymap.set({ 'n', 'x' }, '<leader>rbf', function()
                 return require('refactoring').refactor 'Extract Block To File'
-            end, { expr = true })
+            end, { expr = true, desc = 'Extract block to file' })
         end,
     },
 }
