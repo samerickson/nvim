@@ -23,7 +23,11 @@ map('i', '<A-k>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move Up' })
 map('v', '<A-j>', ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = 'Move Down' })
 map('v', '<A-k>', ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = 'Move Up' })
 
--- Remake selection after indenting visual selection
+map('n', '<C-g>', function()
+    vim.cmd ':let @+ = expand("%")'
+    vim.notify('Coppied file name to clipboard\n: ' .. vim.fn.getreg '+', vim.log.levels.INFO)
+end, { desc = 'Copy name of file to clipboard' })
+
 map('v', '<', '<gv')
 map('v', '>', '>gv')
 
