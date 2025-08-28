@@ -34,41 +34,9 @@ return {
                         vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = desc })
                     end
 
-                    map('gd', function()
-                        Snacks.picker.lsp_definitions()
-                    end, 'Goto Definition')
-
-                    map('gD', function()
-                        Snacks.picker.lsp_declarations()
-                    end, 'Goto Declaration')
-
-                    map('gr', function()
-                        Snacks.picker.lsp_references()
-                    end, 'References')
-
-                    map('gI', function()
-                        Snacks.picker.lsp_implementations()
-                    end, 'Goto Implementation')
-
-                    map('gy', function()
-                        Snacks.picker.lsp_implementations()
-                    end, 'Goto T[y]pe definition')
-
-                    map('<leader>ss', function()
-                        Snacks.picker.lsp_implementations()
-                    end, 'LSP Symbols')
-
-                    map('<leader>sS', function()
-                        Snacks.picker.lsp_workspace_symbols()
-                    end, 'LSP Workspace Symbols')
-
-                    map('<leader>ca', function()
-                        vim.lsp.buf.code_action()
-                    end, 'Code Action', { 'n', 'v' })
-
                     -- Rename the variable under your cursor.
                     --  Most Language Servers support renaming across files, etc.
-                    map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+                    map('<leader>rn', vim.lsp.buf.rename, 'Rename')
                     map('<leader>cr', vim.lsp.buf.rename, 'Rename')
 
                     map('<leader>co', function()
