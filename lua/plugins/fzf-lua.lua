@@ -29,7 +29,7 @@ return {
         { '<leader>sk', '<cmd>FzfLua keymaps<cr>', desc = 'Keymaps' },
         { '<leader>sl', '<cmd>FzfLua resume<cr>', desc = 'Resume last fzf command' },
         { '<leader>sh', '<cmd>FzfLua search_history<cr>', desc = 'History' },
-        { '<C-f>', '<cmd>FzfLua grep_curbuf' },
+        { '<C-f>', '<cmd>FzfLua grep_curbuf<cr>', desc = 'Search current buffer' },
     },
     config = function()
         vim.api.nvim_create_autocmd('LspAttach', {
@@ -41,7 +41,7 @@ return {
 
                 map('gd', '<cmd>FzfLua lsp_implementations<cr>', 'Goto Definition')
                 map('<leader>sS', '<cmd>FzfLua lsp_workspace_symbols<cr>', 'Lsp Workshpace Symbols')
-                map('<leader>sS', '<cmd>FzfLua lsp_document_symbols<cr>', 'Lsp Document Symbols')
+                map('<leader>ss', '<cmd>FzfLua lsp_document_symbols<cr>', 'Lsp Document Symbols')
                 map('<leader>gd', '<cmd>FzfLua lsp_definitions<cr>', 'Goto Definition')
                 map('<leader>gD', '<cmd>FzfLua lsp_document_diagnostics<cr>', 'Document diagnostics')
                 map('<leader>ge', '<cmd>FzfLua lsp_workspace<cr>', 'Workspace diagnostics')
