@@ -2,7 +2,7 @@ return {
     {
         'danymat/neogen',
         config = true,
-        event = 'VeryLazy',
+        event = { 'BufReadPre', 'BufNewFile' },
         keys = {
             {
                 '<c-p>',
