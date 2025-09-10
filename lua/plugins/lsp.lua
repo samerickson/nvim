@@ -1,10 +1,5 @@
 return {
     {
-        'mason-org/mason.nvim',
-        event = 'UIEnter',
-        opts = {},
-    },
-    {
         -- Main LSP Configuration
         'neovim/nvim-lspconfig',
         event = { 'BufReadPre', 'BufNewFile' },
