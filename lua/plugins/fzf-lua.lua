@@ -16,6 +16,7 @@ return {
         { '<leader>/', '<cmd>FzfLua live_grep<cr>', desc = 'Grep' },
         { '<leader>fg', '<cmd>FzfLua grep_visual<cr>', desc = 'Grep', mode = 'x' },
         { '<leader>fz', '<cmd>FzfLua zoxide<cr>', desc = 'Zoxide' },
+        { '<leader>fh', '<cmd>FzfLua helptags<cr>', desc = 'Zoxide' },
         { 'z=', '<cmd>FzfLua spell_suggest<cr>', desc = 'Spelling suggestions' },
         -- Git
         { '<leader>gb', '<cmd>FzfLua git_blame<cr>', desc = 'Blame' },
