@@ -76,3 +76,14 @@ map('t', '<Esc><Esc>', '<C-/><C-n>', { desc = 'Exit Terminal Mode' })
 map({ 'v', 'x' }, '<leader>t', function()
     require('samerickson.translate').translate_selection 'fr'
 end, { desc = 'Translate selection to French' })
+
+map('n', 'gF', function()
+    local qf_data = vim.fn.getqflist({
+        lines = { vim.fn.getline '.' },
+    }).items[1]
+
+    if qf_data.valid == 1 then
+        vim.cmd.buffer(qf_data.bufnr)
+        vim.api.nvim_win_set_cursor(0, { qf_data.lnum, qf_data.col - 1 })
+    end
+end)
