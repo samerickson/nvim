@@ -7,7 +7,7 @@ return {
         opts = {
             bigfile = { enabled = true },
             dashboard = { enabled = false },
-            explorer = { enabled = false },
+            explorer = { enabled = true },
             indent = { enabled = true },
             input = { enabled = true },
             notifier = {
@@ -82,6 +82,13 @@ return {
                     Snacks.terminal()
                 end,
                 desc = 'which_key_ignore',
+            },
+            {
+                '<leader>e',
+                function()
+                    Snacks.explorer()
+                end,
+                desc = 'Open Explorer',
             },
         },
         init = function()
