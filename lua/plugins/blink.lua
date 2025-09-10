@@ -132,7 +132,7 @@ return {
             },
             fuzzy = { implementation = 'prefer_rust' },
             completion = {
-                list = { selection = { preselect = false, auto_insert = true } },
+                list = { selection = { preselect = false, auto_insert = false } },
                 menu = {
                     auto_show = function(ctx)
                         return ctx.mode ~= 'cmdline'
