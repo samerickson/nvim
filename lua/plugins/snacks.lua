@@ -1,6 +1,6 @@
 return {
     {
-        'samerickson/snacks.nvim',
+        'folke/snacks.nvim',
         event = 'VimEnter',
         enabled = true,
         ---@type snacks.Config
