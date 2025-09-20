@@ -1,3 +1,17 @@
+-- Use Windows clipboard via clip.exe in WSL
+vim.g.clipboard = {
+    name = 'WslClipboard',
+    copy = {
+        ['+'] = 'clip.exe',
+        ['*'] = 'clip.exe',
+    },
+    paste = {
+        ['+'] = 'powershell.exe -c Get-Clipboard',
+        ['*'] = 'powershell.exe -c Get-Clipboard',
+    },
+    cache_enabled = 0,
+}
+
 -- Set <space> as the leader key.
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -40,9 +54,6 @@ vim.o.timeoutlen = 300
 -- Configure how new splits should be opened
 vim.o.splitright = true
 vim.o.splitbelow = true
-
--- Sync clipboard between the OS and Neovim.
-vim.o.clipboard = 'unnamedplus'
 
 vim.api.nvim_create_autocmd('TextYankPost', {
     desc = 'Highlight when yanking text',
