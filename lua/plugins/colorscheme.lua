@@ -4,7 +4,7 @@ return {
         lazy = false,
         priority = 1000,
         opts = {
-            compile = false, -- enable compiling the colorscheme
+            compile = true, -- enable compiling the colorscheme
             undercurl = true, -- enable undercurls
             commentStyle = { italic = true },
             functionStyle = {},
