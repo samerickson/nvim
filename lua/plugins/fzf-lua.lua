@@ -1,7 +1,7 @@
 return {
     'ibhagwan/fzf-lua',
     dependencies = { 'echasnovski/mini.icons' },
-    event = 'UIEnter',
+    cmd = { 'Fzflua' },
     keys = {
         { '<leader>k', '<cmd>FzfLua global<Cr>', desc = 'Find' },
         { '<leader>fd', '<cmd>FzfLua lsp_document_diagnostics<cr>', desc = 'Document diagnostics' },
