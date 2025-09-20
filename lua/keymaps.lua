@@ -87,3 +87,5 @@ map('n', 'gF', function()
         vim.api.nvim_win_set_cursor(0, { qf_data.lnum, qf_data.col - 1 })
     end
 end)
+
+map('v', '<leader>y', '"+y', { desc = 'Copy to system clipboard' })
