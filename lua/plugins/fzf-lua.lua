@@ -1,6 +1,28 @@
+vim.api.nvim_create_autocmd('LspAttach', {
+    callback = function(event)
+        local map = function(keys, func, desc, mode)
+            mode = mode or 'n'
+            vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = desc, remap = true })
+        end
+
+        map('gd', '<cmd>FzfLua lsp_implementations<cr>', 'Goto Definition')
+        map('<leader>sS', '<cmd>FzfLua lsp_workspace_symbols<cr>', 'Lsp Workshpace Symbols')
+        map('<leader>ss', '<cmd>FzfLua lsp_document_symbols<cr>', 'Lsp Document Symbols')
+        map('gd', '<cmd>FzfLua lsp_definitions<cr>', 'Goto Definition')
+        map('gD', '<cmd>FzfLua lsp_document_diagnostics<cr>', 'Document diagnostics')
+        map('ge', '<cmd>FzfLua lsp_workspace<cr>', 'Workspace diagnostics')
+        map('gr', '<cmd>FzfLua lsp_references<cr>', 'References')
+        map('<leader>ca', '<cmd>FzfLua lsp_code_actions<cr>', 'Code Actions')
+        map('gy', '<cmd>FzfLua lsp_typedefs<cr>', 'Goto Type Definition')
+        map('gD', '<cmd>FzfLua lsp_declarations<cr>', 'Goto Declaration')
+        map('gI', '<cmd>FzfLua lsp_implementations<cr>', 'Goto Implementation')
+    end,
+})
+
 return {
     'ibhagwan/fzf-lua',
     dependencies = { 'echasnovski/mini.icons' },
+    event = 'LspAttach',
     cmd = { 'Fzflua' },
     keys = {
         { '<leader>k', '<cmd>FzfLua global<Cr>', desc = 'Find' },
@@ -33,26 +55,6 @@ return {
     },
     opts = function()
         local actions = require 'fzf-lua.actions'
-        vim.api.nvim_create_autocmd('LspAttach', {
-            callback = function(event)
-                local map = function(keys, func, desc, mode)
-                    mode = mode or 'n'
-                    vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = desc, remap = true })
-                end
-
-                map('gd', '<cmd>FzfLua lsp_implementations<cr>', 'Goto Definition')
-                map('<leader>sS', '<cmd>FzfLua lsp_workspace_symbols<cr>', 'Lsp Workshpace Symbols')
-                map('<leader>ss', '<cmd>FzfLua lsp_document_symbols<cr>', 'Lsp Document Symbols')
-                map('gd', '<cmd>FzfLua lsp_definitions<cr>', 'Goto Definition')
-                map('gD', '<cmd>FzfLua lsp_document_diagnostics<cr>', 'Document diagnostics')
-                map('ge', '<cmd>FzfLua lsp_workspace<cr>', 'Workspace diagnostics')
-                map('gr', '<cmd>FzfLua lsp_references<cr>', 'References')
-                map('<leader>ca', '<cmd>FzfLua lsp_code_actions<cr>', 'Code Actions')
-                map('gy', '<cmd>FzfLua lsp_typedefs<cr>', 'Goto Type Definition')
-                map('gD', '<cmd>FzfLua lsp_declarations<cr>', 'Goto Declaration')
-                map('gI', '<cmd>FzfLua lsp_implementations<cr>', 'Goto Implementation')
-            end,
-        })
 
         return {
             { 'border-fused', 'hide' },
