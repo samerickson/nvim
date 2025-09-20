@@ -101,6 +101,15 @@ return {
                     width = 0.4,
                 },
             },
+            lsp = {
+                code_actions = {
+                    winopts = {
+                        preview = { hidden = true },
+                        width = 0.5,
+                        height = 0.3,
+                    },
+                },
+            },
             grep = {
                 rg_glob_fn = function(query, opts)
                     local regex, flags = query:match(string.format('^(.*)%s(.*)$', opts.glob_separator))
