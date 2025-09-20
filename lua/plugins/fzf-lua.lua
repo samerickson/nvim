@@ -2,7 +2,6 @@ return {
     'ibhagwan/fzf-lua',
     dependencies = { 'echasnovski/mini.icons' },
     event = 'UIEnter',
-    opts = {},
     keys = {
         { '<leader>k', '<cmd>FzfLua global<Cr>', desc = 'Find' },
         { '<leader>fd', '<cmd>FzfLua lsp_document_diagnostics<cr>', desc = 'Document diagnostics' },
@@ -32,7 +31,8 @@ return {
         { '<leader>sh', '<cmd>FzfLua search_history<cr>', desc = 'History' },
         { '<C-f>', '<cmd>FzfLua grep_curbuf<cr>', desc = 'Search current buffer' },
     },
-    config = function()
+    opts = function()
+        local actions = require 'fzf-lua.actions'
         vim.api.nvim_create_autocmd('LspAttach', {
             callback = function(event)
                 local map = function(keys, func, desc, mode)
@@ -53,5 +53,81 @@ return {
                 map('gI', '<cmd>FzfLua lsp_implementations<cr>', 'Goto Implementation')
             end,
         })
+
+        return {
+            { 'border-fused', 'hide' },
+            -- Make stuff better combine with the editor.
+            fzf_colors = {
+                bg = { 'bg', 'Normal' },
+                gutter = { 'bg', 'Normal' },
+                info = { 'fg', 'Conditional' },
+                scrollbar = { 'bg', 'Normal' },
+                separator = { 'fg', 'Comment' },
+            },
+            fzf_opts = {
+                ['--info'] = 'default',
+                ['--layout'] = 'reverse-list',
+            },
+            keymap = {
+                builtin = {
+                    ['<C-h>'] = 'toggle-help',
+                    ['<C-a>'] = 'toggle-fullscreen',
+                    ['<C-i>'] = 'toggle-preview',
+                },
+                fzf = {
+                    ['alt-s'] = 'toggle',
+                    ['alt-a'] = 'toggle-all',
+                    ['ctrl-i'] = 'toggle-preview',
+                },
+            },
+            winopts = {
+                height = 0.7,
+                width = 0.6,
+                preview = {
+                    scrollbar = false,
+                },
+            },
+            defaults = { git_icons = false },
+            -- Configuration for specific commands.
+            files = {
+                winopts = {
+                    preview = {
+                        hidden = true,
+                        layout = 'vertical',
+                        vertical = 'up:40%',
+                    },
+                    width = 0.4,
+                },
+            },
+            grep = {
+                rg_glob_fn = function(query, opts)
+                    local regex, flags = query:match(string.format('^(.*)%s(.*)$', opts.glob_separator))
+                    -- Return the original query if there's no separator.
+                    return (regex or query), flags
+                end,
+                winopts = {
+                    preview = {
+                        layout = 'horizontal',
+                    },
+                    col = 0.6,
+                },
+            },
+            helptags = {
+                actions = {
+                    -- Open help pages in a vertical split.
+                    ['enter'] = actions.help_vert,
+                },
+            },
+            oldfiles = {
+                include_current_session = true,
+                winopts = {
+                    preview = {
+                        hidden = true,
+                        layout = 'vertical',
+                        vertical = 'up:40%',
+                    },
+                },
+            },
+        }
     end,
 }
