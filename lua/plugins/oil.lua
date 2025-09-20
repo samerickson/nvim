@@ -4,7 +4,7 @@ return {
     opts = {},
     -- Optional dependencies
     dependencies = { { 'echasnovski/mini.icons', opts = {} } },
-    event = 'VeryLazy',
+    cmd = { 'Oil' },
     keys = {
         { '-', '<cmd>Oil<cr>', desc = 'Open parent directory' },
     },
