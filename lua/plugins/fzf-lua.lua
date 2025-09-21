@@ -28,8 +28,6 @@ return {
         { '<leader>k', '<cmd>FzfLua global<Cr>', desc = 'Find' },
         { '<leader>fd', '<cmd>FzfLua lsp_document_diagnostics<cr>', desc = 'Document diagnostics' },
         { '<leader>fg', '<cmd>FzfLua live_grep<cr>', desc = 'Grep' },
-        { '<leader>fr', '<cmd>FzfLua registers<cr>', desc = 'Registers' },
-        { '<leader>p', '<cmd>FzfLua registers<cr>', desc = 'Registers' },
         { '<leader>fa', '<cmd>FzfLua<cr>', desc = 'Fzflua' },
         { '<leader>fl', '<cmd>FzfLua resume<cr>', desc = 'Resume last fzf command' },
         { '<leader>ff', '<cmd>FzfLua files<cr>', desc = 'Find files' },
@@ -49,7 +47,6 @@ return {
         -- Search
         { '<leader>sa', '<cmd>FzfLua<cr>', desc = 'Fzflua' },
         { '<leader>sk', '<cmd>FzfLua keymaps<cr>', desc = 'Keymaps' },
-        { '<leader>sl', '<cmd>FzfLua resume<cr>', desc = 'Resume last fzf command' },
         { '<leader>sh', '<cmd>FzfLua search_history<cr>', desc = 'History' },
         { '<C-f>', '<cmd>FzfLua grep_curbuf<cr>', desc = 'Search current buffer' },
     },
