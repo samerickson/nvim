@@ -34,38 +34,44 @@ return {
                     map('<leader>rn', vim.lsp.buf.rename, 'Rename')
                     map('<leader>cr', vim.lsp.buf.rename, 'Rename')
 
-                    map('<leader>co', function()
-                        vim.lsp.buf_request(0, 'workspace/executeCommand', {
-                            command = 'typescript.organizeImports',
-                            arguments = { vim.api.nvim_buf_get_name(0) },
-                        })
-                    end, 'Organize Imports')
-
-                    map('<leader>cM', function()
-                        vim.lsp.buf_request(0, 'workspace/executeCommand', {
-                            command = 'typescript.addMissingImports',
-                            arguments = { vim.api.nvim_buf_get_name(0) },
-                        })
-                    end, 'Add missing imports')
-
-                    map('<leader>cu', function()
-                        vim.lsp.buf_request(0, 'workspace/executeCommand', {
-                            command = 'typescript.removeUnused',
-                            arguments = { vim.api.nvim_buf_get_name(0) },
-                        })
-                    end, 'Remove unused imports')
-
-                    map('<leader>cD', function()
-                        vim.lsp.buf_request(0, 'workspace/executeCommand', {
-                            command = 'typescript.fixAll',
-                            arguments = { vim.api.nvim_buf_get_name(0) },
-                        })
-                    end, 'Fix all diagnostics')
-
                     local client = vim.lsp.get_client_by_id(event.data.client_id)
 
                     -- Sets a key mapping just for a specific language server
                     if client and client.name == 'vtsls' then
+                        -- Only set TS-related maps when vtsls attaches, and for TS/JS/Vue files
+                        local ft = vim.bo[event.buf].filetype
+                        local allowed_fts = {
+                            typescript = true,
+                            javascript = true,
+                            javascriptreact = true,
+                            typescriptreact = true,
+                            vue = true,
+                        }
+
+                        if allowed_fts[ft] then
+                            local function vtsls_exec(cmd)
+                                client:request('workspace/executeCommand', {
+                                    command = cmd,
+                                    arguments = { vim.api.nvim_buf_get_name(event.buf) },
+                                })
+                            end
+
+                            map('<leader>co', function()
+                                vtsls_exec 'typescript.organizeImports'
+                            end, 'Organize Imports')
+
+                            map('<leader>cM', function()
+                                vtsls_exec 'typescript.addMissingImports'
+                            end, 'Add missing imports')
+
+                            map('<leader>cu', function()
+                                vtsls_exec 'typescript.removeUnused'
+                            end, 'Remove unused imports')
+
+                            map('<leader>cD', function()
+                                vtsls_exec 'typescript.fixAll'
+                            end, 'Fix all diagnostics')
+                        end
                         map('<leader>cV', function()
                             client:exec_cmd {
                                 title = 'Select TS workspace version',
@@ -75,7 +81,7 @@ return {
                     end
 
                     if client and client.name == 'eslint' then
-                        map('<leader>ce', ':LspEslintFixAll<CR>', 'Select TS workspace version')
+                        map('<leader>ce', ':LspEslintFixAll<CR>', 'ESLint Fix All')
                     end
                     -- The following two autocommands are used to highlight references of the
                     -- word under your cursor when your cursor rests there for a little while.
@@ -104,7 +110,7 @@ return {
                             group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
                             callback = function(event2)
                                 vim.lsp.buf.clear_references()
-                                vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
+                                vim.api.nvim_clear_autocmds { group = highlight_augroup, buffer = event2.buf }
                             end,
                         })
                     end
@@ -118,7 +124,8 @@ return {
                         and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf)
                     then
                         map('<leader>ch', function()
-                            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+                            local enabled = vim.lsp.inlay_hint.is_enabled { bufnr = event.buf }
+                            vim.lsp.inlay_hint.enable(not enabled, { bufnr = event.buf })
                         end, '[T]oggle Inlay [H]ints')
                     end
 
@@ -126,10 +133,6 @@ return {
                         client
                         and client:supports_method(vim.lsp.protocol.Methods.textDocument_signatureHelp, event.buf)
                     then
-                        map('<C-s>', function()
-                            return vim.lsp.buf.signature_help()
-                        end, 'Signature Help', 'i')
-
                         map('<C-k>', function()
                             return vim.lsp.buf.signature_help()
                         end, 'Signature Help', { 'i', 'n' })
