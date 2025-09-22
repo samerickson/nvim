@@ -35,31 +35,31 @@ return {
                     map('<leader>cr', vim.lsp.buf.rename, 'Rename')
 
                     map('<leader>co', function()
-                        vim.lsp.buf.execute_command {
+                        vim.lsp.buf_request(0, 'workspace/executeCommand', {
                             command = 'typescript.organizeImports',
-                            arguments = { vim.api.nvim_buf_get_name(0) }, -- current file path
-                        }
+                            arguments = { vim.api.nvim_buf_get_name(0) },
+                        })
                     end, 'Organize Imports')
 
                     map('<leader>cM', function()
-                        vim.lsp.buf.execute_command {
+                        vim.lsp.buf_request(0, 'workspace/executeCommand', {
                             command = 'typescript.addMissingImports',
-                            arguments = { vim.api.nvim_buf_get_name(0) }, -- current file path
-                        }
+                            arguments = { vim.api.nvim_buf_get_name(0) },
+                        })
                     end, 'Add missing imports')
 
                     map('<leader>cu', function()
-                        vim.lsp.buf.execute_command {
+                        vim.lsp.buf_request(0, 'workspace/executeCommand', {
                             command = 'typescript.removeUnused',
-                            arguments = { vim.api.nvim_buf_get_name(0) }, -- current file path
-                        }
+                            arguments = { vim.api.nvim_buf_get_name(0) },
+                        })
                     end, 'Remove unused imports')
 
                     map('<leader>cD', function()
-                        vim.lsp.buf.execute_command {
+                        vim.lsp.buf_request(0, 'workspace/executeCommand', {
                             command = 'typescript.fixAll',
-                            arguments = { vim.api.nvim_buf_get_name(0) }, -- current file path
-                        }
+                            arguments = { vim.api.nvim_buf_get_name(0) },
+                        })
                     end, 'Fix all diagnostics')
 
                     local client = vim.lsp.get_client_by_id(event.data.client_id)
