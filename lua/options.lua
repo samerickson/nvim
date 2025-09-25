@@ -46,10 +46,10 @@ vim.wo.foldtext = ''
 vim.o.winborder = 'rounded'
 
 -- Decrease update time
-vim.o.updatetime = 250
+vim.o.updatetime = 150
 
 -- Decrease mapped sequence wait time
-vim.o.timeoutlen = 300
+vim.o.timeoutlen = 200
 
 -- Configure how new splits should be opened
 vim.o.splitright = true
@@ -62,3 +62,4 @@ vim.api.nvim_create_autocmd('TextYankPost', {
         vim.hl.on_yank()
     end,
 })
+vim.o.scrolloff = 8
