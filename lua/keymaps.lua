@@ -91,7 +91,5 @@ map('n', 'gF', function()
     end
 end)
 
-map('v', '<leader>y', '"+y', { desc = 'Copy to system clipboard' })
-map('n', '<leader>y', '"+yy', { desc = 'Copy to system clipboard' })
 map('n', 'Q', 'q', { noremap = true, silent = true })
 map('n', 'q', '', { noremap = true, silent = true })
