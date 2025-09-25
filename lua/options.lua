@@ -12,9 +12,6 @@ vim.g.clipboard = {
     cache_enabled = 0,
 }
 
--- Prevent an empty buffer from appearing on start up
-vim.o.hidden = false
-
 -- Set <space> as the leader key.
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
