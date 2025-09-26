@@ -44,6 +44,12 @@ vim.o.splitbelow = true
 
 vim.o.scrolloff = 8
 
+-- Disable health checks for these providers.
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_node_provider = 0
+
 if vim.fn.has 'wsl' == 1 then
     vim.api.nvim_create_autocmd('TextYankPost', {
         callback = function()
