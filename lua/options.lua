@@ -1,18 +1,4 @@
--- Use Windows clipboard via clip.exe in WSL
-vim.g.clipboard = {
-    name = 'WslClipboard',
-    copy = {
-        ['+'] = 'clip.exe',
-        ['*'] = 'clip.exe',
-    },
-    paste = {
-        ['+'] = 'powershell.exe -c Get-Clipboard',
-        ['*'] = 'powershell.exe -c Get-Clipboard',
-    },
-    cache_enabled = 0,
-}
-
-vim.o.clipboard = 'unnamedplus'
+vim.opt.clipboard = ''
 
 -- Set <space> as the leader key.
 vim.g.mapleader = ' '
@@ -26,7 +12,6 @@ vim.opt.expandtab = true
 -- Show whitespace.
 vim.opt.list = true
 vim.opt.listchars = { space = '⋅', trail = '⋅', tab = '  ↦' }
-
 -- Save undo history
 vim.o.undofile = true
 
@@ -58,3 +43,13 @@ vim.o.splitright = true
 vim.o.splitbelow = true
 
 vim.o.scrolloff = 8
+
+if vim.fn.has 'wsl' == 1 then
+    vim.api.nvim_create_autocmd('TextYankPost', {
+        callback = function()
+            vim.schedule(function()
+                vim.fn.system('clip.exe', vim.fn.getreg '0')
+            end)
+        end,
+    })
+end
