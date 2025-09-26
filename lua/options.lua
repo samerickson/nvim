@@ -34,9 +34,8 @@ vim.o.winborder = 'rounded'
 
 -- Decrease update time
 vim.o.updatetime = 150
-
--- Decrease mapped sequence wait time
 vim.o.timeoutlen = 200
+vim.o.ttimeoutlen = 10
 
 -- Configure how new splits should be opened
 vim.o.splitright = true
