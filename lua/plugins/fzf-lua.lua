@@ -67,18 +67,6 @@ return {
                 ['--info'] = 'default',
                 ['--layout'] = 'reverse-list',
             },
-            keymap = {
-                builtin = {
-                    ['<C-h>'] = 'toggle-help',
-                    ['<C-a>'] = 'toggle-fullscreen',
-                    ['<C-i>'] = 'toggle-preview',
-                },
-                fzf = {
-                    ['alt-s'] = 'toggle',
-                    ['alt-a'] = 'toggle-all',
-                    ['ctrl-i'] = 'toggle-preview',
-                },
-            },
             winopts = {
                 height = 0.7,
                 width = 0.6,
