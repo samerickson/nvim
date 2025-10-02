@@ -1,4 +1,16 @@
-vim.opt.clipboard = ''
+-- Use Windows clipboard via clip.exe in WSL
+vim.g.clipboard = {
+    name = 'WslClipboard',
+    copy = {
+        ['+'] = 'clip.exe',
+        ['*'] = 'clip.exe',
+    },
+    paste = {
+        ['+'] = 'powershell.exe -c Get-Clipboard',
+        ['*'] = 'powershell.exe -c Get-Clipboard',
+    },
+    cache_enabled = 0,
+}
 
 -- Set <space> as the leader key.
 vim.g.mapleader = ' '
