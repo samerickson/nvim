@@ -3,6 +3,7 @@ return {
         'rebelot/kanagawa.nvim',
         lazy = false,
         priority = 1000,
+        build = ':KanagawaCompile',
         opts = {
             compile = true, -- enable compiling the colorscheme
             undercurl = true, -- enable undercurls
@@ -29,7 +30,7 @@ return {
             },
             overrides = function(colors) -- add/modify highlights
                 local theme = colors.theme
-                return {
+                local highlights = {
                     NormalFloat = { bg = 'none' },
                     FloatBorder = { bg = 'none' },
                     FloatTitle = { bg = 'none' },
@@ -42,27 +43,6 @@ return {
                     SnacksDashboardKey = { fg = theme.syn.special1 },
                     SnacksDashboardSpecial = { fg = theme.syn.comment },
                     SnacksDashboardDir = { fg = theme.syn.identifier },
-                    -- SnacksNotifier
-                    SnacksNotifierBorderError = { link = 'DiagnosticError' },
-                    SnacksNotifierBorderWarn = { link = 'DiagnosticWarn' },
-                    SnacksNotifierBorderInfo = { link = 'DiagnosticInfo' },
-                    SnacksNotifierBorderDebug = { link = 'Debug' },
-                    SnacksNotifierBorderTrace = { link = 'Comment' },
-                    SnacksNotifierIconError = { link = 'DiagnosticError' },
-                    SnacksNotifierIconWarn = { link = 'DiagnosticWarn' },
-                    SnacksNotifierIconInfo = { link = 'DiagnosticInfo' },
-                    SnacksNotifierIconDebug = { link = 'Debug' },
-                    SnacksNotifierIconTrace = { link = 'Comment' },
-                    SnacksNotifierTitleError = { link = 'DiagnosticError' },
-                    SnacksNotifierTitleWarn = { link = 'DiagnosticWarn' },
-                    SnacksNotifierTitleInfo = { link = 'DiagnosticInfo' },
-                    SnacksNotifierTitleDebug = { link = 'Debug' },
-                    SnacksNotifierTitleTrace = { link = 'Comment' },
-                    SnacksNotifierError = { link = 'DiagnosticError' },
-                    SnacksNotifierWarn = { link = 'DiagnosticWarn' },
-                    SnacksNotifierInfo = { link = 'DiagnosticInfo' },
-                    SnacksNotifierDebug = { link = 'Debug' },
-                    SnacksNotifierTrace = { link = 'Comment' },
                     -- SnacksProfiler
                     SnacksProfilerIconInfo = { bg = theme.ui.bg_search, fg = theme.syn.fun },
                     SnacksProfilerBadgeInfo = { bg = theme.ui.bg_visual, fg = theme.syn.fun },
@@ -96,10 +76,28 @@ return {
                     LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
                     MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
                 }
+
+                -- SnacksNotifier
+                local notifier_links = {
+                    { suffix = 'Error', target = 'DiagnosticError' },
+                    { suffix = 'Warn', target = 'DiagnosticWarn' },
+                    { suffix = 'Info', target = 'DiagnosticInfo' },
+                    { suffix = 'Debug', target = 'Debug' },
+                    { suffix = 'Trace', target = 'Comment' },
+                }
+
+                for _, link in ipairs(notifier_links) do
+                    highlights['SnacksNotifierBorder' .. link.suffix] = { link = link.target }
+                    highlights['SnacksNotifierIcon' .. link.suffix] = { link = link.target }
+                    highlights['SnacksNotifierTitle' .. link.suffix] = { link = link.target }
+                    highlights['SnacksNotifier' .. link.suffix] = { link = link.target }
+                end
+
+                return highlights
             end,
-            theme = 'dragon', -- Load "wave" theme
-            background = { -- map the value of 'background' option to a theme
-                dark = 'wave', -- try "dragon" !
+            theme = 'wave',
+            background = {
+                dark = 'wave',
                 light = 'lotus',
             },
         },
