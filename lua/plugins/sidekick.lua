@@ -22,24 +22,21 @@ return {
             desc = 'Goto/Apply Next Edit Suggestion',
         },
         {
-            '<leader>aa',
-            function()
-                require('sidekick.cli').toggle()
-            end,
-            mode = { 'n', 'v' },
-            desc = 'Sidekick Toggle CLI',
-        },
-        {
             '<leader>as',
             function()
                 require('sidekick.cli').select()
             end,
-            -- Or to select only installed tools:
-            -- require("sidekick.cli").select({ filter = { installed = true } })
             desc = 'Sidekick Select CLI',
         },
         {
-            '<leader>as',
+            '<leader>af',
+            function()
+                require('sidekick.cli').send { msg = '{file}' }
+            end,
+            desc = 'Send File',
+        },
+        {
+            '<leader>av',
             function()
                 require('sidekick.cli').send { msg = '{selection}' }
             end,
@@ -55,21 +52,12 @@ return {
             desc = 'Sidekick Select Prompt',
         },
         {
-            '<c-.>',
+            '<a-/>',
             function()
-                require('sidekick.cli').focus()
+                require('sidekick.cli').toggle()
             end,
             mode = { 'n', 'x', 'i', 't' },
             desc = 'Sidekick Switch Focus',
-        },
-        -- Example of a keybinding to open Claude directly
-        {
-            '<leader>ac',
-            function()
-                require('sidekick.cli').toggle { name = 'codex', focus = true }
-            end,
-            desc = 'Sidekick Codex Toggle',
-            mode = { 'n', 'v' },
         },
     },
 }
