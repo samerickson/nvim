@@ -1,111 +1,46 @@
 return {
     'gbprod/yanky.nvim',
+    recommended = true,
+    desc = 'Better Yank/Paste',
+    event = { 'BufReadPre', 'BufNewFile' },
     opts = {
-        ring = { history_length = 50 },
-        highlight = { timer = 250 },
+        system_clipboard = {
+            sync_with_ring = not vim.env.SSH_CONNECTION,
+        },
+        highlight = { timer = 150 },
     },
     keys = {
         {
             '<leader>p',
             function()
-                local history = require('yanky.history').all()
-                local entries = {}
-
-                -- build display list with [id] prefix
-                for i, entry in ipairs(history) do
-                    local first = tostring(entry.regcontents):gsub('\n', ' '):gsub('%s+', ' '):sub(1, 80)
-                    table.insert(entries, string.format('[%d] %s', i, first))
+                if LazyVim.pick.picker.name == 'telescope' then
+                    require('telescope').extensions.yank_history.yank_history {}
+                elseif LazyVim.pick.picker.name == 'snacks' then
+                    Snacks.picker.yanky()
+                else
+                    vim.cmd [[YankyRingHistory]]
                 end
-
-                local function detect_lang(snippet)
-                    local first_line
-                    if type(snippet) == 'table' then
-                        first_line = snippet[1] or ''
-                    else
-                        first_line = tostring(snippet):match '([^\n]+)' or ''
-                    end
-                    first_line = first_line:lower()
-                    if first_line:match '^%s*function' or first_line:match 'local%s' then
-                        return 'lua'
-                    elseif first_line:match '^%s*import' or first_line:match 'def%s' then
-                        return 'python'
-                    elseif first_line:match '^%s*const' or first_line:match '^%s*let' or first_line:match '^%s*var' then
-                        return 'javascript'
-                    elseif first_line:match '^%s*class' then
-                        return 'java'
-                    else
-                        return 'text'
-                    end
-                end
-
-                require('fzf-lua').fzf_exec(entries, {
-                    prompt = 'Yank history> ',
-                    previewer = 'builtin',
-                    preview = {
-                        fn = function(s)
-                            local item = s[1] or ''
-                            local idx = tonumber(item:match '^%[(%d+)%]')
-                            if not idx then
-                                return ''
-                            end
-                            local e = history[idx]
-                            if not e then
-                                return ''
-                            end
-                            local c = e.regcontents
-                            if type(c) == 'table' then
-                                return table.concat(c, '\n')
-                            end
-                            return tostring(c)
-                        end,
-                        syntax = function(s)
-                            local item = s[1] or ''
-                            local idx = tonumber(item:match '^%[(%d+)%]')
-                            if not idx then
-                                return 'text'
-                            end
-                            local e = history[idx]
-                            if not e then
-                                return 'text'
-                            end
-                            return detect_lang(e.regcontents)
-                        end,
-                        lines = 50,
-                    },
-                    actions = {
-                        ['default'] = function(selected)
-                            if not selected or not selected[1] then
-                                return
-                            end
-                            local idx = tonumber(selected[1]:match '^%[(%d+)%]')
-                            if not idx then
-                                return
-                            end
-                            local e = history[idx]
-                            if not e then
-                                return
-                            end
-                            require('yanky.picker').actions.put('p', e.regcontents)
-                        end,
-                    },
-                    -- Highlight number typed in prompt as top match
-                    fzf_opts = {
-                        ['--tiebreak'] = 'index',
-                        ['--nth'] = '1,2', -- search [id] first, then content
-                        ['--exact'] = '', -- prioritize exact matches for number
-                    },
-                    fzf_glob = true,
-                })
             end,
-            desc = 'Yank history (fzf-lua, treesitter, number-prioritized)',
+            mode = { 'n', 'x' },
+            desc = 'Open Yank History',
         },
-
-        { 'p', '<Plug>(YankyPutAfter)', mode = { 'n', 'x' }, desc = 'Put yanked text after cursor' },
-        { 'P', '<Plug>(YankyPutBefore)', mode = { 'n', 'x' }, desc = 'Put yanked text before cursor' },
-        { '=p', '<Plug>(YankyPutAfterLinewise)', desc = 'Put yanked text in line below' },
-        { '=P', '<Plug>(YankyPutBeforeLinewise)', desc = 'Put yanked text in line above' },
-        { '[y', '<Plug>(YankyCycleForward)', desc = 'Cycle forward through yank history' },
-        { ']y', '<Plug>(YankyCycleBackward)', desc = 'Cycle backward through yank history' },
-        { 'y', '<Plug>(YankyYank)', mode = { 'n', 'x' }, desc = 'Yanky yank' },
+        -- stylua: ignore
+    { "y", "<Plug>(YankyYank)", mode = { "n", "x" }, desc = "Yank Text" },
+        { 'p', '<Plug>(YankyPutAfter)', mode = { 'n', 'x' }, desc = 'Put Text After Cursor' },
+        { 'P', '<Plug>(YankyPutBefore)', mode = { 'n', 'x' }, desc = 'Put Text Before Cursor' },
+        { 'gp', '<Plug>(YankyGPutAfter)', mode = { 'n', 'x' }, desc = 'Put Text After Selection' },
+        { 'gP', '<Plug>(YankyGPutBefore)', mode = { 'n', 'x' }, desc = 'Put Text Before Selection' },
+        { '[y', '<Plug>(YankyCycleForward)', desc = 'Cycle Forward Through Yank History' },
+        { ']y', '<Plug>(YankyCycleBackward)', desc = 'Cycle Backward Through Yank History' },
+        { ']p', '<Plug>(YankyPutIndentAfterLinewise)', desc = 'Put Indented After Cursor (Linewise)' },
+        { '[p', '<Plug>(YankyPutIndentBeforeLinewise)', desc = 'Put Indented Before Cursor (Linewise)' },
+        { ']P', '<Plug>(YankyPutIndentAfterLinewise)', desc = 'Put Indented After Cursor (Linewise)' },
+        { '[P', '<Plug>(YankyPutIndentBeforeLinewise)', desc = 'Put Indented Before Cursor (Linewise)' },
+        { '>p', '<Plug>(YankyPutIndentAfterShiftRight)', desc = 'Put and Indent Right' },
+        { '<p', '<Plug>(YankyPutIndentAfterShiftLeft)', desc = 'Put and Indent Left' },
+        { '>P', '<Plug>(YankyPutIndentBeforeShiftRight)', desc = 'Put Before and Indent Right' },
+        { '<P', '<Plug>(YankyPutIndentBeforeShiftLeft)', desc = 'Put Before and Indent Left' },
+        { '=p', '<Plug>(YankyPutAfterFilter)', desc = 'Put After Applying a Filter' },
+        { '=P', '<Plug>(YankyPutBeforeFilter)', desc = 'Put Before Applying a Filter' },
     },
 }

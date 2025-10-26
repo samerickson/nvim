@@ -212,7 +212,7 @@ return {
                         filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
                     },
                     vue_ls = { init_options = { typescript = {} }, filetypes = { 'vue' } },
-
+                    eslint = { settings = { codeActionOnSave = { enable = true } } },
                     lua_ls = {
                         -- cmd = { ... },
                         -- filetypes = { ... },
