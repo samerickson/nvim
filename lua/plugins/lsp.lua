@@ -36,8 +36,12 @@ return {
 
                     local client = vim.lsp.get_client_by_id(event.data.client_id)
 
+                    if not client then
+                        return
+                    end
+
                     -- Sets a key mapping just for a specific language server
-                    if client and client.name == 'vtsls' then
+                    if client.name == 'vtsls' then
                         -- Only set TS-related maps when vtsls attaches, and for TS/JS/Vue files
                         local ft = vim.bo[event.buf].filetype
                         local allowed_fts = {
@@ -48,13 +52,22 @@ return {
                             vue = true,
                         }
 
-                        if allowed_fts[ft] then
-                            local function vtsls_exec(cmd)
-                                client:request('workspace/executeCommand', {
-                                    command = cmd,
-                                    arguments = { vim.api.nvim_buf_get_name(event.buf) },
-                                })
-                            end
+                if client.name == 'eslint' then
+                    map('<leader>ce', ':LspEslintFixAll<CR>', 'ESLint Fix All')
+                end
+
+                -- The following two autocommands are used to highlight references of the
+                -- word under your cursor when your cursor rests there for a little while.
+                --    See `:help CursorHold` for information about when this is executed
+                --
+                -- When you move your cursor, the highlights will be cleared (the second autocommand).
+                if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
+                    local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
+                    vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+                        buffer = event.buf,
+                        group = highlight_augroup,
+                        callback = vim.lsp.buf.document_highlight,
+                    })
 
                             map('<leader>co', function()
                                 vtsls_exec 'typescript.organizeImports'
@@ -80,7 +93,7 @@ return {
                         end, 'Select TS workspace version')
                     end
 
-                    if client and client.name == 'eslint' then
+                    if client.name == 'eslint' then
                         map('<leader>ce', ':LspEslintFixAll<CR>', 'ESLint Fix All')
                     end
                     -- The following two autocommands are used to highlight references of the
@@ -119,20 +132,14 @@ return {
                     -- code, if the language server you are using supports them
                     --
                     -- This may be unwanted, since they displace some of your code
-                    if
-                        client
-                        and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf)
-                    then
+                    if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
                         map('<leader>ch', function()
                             local enabled = vim.lsp.inlay_hint.is_enabled { bufnr = event.buf }
                             vim.lsp.inlay_hint.enable(not enabled, { bufnr = event.buf })
                         end, '[T]oggle Inlay [H]ints')
                     end
 
-                    if
-                        client
-                        and client:supports_method(vim.lsp.protocol.Methods.textDocument_signatureHelp, event.buf)
-                    then
+                    if client:supports_method(vim.lsp.protocol.Methods.textDocument_signatureHelp, event.buf) then
                         map('<C-k>', function()
                             return vim.lsp.buf.signature_help()
                         end, 'Signature Help', { 'i', 'n' })
