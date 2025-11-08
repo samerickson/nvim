@@ -1,14 +1,11 @@
--- Highlight, edit, and navigate code.
 return {
     {
         'nvim-treesitter/nvim-treesitter-textobjects',
         branch = 'main',
-        dependencies = { 'nvim-treesitter/nvim-treesitter' },
     },
     {
         'nvim-treesitter/nvim-treesitter',
-        version = false,
-        lazy = false,
+        cmd = { 'TSUpdate', 'TSInstall', 'TSLog', 'TSUninstall' },
         build = ':TSUpdate',
         branch = 'main',
         opts = {
@@ -20,6 +17,7 @@ return {
                 'fish',
                 'gitcommit',
                 'graphql',
+                'help',
                 'html',
                 'java',
                 'javascript',
@@ -40,34 +38,27 @@ return {
                 'typescript',
                 'vim',
                 'vimdoc',
-                'yaml',
                 'vue',
+                'yaml',
             },
             highlight = { enable = true },
-            incremental_selection = {
-                enable = true,
-                keymaps = {
-                    init_selection = '<cr>',
-                    node_incremental = '<cr>',
-                    scope_incremental = false,
-                    node_decremental = '<bs>',
-                },
-            },
             indent = {
                 enable = true,
                 -- Treesitter unindents Yaml lists for some reason.
                 disable = { 'yaml' },
             },
         },
-        config = function()
-            vim.api.nvim_create_autocmd('BufReadPost', {
-                pattern = '*',
-                callback = function()
-                    -- can start a specific treesitter on a specific buffer also
-                    -- vim.treesitter.start(0, "c")
-                    vim.treesitter.start()
+        config = function(_, opts)
+            vim.api.nvim_create_autocmd('FileType', {
+                callback = function(args)
+                    local bufnr = args.buf
+                    local ft = vim.bo[bufnr].filetype
+
+                    -- Try to start treesitter for this buffer & filetype.
+                    pcall(function()
+                        vim.treesitter.start(bufnr, ft)
+                    end)
                 end,
-                once = true,
             })
         end,
     },
