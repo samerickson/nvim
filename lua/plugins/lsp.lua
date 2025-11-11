@@ -11,6 +11,8 @@ return {
         'mason-org/mason-lspconfig.nvim',
         'WhoIsSethDaniel/mason-tool-installer.nvim',
 
+        'samerickson/snacks.nvim',
+
         -- Useful status updates for LSP.
         { 'j-hui/fidget.nvim', opts = {} },
 
@@ -30,6 +32,7 @@ return {
                 --  Most Language Servers support renaming across files, etc.
                 map('<leader>rn', vim.lsp.buf.rename, 'Rename')
                 map('<leader>cr', vim.lsp.buf.rename, 'Rename')
+                map('<leader>ca', vim.lsp.buf.code_action, 'Code Actions')
 
                 local client = vim.lsp.get_client_by_id(event.data.client_id)
 
