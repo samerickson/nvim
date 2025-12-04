@@ -134,6 +134,12 @@ return {
                         return vim.lsp.buf.signature_help()
                     end, 'Signature Help', { 'i', 'n' })
                 end
+
+                if client:supports_method('textDocument/formatting', event.buf) then
+                    map('<leader>cf', function()
+                        vim.lsp.buf.format { async = true }
+                    end, 'Format buffer', { 'n' })
+                end
             end,
         })
 
