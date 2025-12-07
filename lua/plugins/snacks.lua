@@ -3,16 +3,21 @@ vim.pack.add({
 })
 
 require("snacks").setup({
-  -- enable only what you want:
-  notifier = { enabled = true },
-  indent = { enabled = true },
-  scroll = { enabled = true },
-  picker = { enabled = true },
-
-  -- you can disable things:
-  cursor = { enabled = false },
+    bigfile = { enabled = true },
+    dashboard = { enabled = false },
+    explorer = { enabled = true },
+    indent = { enabled = true },
+    input = { enabled = true },
+    picker = { enabled = true },
+    notifier = { enabled = true },
+    quickfile = { enabled = true },
+    scope = { enabled = true },
+    scroll = { enabled = true },
+    statuscolumn = { enabled = true },
+    words = { enabled = false },
 })
 
 vim.keymap.set('n', '<leader>fa', function() Snacks.picker() end)
 vim.keymap.set('n', '<leader>ff', function() Snacks.picker.files() end)
+vim.keymap.set('n', '<leader>e', function() Snacks.explorer() end)
 
