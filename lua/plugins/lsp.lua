@@ -11,8 +11,6 @@ return {
         'mason-org/mason-lspconfig.nvim',
         'WhoIsSethDaniel/mason-tool-installer.nvim',
 
-        'samerickson/snacks.nvim',
-
         -- Useful status updates for LSP.
         { 'j-hui/fidget.nvim', opts = {} },
 
