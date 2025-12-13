@@ -2,6 +2,7 @@ require 'options'
 require 'keymaps'
 
 require 'plugins.colorscheme'
+require 'plugins.conform'
 require 'plugins.lazydev'
 require 'plugins.snacks'
 require 'plugins.which-key'
