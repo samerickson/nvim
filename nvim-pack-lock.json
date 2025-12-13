@@ -8,6 +8,10 @@
       "rev": "aef7f5cec0a40dbe7f3304214850c472e2264b10",
       "src": "https://github.com/rebelot/kanagawa.nvim"
     },
+    "lazydev.nvim": {
+      "rev": "5231c62aa83c2f8dc8e7ba957aa77098cda1257d",
+      "src": "https://github.com/folke/lazydev.nvim"
+    },
     "nvim-lspconfig": {
       "rev": "7757d54716b26280b1b1785d89364a016a29c445",
       "src": "https://github.com/neovim/nvim-lspconfig"
