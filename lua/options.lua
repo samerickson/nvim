@@ -56,7 +56,7 @@ vim.o.ttimeoutlen = 10
 vim.o.splitright = true
 vim.o.splitbelow = true
 
-vim.o.scrolloff = 8
+vim.o.scrolloff = 12
 
 -- Disable health checks for these providers.
 vim.g.loaded_python3_provider = 0
