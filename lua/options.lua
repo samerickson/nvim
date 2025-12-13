@@ -30,6 +30,9 @@ vim.o.undofile = true
 -- Show line numbers.
 vim.wo.number = true
 
+-- Keep signcolumn on by default
+vim.o.signcolumn = 'yes'
+
 -- Enable mouse mode.
 vim.o.mouse = 'a'
 
