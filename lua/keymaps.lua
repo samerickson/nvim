@@ -97,3 +97,5 @@ end)
 
 map('n', 'Q', 'q', { noremap = true, silent = true })
 map('n', 'q', '', { noremap = true, silent = true })
+
+map('n', 'gx', require('samerickson.utils').open_link)
