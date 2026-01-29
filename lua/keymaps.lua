@@ -79,6 +79,7 @@ end, { desc = 'Hide Terminal' })
 map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit Terminal Mode' })
 map('t', '<c-/>', '<cmd>close<cr>', { desc = 'Close terminal' })
 map('t', '<c-_>', '<cmd>close<cr>', { desc = 'which_key_ignore' })
+map('t', '<c-k>', '<C-\\><C-n><C-w>k', { desc = 'Window up' })
 
 map({ 'v', 'x' }, '<leader>t', function()
     require('samerickson.translate').translate_selection 'fr'
