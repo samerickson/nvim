@@ -9,6 +9,7 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 require 'options'
 require 'keymaps'
+require 'autocmds'
 
 require('lazy').setup {
     spec = {
