@@ -181,6 +181,7 @@ return {
         local servers = {
             mason = {
                 clangd = {},
+                zls = {},
                 gopls = {
                     gofumpt = true,
                     codelenses = {
