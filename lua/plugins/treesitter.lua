@@ -1,3 +1,5 @@
+---@module 'lazy'
+---@type LazySpec
 return {
     {
         'nvim-treesitter/nvim-treesitter-textobjects',
@@ -54,10 +56,19 @@ return {
                     local bufnr = args.buf
                     local ft = vim.bo[bufnr].filetype
 
-                    -- Try to start treesitter for this buffer & filetype.
-                    pcall(function()
-                        vim.treesitter.start(bufnr, ft)
-                    end)
+                    local language = vim.treesitter.language.get_lang(ft)
+                    if not language then
+                        return
+                    end
+
+                    if not vim.treesitter.language.add(language) then
+                        return
+                    end
+
+                    vim.treesitter.start(bufnr, ft)
+
+                    -- enables treesitter based indentation
+                    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
                 end,
             })
         end,
