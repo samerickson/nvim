@@ -254,6 +254,7 @@ return {
                 vue_ls = { init_options = { typescript = {} }, filetypes = { 'vue' } },
                 -- tsgo = { filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'json' } },
                 eslint = { settings = { codeActionOnSave = { enable = true } } },
+                bacon_ls = {},
                 lua_ls = {
                     -- cmd = { ... },
                     -- filetypes = { ... },
