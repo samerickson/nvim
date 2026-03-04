@@ -1,5 +1,3 @@
----@module 'lazy'
----@type LazySpec
 return {
     'gbprod/yanky.nvim',
     recommended = true,

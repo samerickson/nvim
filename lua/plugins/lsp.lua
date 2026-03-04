@@ -1,5 +1,3 @@
----@module 'lazy'
----@type LazySpec
 return {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
@@ -235,14 +233,7 @@ return {
                                     {
                                         name = '@vue/typescript-plugin',
                                         location = vue_language_server_path,
-                                        filetypes = {
-                                            'vue',
-                                            'javascript',
-                                            'javascriptreact',
-                                            'typescript',
-                                            'typescriptreact',
-                                            'json',
-                                        },
+                                        languages = { 'vue' },
                                         configNamespace = 'typescript',
                                     },
                                 },
@@ -252,7 +243,7 @@ return {
                     filetypes = { 'vue' },
                 },
                 vue_ls = { init_options = { typescript = {} }, filetypes = { 'vue' } },
-                -- tsgo = { filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'json' } },
+                tsgo = { filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' } },
                 eslint = { settings = { codeActionOnSave = { enable = true } } },
                 bacon_ls = {},
                 lua_ls = {

@@ -1,5 +1,3 @@
----@module 'lazy'
----@type LazySpec
 return {
     'folke/sidekick.nvim',
     opts = {

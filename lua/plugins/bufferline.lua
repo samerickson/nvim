@@ -1,5 +1,3 @@
----@module 'lazy'
----@type LazySpec
 return {
     'akinsho/bufferline.nvim',
     event = 'VeryLazy',

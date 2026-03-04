@@ -6,7 +6,6 @@ return {
             'nvim-lua/plenary.nvim',
             'nvim-treesitter/nvim-treesitter',
         },
-        ---@module 'refactoring'
         opts = {
             prompt_func_return_type = {
                 go = false,

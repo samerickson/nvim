@@ -1,6 +1,4 @@
 -- Formatting.
----@module 'lazy'
----@type LazySpec
 return {
     {
         'stevearc/conform.nvim',
