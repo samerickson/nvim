@@ -1,3 +1,5 @@
+local is_windows = (vim.uv or vim.loop).os_uname().sysname == 'Windows_NT'
+
 ---@module 'lazy'
 ---@type LazySpec
 return {
@@ -7,7 +9,7 @@ return {
         cli = {
             mux = {
                 backend = 'tmux',
-                enabled = true,
+                enabled = not is_windows,
             },
         },
     },
