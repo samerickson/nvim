@@ -9,11 +9,6 @@ map('n', '<C-j>', '<C-w>j', { desc = 'Go to Lower Window', remap = true })
 map('n', '<C-k>', '<C-w>k', { desc = 'Go to Upper Window', remap = true })
 map('n', '<C-l>', '<C-w>l', { desc = 'Go to Right Window', remap = true })
 
-map('i', '<C-h>', '<Left>')
-map('i', '<C-j>', '<Up>')
-map('i', '<C-k>', '<Down>')
-map('i', '<C-l>', '<Right>')
-
 -- Resize window using <ctrl> arrow keys
 map('n', '<C-Up>', '<cmd>resize +2<cr>', { desc = 'Increase Window Height' })
 map('n', '<C-Down>', '<cmd>resize -2<cr>', { desc = 'Decrease Window Height' })
@@ -27,6 +22,13 @@ map('i', '<A-j>', '<esc><cmd>m .+1<cr>==gi', { desc = 'Move Down' })
 map('i', '<A-k>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move Up' })
 map('v', '<A-j>', ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = 'Move Down' })
 map('v', '<A-k>', ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = 'Move Up' })
+
+-- Shell (like) mappings
+map('i', '<C-a>', '<C-o>^', { desc = 'Move to begining of text on line' })
+map('i', '<A-f>', '<A-w>', { desc = 'Move forward a word' })
+
+-- Mapping already exists/works
+-- map('i', '<A-b>', '<A-b>', { desc = 'Move forward a word' })
 
 map('n', '<C-g>', function()
     vim.cmd ':let @+ = expand("%")'
