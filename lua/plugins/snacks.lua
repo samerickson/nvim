@@ -14,7 +14,7 @@ return {
             input = { enabled = true },
             image = { enabled = false },
             notifier = {
-                enabled = true,
+                enabled = false,
                 timeout = 3000,
             },
             picker = { enabled = true },
