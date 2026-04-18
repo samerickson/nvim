@@ -11,7 +11,9 @@ require 'options'
 require 'keymaps'
 require 'autocmds'
 
-require('vim._core.ui2').enable {}
+if not require('samerickson.utils').is_windows then
+    require('vim._core.ui2').enable {}
+end
 
 require('lazy').setup {
     spec = {
