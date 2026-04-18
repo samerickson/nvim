@@ -40,4 +40,6 @@ function M.open_link()
     vim.notify 'No link found under cursor'
 end
 
+M.is_windows = (vim.uv or vim.loop).os_uname().sysname == 'Windows_NT'
+
 return M
