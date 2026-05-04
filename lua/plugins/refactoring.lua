@@ -3,8 +3,7 @@ return {
         'ThePrimeagen/refactoring.nvim',
         event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
-            'nvim-lua/plenary.nvim',
-            'nvim-treesitter/nvim-treesitter',
+            'lewis6991/async.nvim',
         },
         ---@module 'refactoring'
         opts = {
@@ -32,11 +31,15 @@ return {
         },
         config = function()
             vim.keymap.set({ 'n', 'x' }, '<leader>rp', function()
-                return require('refactoring').debug.print_var { normal = true }
+                return require('refactoring.debug').print_var { normal = true }
             end, { desc = 'Print variable' })
 
+            vim.keymap.set({ 'n', 'x' }, '<leader>rP', function()
+                return require('refactoring.debug').print_loc { normal = true }
+            end, { desc = 'Print location' })
+
             vim.keymap.set({ 'n', 'x' }, '<leader>rc', function()
-                return require('refactoring').debug.cleanup {}
+                return require('refactoring.debug').cleanup {}
             end, { desc = 'Clean up debug statements' })
 
             vim.keymap.set({ 'n', 'x' }, '<leader>re', function()
@@ -66,6 +69,10 @@ return {
             vim.keymap.set({ 'n', 'x' }, '<leader>rbf', function()
                 return require('refactoring').refactor 'Extract Block To File'
             end, { expr = true, desc = 'Extract block to file' })
+
+            vim.keymap.set('n', '<leader>rE', function()
+                return require('refactoring.debug').print_exp { output_location = 'below' } .. '_'
+            end, { desc = 'Debug print exp below', expr = true })
         end,
     },
 }
