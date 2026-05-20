@@ -33,9 +33,27 @@ map('i', '<A-f>', '<A-w>', { desc = 'Move forward a word' })
 -- map('i', '<A-b>', '<A-b>', { desc = 'Move forward a word' })
 
 map('n', '<C-g>', function()
-    vim.cmd ':let @+ = expand("%")'
-    vim.notify('Coppied file name to clipboard\n: ' .. vim.fn.getreg '+', vim.log.levels.INFO)
+    local file = vim.fn.fnamemodify(vim.fn.expand '%', ':p:~:.'):gsub('\r', '')
+    vim.fn.setreg('+', file)
+
+    vim.notify('Copied file name to clipboard\n: ' .. file, vim.log.levels.INFO)
 end, { desc = 'Copy name of file to clipboard' })
+
+map('n', '<C-t>', function()
+    local file = vim.fn.fnamemodify(vim.fn.expand '%', ':p:~:.'):gsub('\r', '')
+
+    local test_file = ''
+
+    if file:match '%.test.ts' then
+        test_file = file
+    elseif file:match '%.ts' then
+        test_file = file:gsub('%.ts$', '.test.ts')
+    elseif file:match '%.vue' then
+        test_file = file:gsub('%.vue$', '.test.ts')
+    end
+    vim.fn.setreg('+', 'npm run test:unit -- ' .. test_file)
+    vim.notify('Copied test file name to clipboard\n: ' .. file, vim.log.levels.INFO)
+end)
 
 map('v', '<', '<gv')
 map('v', '>', '>gv')
@@ -104,3 +122,6 @@ map('n', 'Q', 'q', { noremap = true, silent = true })
 map('n', 'q', '', { noremap = true, silent = true })
 
 map('n', 'gx', require('samerickson.utils').open_link)
+
+-- Select last paste
+map('n', 'gp', '`[v`]', { noremap = true, desc = 'Select Last Paste' })
