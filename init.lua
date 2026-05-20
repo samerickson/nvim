@@ -33,8 +33,7 @@ require('lazy').setup {
     },
     dev = {
         path = '~/dev/nvim-plugins',
-        patterns = { 'samerickson' },
-        fallback = true,
+        patterns = { 'samerickson', 'serickson' },
     },
     performance = {
         cache = { enabled = true },
