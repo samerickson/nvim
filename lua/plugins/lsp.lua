@@ -171,7 +171,7 @@ return {
         local vue_language_server_path = vim.fn.stdpath 'data'
             .. '/mason/packages/vue-language-server/node_modules/@vue/language-server'
 
-        -- The servers table comprises of the following sub-tables:
+        -- The servers table is comprised of the following sub-tables:
         -- 1. mason
         -- 2. others
         -- Both these tables have an identical structure of language server names as keys and
