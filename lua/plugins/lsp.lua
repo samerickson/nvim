@@ -145,8 +145,7 @@ return {
         vim.diagnostic.config {
             severity_sort = true,
             float = { border = 'rounded', source = 'if_many' },
-            -- Underline only errors and warnings
-            underline = { severity = { min = vim.diagnostic.severity.WARN } },
+            underline = { severity = { min = vim.diagnostic.severity.HINT } },
             signs = vim.g.have_nerd_font and {
                 text = {
                     [vim.diagnostic.severity.ERROR] = '󰅚 ',
