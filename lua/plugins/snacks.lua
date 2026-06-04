@@ -497,7 +497,7 @@ return {
             {
                 '<c-/>',
                 function()
-                    Snacks.terminal()
+                    Snacks.terminal.focus()
                 end,
                 desc = 'Toggle Terminal',
             },
