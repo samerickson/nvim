@@ -8,57 +8,40 @@ return {
         opts = {
             notify_on_error = false,
             formatters_by_ft = {
-                c = { name = 'clangd-format', timeout_ms = 500, lsp_format = 'prefer' },
-                cpp = { name = 'clang-format', timeout_ms = 500, lsp_format = 'prefer' },
-                javascript = { 'prettier', name = 'dprint', timeout_ms = 500, lsp_format = 'fallback' },
-                javascriptreact = { 'prettier', name = 'dprint', timeout_ms = 500, lsp_format = 'fallback' },
-                json = { 'prettier', name = 'dprint', timeout_ms = 500, lsp_format = 'fallback' },
-                jsonc = { 'prettier', name = 'dprint', timeout_ms = 500, lsp_format = 'fallback' },
+                c = { 'clang-format', timeout_ms = 500, lsp_format = 'fallback' },
+                cpp = { 'clang-format', timeout_ms = 500, lsp_format = 'fallback' },
+                javascript = { 'prettier', 'dprint', timeout_ms = 500, lsp_format = 'fallback', stop_after_first = true },
+                javascriptreact = { 'prettier', 'dprint', timeout_ms = 500, lsp_format = 'fallback', stop_after_first = true },
+                json = { 'prettier', 'dprint', timeout_ms = 500, lsp_format = 'fallback', stop_after_first = true },
+                jsonc = { 'prettier', 'dprint', timeout_ms = 500, lsp_format = 'fallback', stop_after_first = true },
                 less = { 'prettier' },
                 lua = { 'stylua' },
                 markdown = { 'prettier' },
                 rust = { name = 'rust_analyzer', timeout_ms = 500, lsp_format = 'prefer' },
                 scss = { 'prettier' },
                 sh = { 'shfmt' },
-                typescript = { 'prettier', name = 'dprint', timeout_ms = 500, lsp_format = 'fallback' },
-                typescriptreact = { 'prettier', name = 'dprint', timeout_ms = 500, lsp_format = 'fallback' },
+                typescript = { 'prettier', 'dprint', timeout_ms = 500, lsp_format = 'fallback', stop_after_first = true },
+                typescriptreact = { 'prettier', 'dprint', timeout_ms = 500, lsp_format = 'fallback', stop_after_first = true },
                 go = { 'goimports', 'gofmt' },
                 -- For filetypes without a formatter:
                 ['_'] = { 'trim_whitespace', 'trim_newlines' },
             },
             format_on_save = function()
-                -- Don't format when minifiles is open, since that triggers the "confirm without
-                -- synchronization" message.
-                if vim.g.minifiles_active then
-                    return nil
-                end
-
-                -- Skip formatting if triggered from my special save command.
-                if vim.g.skip_formatting then
-                    vim.g.skip_formatting = false
-                    return nil
-                end
-
-                -- Stop if we disabled auto-formatting.
                 if not vim.g.autoformat then
                     return nil
                 end
 
                 return {
                     timeout_ms = 2000,
-                    lsp_fallback = true,
+                    lsp_fallback = false,
                 }
             end,
             formatters = {
-                -- Require a Prettier configuration file to format.
                 prettier = { require_cwd = true },
             },
         },
         init = function()
-            -- Use conform for gq.
             vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-
-            -- Start auto-formatting by default (and disable with my ToggleFormat command).
             vim.g.autoformat = true
         end,
     },
