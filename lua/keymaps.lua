@@ -121,7 +121,6 @@ end)
 map('n', 'Q', 'q', { noremap = true, silent = true })
 map('n', 'q', '', { noremap = true, silent = true })
 
-map('n', 'gx', require('samerickson.utils').open_link)
-
 -- Select last paste
 map('n', 'gp', '`[v`]', { noremap = true, desc = 'Select Last Paste' })
+map('n', 'gx', require('samerickson.utils').open_link, { desc = 'Open with system app' })
