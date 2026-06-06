@@ -30,7 +30,7 @@ function M.open_link()
         return do_open(url)
     end
 
-    -- consider anything that looks like string/string a github link
+    -- Consider anything that looks like string/string a github link
     local plugin_url_regex = '[%a%d%-%.%_]*%/[%a%d%-%.%_]*'
     local link = string.match(url, plugin_url_regex)
     if link then
