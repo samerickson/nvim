@@ -10,7 +10,9 @@ end
 return {
     {
         'saghen/blink.cmp',
-        version = '^1',
+        dependencies = {
+            { 'saghen/blink.lib' },
+        },
         event = { 'InsertEnter', 'CmdlineEnter' },
         opts = {
             appearance = {
@@ -48,9 +50,9 @@ return {
                     end,
                     'fallback',
                 },
-                sources = {
-                    default = { 'lsp', 'path', 'snippets', 'buffer' },
-                },
+            },
+            sources = {
+                default = { 'lsp', 'path', 'snippets', 'buffer' },
             },
             fuzzy = { implementation = 'prefer_rust_with_warning' },
             completion = {
@@ -86,5 +88,8 @@ return {
                 winhighlight = 'Normal:NormalFloat,FloatBorder:FloatBorder',
             },
         },
+        build = function()
+            require('blink.cmp').build():pwait()
+        end,
     },
 }
