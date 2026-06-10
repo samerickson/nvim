@@ -1,3 +1,4 @@
+vim.env.SHELL = '/bin/sh'
 
 require 'options'
 require 'keymaps'
