@@ -2,16 +2,11 @@ vim.pack.add {
     { src = 'https://github.com/gbprod/yanky.nvim' },
 }
 
-local ok, yanky = pcall(require, 'yanky')
-if not ok then
-    return
-end
-
 local system_clipboard = {
     sync_with_ring = not vim.env.SSH_CONNECTION,
 }
 
-yanky.setup {
+require('yanky').setup {
     system_clipboard = system_clipboard,
     highlight = { timer = 150 },
 }
@@ -27,6 +22,6 @@ map('n', '[y', '<Plug>(YankyCycleForward)', { desc = 'Cycle Forward Through Yank
 map('n', ']y', '<Plug>(YankyCycleBackward)', { desc = 'Cycle Backward Through Yank History' })
 
 -- Snacks integration (needs Snacks already loaded)
-map({ 'n', 'x' }, '<leader>p', function()
+map({ 'n', 'x' }, '<leader>y', function()
     Snacks.picker.yanky()
 end, { desc = 'Open Yank History' })
