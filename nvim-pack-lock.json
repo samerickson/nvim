@@ -24,6 +24,10 @@
       "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
       "src": "https://github.com/folke/lazydev.nvim"
     },
+    "mini.icons": {
+      "rev": "520995f1d75da0e4cc901ee95080b1ff2bc46b94",
+      "src": "https://github.com/echasnovski/mini.icons"
+    },
     "mini.splitjoin": {
       "rev": "146aef247d9bfc58bab20dd921ba6b75ac4b8cf9",
       "src": "https://github.com/echasnovski/mini.splitjoin"

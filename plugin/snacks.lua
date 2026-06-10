@@ -1,4 +1,9 @@
-vim.pack.add { 'https://github.com/folke/snacks.nvim' }
+vim.pack.add {
+    { src = 'https://github.com/echasnovski/mini.icons' },
+    { src = 'https://github.com/folke/snacks.nvim' },
+}
+
+require('mini.icons').setup()
 
 require('snacks').setup {
     bigfile = { enabled = true },
@@ -21,7 +26,6 @@ require('snacks').setup {
 }
 
 local map = vim.keymap.set
-local opts = { noremap = true, silent = true }
 
 -- Top Pickers & Explorer
 -- stylua: ignore start
