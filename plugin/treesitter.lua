@@ -38,6 +38,7 @@ vim.pack.add { gh 'nvim-treesitter/nvim-treesitter' }
 require('nvim-treesitter').setup {
     -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
     install_dir = vim.fn.stdpath 'data' .. '/site',
+    highlight = { enable = true },
 }
 
 require('nvim-treesitter').install(parsers):wait(300000)
