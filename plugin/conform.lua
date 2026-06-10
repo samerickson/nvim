@@ -1,9 +1,9 @@
-vim.pack.add{ "https://github.com/stevearc/conform.nvim" }
+vim.pack.add { 'https://github.com/stevearc/conform.nvim' }
 
 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 vim.g.autoformat = true
 
-require"conform".setup({
+require('conform').setup {
     notify_on_error = false,
     formatters_by_ft = {
         c = { 'clang-format', timeout_ms = 500, lsp_format = 'fallback' },
@@ -37,4 +37,4 @@ require"conform".setup({
     formatters = {
         prettier = { require_cwd = true },
     },
-})
+}
