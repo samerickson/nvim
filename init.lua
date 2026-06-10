@@ -1,3 +1,5 @@
+-- Enable experimental loader
+vim.loader.enable()
 vim.env.SHELL = '/bin/sh'
 
 require 'options'
