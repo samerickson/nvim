@@ -10,3 +10,7 @@ if not require('samerickson.utils').is_windows then
 end
 
 vim.lsp.enable 'lua_ls'
+vim.lsp.enable 'bashls'
+vim.lsp.enable 'vue_ls'
+vim.lsp.enable 'vtsls'
+vim.lsp.enable 'gopls'
