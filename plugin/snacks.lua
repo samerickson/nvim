@@ -22,10 +22,7 @@ require('snacks').setup {
     scroll = { enabled = false },
     statuscolumn = { enabled = true },
     words = { enabled = false },
-    terminal = {
-        auto_insert = false,
-        shell = '/bin/bash',
-    },
+    terminal = { auto_insert = false },
 }
 
 local map = vim.keymap.set

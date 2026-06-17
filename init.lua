@@ -1,6 +1,6 @@
 -- Enable experimental loader
 vim.loader.enable()
-vim.o.shell = '/usr/sbin/dash'
+vim.o.shell = '/bin/bash'
 
 require 'options'
 require 'keymaps'
