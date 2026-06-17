@@ -19,8 +19,8 @@ map('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase Window W
 map('n', '<A-j>', "<cmd>execute 'move .+' . v:count1<cr>==", { desc = 'Move Down' })
 map('n', '<A-k>', "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = 'Move Up' })
 map('n', '<A-Down>', "<cmd>execute 'move .+' . v:count1<cr>==", { desc = 'Move Down' })
-map('n', '<A-Up>', "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = 'Move Up' })
-map('i', '<A-j>', '<esc><cmd>m .+1<cr>==gi', { desc = 'Move Down' })
+-- map('n', '<A-Up>', "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = 'Move Up' })
+-- map('i', '<A-j>', '<esc><cmd>m .+1<cr>==gi', { desc = 'Move Down' })
 map('i', '<A-k>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move Up' })
 map('v', '<A-j>', ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = 'Move Down' })
 map('v', '<A-k>', ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = 'Move Up' })
@@ -39,22 +39,6 @@ end, { desc = 'Copy name of file to clipboard' })
 
 map('v', '<', '<gv')
 map('v', '>', '>gv')
-
--- Location list
-map('n', '<leader>xl', function()
-    local success, err = pcall(vim.fn.getloclist(0, { winid = 0 }).winid ~= 0 and vim.cmd.lclose or vim.cmd.lopen)
-    if not success and err then
-        vim.notify(err, vim.log.levels.ERROR)
-    end
-end, { desc = 'Location List' })
-
--- Quickfix list
-map('n', '<leader>xq', function()
-    local success, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
-    if not success and err then
-        vim.notify(err, vim.log.levels.ERROR)
-    end
-end, { desc = 'Quickfix List' })
 
 --- Jumps between diagnostics with an optional severity filter.
 ---@param next boolean when true, jump to next; when false, jump to previous
