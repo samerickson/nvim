@@ -4,6 +4,8 @@ vim.pack.add { gh 'folke/which-key.nvim' }
 
 require('which-key').setup {
     -- preset = 'helix',
+    delay = 0,
+    icons = { mappings = true },
     spec = {
         {
             mode = { 'n', 'v' },
