@@ -22,7 +22,10 @@ require('snacks').setup {
     scroll = { enabled = false },
     statuscolumn = { enabled = true },
     words = { enabled = false },
-    terminal = { auto_insert = false },
+    terminal = {
+        auto_insert = false,
+        shell = '/bin/bash',
+    },
 }
 
 local map = vim.keymap.set
@@ -106,7 +109,6 @@ map("n", "<leader>S", function() Snacks.scratch.select() end, { desc = "Select S
 map("n", "<leader>n", function() Snacks.notifier.show_history() end, { desc = "Notification History" })
 
 map("n", "<leader>bd", function() Snacks.bufdelete() end, { desc = "Delete Buffer" })
-map("n", "<leader>bo", function() Snacks.bufdelete.other() end, { desc = "Delete other buffers" })
 map("n", "<leader>bi", function() Snacks.bufdelete.invisible() end, { desc = "Delete invisible buffers" })
 
 map("n", "<leader>cR", function() Snacks.rename.rename_file() end, { desc = "Rename File" })
