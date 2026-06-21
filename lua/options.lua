@@ -12,6 +12,8 @@ vim.g.clipboard = {
     cache_enabled = 0,
 }
 
+vim.o.conceallevel = 2
+
 -- Set <space> as the leader key.
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '

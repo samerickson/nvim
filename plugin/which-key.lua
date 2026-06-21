@@ -21,6 +21,7 @@ require('which-key').setup {
             { '<leader>u', group = 'ui' },
             { '<leader>x', group = 'quickfix' },
             { '<leader>r', group = 'refactor' },
+            { '<leader>n', group = 'notes' },
             { '[', group = 'prev' },
             { ']', group = 'next' },
             { 'g', group = 'goto' },
