@@ -33,7 +33,7 @@ map("n", "<leader><space>", function() Snacks.picker() end, { desc = "Search all
 map("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Buffers" })
 map("n", "<leader>/", function() Snacks.picker.grep() end, { desc = "Grep" })
 map("n", "<leader>:", function() Snacks.picker.command_history() end, { desc = "Command History" })
-map("n", "<leader>n", function() Snacks.picker.notifications() end, { desc = "Notification History" })
+map("n", "<leader>sn", function() Snacks.picker.notifications() end, { desc = "Notification History" })
 map("n", "<leader>e", function() Snacks.explorer() end, { desc = "File Explorer" })
 
 -- find
@@ -77,7 +77,6 @@ map("n", "<leader>sk", function() Snacks.picker.keymaps() end, { desc = "Keymaps
 map("n", "<leader>sl", function() Snacks.picker.loclist() end, { desc = "Location List" })
 map("n", "<leader>sm", function() Snacks.picker.marks() end, { desc = "Marks" })
 map("n", "<leader>sM", function() Snacks.picker.man() end, { desc = "Man Pages" })
-map("n", "<leader>sp", function() Snacks.picker.lazy() end, { desc = "Search for Plugin Spec" })
 map("n", "<leader>sq", function() Snacks.picker.qflist() end, { desc = "Quickfix List" })
 map("n", "<leader>sR", function() Snacks.picker.resume() end, { desc = "Resume" })
 map("n", "<leader>su", function() Snacks.picker.undo() end, { desc = "Undo History" })
@@ -103,7 +102,7 @@ map("n", "<leader>Z", function() Snacks.zen.zoom() end, { desc = "Toggle Zoom" }
 map("n", "<leader>.", function() Snacks.scratch() end, { desc = "Toggle Scratch Buffer" })
 map("n", "<leader>S", function() Snacks.scratch.select() end, { desc = "Select Scratch Buffer" })
 
-map("n", "<leader>n", function() Snacks.notifier.show_history() end, { desc = "Notification History" })
+map("n", "<leader>N", function() Snacks.notifier.show_history() end, { desc = "Notification History" })
 
 map("n", "<leader>bd", function() Snacks.bufdelete() end, { desc = "Delete Buffer" })
 map("n", "<leader>bi", function() Snacks.bufdelete.invisible() end, { desc = "Delete invisible buffers" })

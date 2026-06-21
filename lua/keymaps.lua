@@ -59,11 +59,6 @@ map('n', '[e', diagnostic_jump(false, 'ERROR'), { desc = 'Prev Error' })
 map('n', ']w', diagnostic_jump(true, 'WARN'), { desc = 'Next Warning' })
 map('n', '[w', diagnostic_jump(false, 'WARN'), { desc = 'Prev Warning' })
 
--- Terminal Mappings
-map('n', '<C-/>', function()
-    Snacks.terminal()
-end, { desc = 'Hide Terminal' })
-
 map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit Terminal Mode' })
 map('t', '<c-/>', '<cmd>close<cr>', { desc = 'Close terminal' })
 map('t', '<c-_>', '<cmd>close<cr>', { desc = 'which_key_ignore' })
