@@ -1,18 +1,28 @@
 -- Use Windows clipboard via clip.exe in WSL
-vim.g.clipboard = {
-    name = 'WslClipboard',
-    copy = {
-        ['+'] = 'clip.exe',
-        ['*'] = 'clip.exe',
-    },
-    paste = {
-        ['+'] = 'powershell.exe -c Get-Clipboard',
-        ['*'] = 'powershell.exe -c Get-Clipboard',
-    },
-    cache_enabled = 0,
-}
+-- Install with: winget install win32yank
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = { 'markdown' },
+    callback = function()
+        vim.opt_local.conceallevel = 2
+    end,
+})
 
-vim.o.conceallevel = 2
+if vim.fn.has 'wsl' == 1 then
+    vim.g.clipboard = {
+        name = 'win32yank',
+        copy = {
+            ['+'] = 'win32yank.exe -i --crlf',
+            ['*'] = 'win32yank.exe -i --crlf',
+        },
+        paste = {
+            ['+'] = 'win32yank.exe -o --lf',
+            ['*'] = 'win32yank.exe -o --lf',
+        },
+        cache_enabled = 1,
+    }
+
+    vim.opt.clipboard = 'unnamedplus'
+end
 
 -- Set <space> as the leader key.
 vim.g.mapleader = ' '
@@ -64,18 +74,13 @@ vim.o.splitbelow = true
 
 vim.o.scrolloff = 12
 
+vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
+vim.opt.hidden = true
+vim.opt.autoread = true
+vim.opt.termguicolors = true
+
 -- Disable health checks for these providers.
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_node_provider = 0
-
-if vim.fn.has 'wsl' == 1 then
-    vim.api.nvim_create_autocmd('TextYankPost', {
-        callback = function()
-            vim.schedule(function()
-                vim.fn.system('clip.exe', vim.fn.getreg '0')
-            end)
-        end,
-    })
-end
