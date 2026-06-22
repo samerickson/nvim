@@ -1,3 +1,5 @@
+local notes_dir = vim.fn.expand '~/notes'
+
 local function split_lines(s)
     local t = {}
     for line in s:gmatch '([^\n]+)' do
@@ -26,7 +28,7 @@ local function next_business_day()
 end
 
 local function handle_daily_picker()
-    local cwd = vim.fn.expand '~/notes/daily'
+    local cwd = notes_dir .. '/daily'
 
     local result = vim.system({
         'fd',
@@ -107,13 +109,47 @@ local function handle_daily_picker()
     }
 end
 
-local function daily_today()
-    local result = vim.system({ 'note', 'daily' }):wait(50)
+local function daily(day)
+    local mday = day
+    if day == nil then
+        mday = ''
+    end
+
+    local result = vim.system({ 'note', 'daily', mday }):wait(50)
 
     if result ~= nil and result.code ~= 0 then
         vim.notify(result.stderr, vim.log.levels.ERROR)
     end
 end
 
-vim.keymap.set('n', '<leader>nt', daily_today, { desc = 'Daily Notes' })
+local function new_note(note_name)
+    local result = vim.system({ 'note', 'new', note_name }):wait(50)
+
+    if result ~= nil and result.code ~= 0 then
+        vim.notify(result.stderr, vim.log.levels.ERROR)
+    end
+end
+
+vim.keymap.set('n', '<leader>nt', function()
+    daily()
+end, { desc = 'Todays note' })
+
+vim.keymap.set('n', '<leader>nT', function()
+    daily 'next'
+end, { desc = 'Next business day note' })
+
+vim.keymap.set('n', '<leader>nn', function()
+    Snacks.input.input({ prompt = 'File name: ' }, function(file_name)
+        new_note(file_name)
+    end)
+end, { desc = 'New note' })
+
+vim.keymap.set('n', '<leader>ne', function()
+    Snacks.picker.explorer { cwd = notes_dir }
+end, { desc = 'Explore notes' })
+
+vim.keymap.set('n', '<leader>nf', function()
+    Snacks.picker.files { cwd = notes_dir }
+end, { desc = 'Find file' })
+
 vim.keymap.set('n', '<leader>nd', handle_daily_picker, { desc = 'Search Daily Files' })
