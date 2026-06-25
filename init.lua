@@ -15,6 +15,7 @@ vim.lsp.enable 'bashls'
 vim.lsp.enable 'vue_ls'
 vim.lsp.enable 'vtsls'
 vim.lsp.enable 'gopls'
+vim.lsp.enable 'eslint'
 
 vim.api.nvim_create_autocmd('TextYankPost', {
     desc = 'Highlight when yanking (copying) text',
