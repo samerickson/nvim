@@ -1,6 +1,3 @@
-local on_plugin_update = require('samerickson.pack').on_plugin_update
-local gh = require('samerickson.pack').gh
-
 local parsers = {
     'bash',
     'c',
@@ -33,7 +30,7 @@ local parsers = {
     'zig',
 }
 
-vim.pack.add { gh 'nvim-treesitter/nvim-treesitter' }
+vim.pack.add { 'https://github.com/nvim-treesitter/nvim-treesitter' }
 
 require('nvim-treesitter').setup {
     -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
