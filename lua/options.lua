@@ -27,6 +27,7 @@ vim.opt.expandtab = true
 -- Show whitespace.
 vim.opt.list = true
 vim.opt.listchars = { space = '⋅', trail = '⋅', tab = '  ↦' }
+
 -- Save undo history
 vim.o.undofile = true
 
@@ -38,6 +39,7 @@ vim.o.mouse = 'a'
 
 -- Wrap long lines at words.
 vim.o.linebreak = true
+vim.o.breakindent = true
 
 -- Folding.
 vim.o.foldcolumn = '1'
