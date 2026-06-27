@@ -1,6 +1,11 @@
 -- Enable experimental loader
 vim.loader.enable()
+
 vim.o.shell = '/bin/bash'
+
+-- Set <space> as the leader key.
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 require 'options'
 require 'keymaps'

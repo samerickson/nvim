@@ -19,10 +19,6 @@ if vim.fn.has 'wsl' == 1 then
     end)
 end
 
--- Set <space> as the leader key.
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
 -- Use a default of 4 spaces for indentation
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
