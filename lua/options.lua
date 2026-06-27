@@ -70,6 +70,11 @@ vim.opt.hidden = true
 vim.opt.autoread = true
 vim.opt.termguicolors = true
 
+-- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
+-- instead raise a dialog asking if you wish to save the current file(s)
+-- See `:help 'confirm'`
+vim.o.confirm = true
+
 -- Disable health checks for these providers.
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
