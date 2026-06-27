@@ -1,4 +1,4 @@
--- Enable experimental loader
+-- Enable faster startup by caching compiled Lua modules
 vim.loader.enable()
 
 vim.o.shell = '/bin/bash'
