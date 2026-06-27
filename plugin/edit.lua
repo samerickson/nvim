@@ -1,8 +1,10 @@
 vim.pack.add {
     'https://github.com/NMAC427/guess-indent.nvim',
     'https://github.com/lewis6991/gitsigns.nvim',
+    'https://github.com/danilshvalov/canola.nvim',
 }
 
+require('oil').setup {}
 require('guess-indent').setup {}
 require('gitsigns').setup {
     -- signs = {
@@ -73,3 +75,9 @@ require('gitsigns').setup {
         map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'GitSigns Select Hunk')
     end,
 }
+
+
+-- stylua: ignore start
+-- Oil
+vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
+-- stylua: ignore stop

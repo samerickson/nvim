@@ -20,6 +20,10 @@
       "rev": "6890a59eb9c4256b81433eb2513d96fa1ca738bd",
       "src": "/home/serickson/dev/nvim-plugins/cbas.nvim"
     },
+    "canola.nvim": {
+      "rev": "faf84399eab0be55b6b0968ec81cf09ce2a24955",
+      "src": "https://github.com/danilshvalov/canola.nvim"
+    },
     "conform.nvim": {
       "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
       "src": "https://github.com/stevearc/conform.nvim"
