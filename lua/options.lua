@@ -1,12 +1,5 @@
 -- Use Windows clipboard via clip.exe in WSL
 -- Install with: winget install win32yank
-vim.api.nvim_create_autocmd('FileType', {
-    pattern = { 'markdown' },
-    callback = function()
-        vim.opt_local.conceallevel = 2
-    end,
-})
-
 if vim.fn.has 'wsl' == 1 then
     vim.schedule(function()
         vim.g.clipboard = {
