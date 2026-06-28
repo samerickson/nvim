@@ -1,12 +1,6 @@
 ---@module "pack"
 local M = {}
 
----@param repo string
----@return string
-function M.gh(repo)
-    return 'https://github.com/' .. repo
-end
-
 --- Runs the given command inside the plugin's directory when the plugin is updated.
 ---
 ---@param plugin_name string Plugin name

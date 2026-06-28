@@ -1,8 +1,6 @@
-local gh = require('samerickson.pack').gh
-
 vim.pack.add {
-    gh 'lewis6991/async.nvim',
-    gh 'ThePrimeagen/refactoring.nvim',
+    'https://github.com/lewis6991/async.nvim',
+    'https://github.com/ThePrimeagen/refactoring.nvim',
 }
 
 local ref = require 'refactoring'

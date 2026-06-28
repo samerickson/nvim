@@ -1,8 +1,6 @@
-local gh = require('samerickson.pack').gh
-
 vim.pack.add {
-    gh 'j-hui/fidget.nvim',
-    gh 'neovim/nvim-lspconfig',
+    'https://github.com/j-hui/fidget.nvim',
+    'https://github.com/neovim/nvim-lspconfig',
 }
 require('fidget').setup {}
 

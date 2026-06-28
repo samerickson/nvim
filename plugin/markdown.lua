@@ -1,12 +1,11 @@
 local pack = require 'samerickson.pack'
-local gh = pack.gh
 
 vim.pack.add {
-    gh 'folke/snacks.nvim',
-    gh 'selimacerbas/live-server.nvim',
-    gh 'selimacerbas/markdown-preview.nvim',
-    gh 'MeanderingProgrammer/render-markdown.nvim',
-    gh 'HakonHarnes/img-clip.nvim',
+    'https://github.com/folke/snacks.nvim',
+    'https://github.com/selimacerbas/live-server.nvim',
+    'https://github.com/selimacerbas/markdown-preview.nvim',
+    'https://github.com/MeanderingProgrammer/render-markdown.nvim',
+    'https://github.com/HakonHarnes/img-clip.nvim',
 }
 
 pack.on_plugin_update('markdown-preview', function()
