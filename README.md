@@ -37,3 +37,9 @@ cargo install stylua --features lua54
 cargo install stylua --features luajit
 cargo install stylua --features luau
 ```
+
+### Linters
+
+```bash
+npm install -g markdownlint-cli
+```
