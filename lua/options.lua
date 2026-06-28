@@ -67,7 +67,6 @@ vim.o.splitbelow = true
 
 vim.o.scrolloff = 12
 
-vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 vim.opt.hidden = true
 vim.opt.autoread = true
 vim.opt.termguicolors = true
