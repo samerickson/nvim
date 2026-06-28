@@ -65,5 +65,3 @@ map('t', '<c-k>', '<C-\\><C-n><C-w>k', { desc = 'Window up' })
 map({ 'v', 'x' }, '<leader>t', function()
     require('samerickson.translate').translate_selection 'fr'
 end, { desc = 'Translate selection to French' })
-
-map('n', 'gx', require('samerickson.utils').open_link, { desc = 'Open with system app', silent = true })
