@@ -32,13 +32,22 @@ local parsers = {
 
 vim.pack.add { 'https://github.com/nvim-treesitter/nvim-treesitter' }
 
-vim.schedule(function()
-    require('nvim-treesitter').setup {
-        -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
-        install_dir = vim.fn.stdpath 'data' .. '/site',
-        highlight = { enable = true },
-    }
-end)
+local init = vim.api.nvim_get_runtime_file('lua/nvim-treesitter/init.lua', false)[1]
+if init then
+    vim.opt.runtimepath:prepend(vim.fn.fnamemodify(init, ':h:h:h') .. '/runtime')
+end
+
+require('nvim-treesitter').setup {
+    -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
+    highlight = { enable = true },
+}
+
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = { 'cpp' },
+    callback = function()
+        vim.treesitter.start()
+    end,
+})
 
 require('nvim-treesitter').install(parsers):wait(300000)
 
