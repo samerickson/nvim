@@ -148,7 +148,7 @@ vim.keymap.set('n', '<leader>ne', function()
     Snacks.picker.explorer { cwd = notes_dir }
 end, { desc = 'Explore notes' })
 
-vim.keymap.set('n', '<leader>nf', function()
+vim.keymap.set('n', '<leader>nff', function()
     Snacks.picker.files { cwd = notes_dir }
 end, { desc = 'Find file' })
 
