@@ -56,7 +56,7 @@ local function handle_daily_picker()
     end
 
     local run_daily_note = function(period)
-        local r = vim.system({ 'note', 'daily', 'date', period }):wait(50)
+        local r = vim.system({ 'note', 'daily', 'date', period }):wait(500)
 
         if r ~= nil and r.code ~= 0 then
             vim.notify(r.stderr, vim.log.levels.ERROR)
@@ -112,10 +112,10 @@ end
 local function daily(day)
     local mday = day
     if day == nil then
-        mday = ''
+        mday = 'today'
     end
 
-    local result = vim.system({ 'note', 'daily', mday }):wait(50)
+    local result = vim.system({ 'note', 'daily', mday }):wait(500)
 
     if result ~= nil and result.code ~= 0 then
         vim.notify(result.stderr, vim.log.levels.ERROR)
@@ -123,7 +123,7 @@ local function daily(day)
 end
 
 local function new_note(note_name)
-    local result = vim.system({ 'note', 'new', note_name }):wait(50)
+    local result = vim.system({ 'note', 'new', note_name }):wait(500)
 
     if result ~= nil and result.code ~= 0 then
         vim.notify(result.stderr, vim.log.levels.ERROR)
