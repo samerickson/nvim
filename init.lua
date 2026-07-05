@@ -32,6 +32,9 @@ vim.lsp.enable 'vue_ls'
 vim.lsp.enable 'vtsls'
 vim.lsp.enable 'gopls'
 vim.lsp.enable 'eslint'
+vim.lsp.enable 'harper_ls'
+vim.lsp.enable 'marksman'
+vim.lsp.enable 'clangd'
 
 vim.api.nvim_create_autocmd('TextYankPost', {
     desc = 'Highlight when yanking (copying) text',
