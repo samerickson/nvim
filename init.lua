@@ -1,5 +1,16 @@
+local start = vim.loop.hrtime()
+
 -- Enable faster startup by caching compiled Lua modules
 vim.loader.enable()
+
+vim.api.nvim_create_autocmd('VimEnter', {
+    callback = function()
+        local ms = (vim.loop.hrtime() - start) / 1e6
+        vim.schedule(function()
+            print('Startup: ' .. string.format('%.2f ms', ms))
+        end)
+    end,
+})
 
 vim.o.shell = '/bin/bash'
 
