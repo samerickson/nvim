@@ -16,10 +16,6 @@
       "rev": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3",
       "src": "https://github.com/akinsho/bufferline.nvim"
     },
-    "canola.nvim": {
-      "rev": "faf84399eab0be55b6b0968ec81cf09ce2a24955",
-      "src": "https://github.com/danilshvalov/canola.nvim"
-    },
     "conform.nvim": {
       "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
       "src": "https://github.com/stevearc/conform.nvim"
@@ -55,6 +51,10 @@
     "markdown-preview.nvim": {
       "rev": "545cf3bc6c6425b33a9b25acef54f66e4035ca0f",
       "src": "https://github.com/selimacerbas/markdown-preview.nvim"
+    },
+    "mini.files": {
+      "rev": "0765a2502d3577b2b00d21f8f607f9bd7c8d89fc",
+      "src": "https://github.com/nvim-mini/mini.files"
     },
     "mini.icons": {
       "rev": "e56797f90192d81f1fda02e662fc3e8e3d775027",

@@ -1,10 +1,21 @@
 vim.pack.add {
     'https://github.com/NMAC427/guess-indent.nvim',
     'https://github.com/lewis6991/gitsigns.nvim',
-    'https://github.com/danilshvalov/canola.nvim',
+    'https://github.com/nvim-mini/mini.files',
 }
 
-require('oil').setup {}
+require('mini.files').setup {
+    mappings = {
+        show_help = '?',
+        -- go_in_plus = '<cr>',
+        -- go_out_plus = '<tab>',
+    },
+}
+
+vim.keymap.set('n', '<leader>e', function()
+    MiniFiles.open()
+end, { desc = 'Mini Files' })
+
 require('guess-indent').setup {}
 require('gitsigns').setup {
     -- signs = {
