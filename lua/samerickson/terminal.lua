@@ -79,7 +79,11 @@ local toggle_terminal = function(terminal_state, create_function, opts)
 
         vim.api.nvim_buf_call(terminal_state.buf, function()
             if vim.bo.buftype ~= 'terminal' then
-                vim.cmd.terminal()
+                if opts.cmd then
+                    vim.cmd.terminal(opts.cmd)
+                else
+                    vim.cmd.terminal()
+                end
             end
         end)
 
@@ -101,8 +105,14 @@ end
 
 local toggle_float_terminal = function()
     state.floating = toggle_terminal(state.floating, create_floating_window, {
+        cmd = 'lazygit',
         on_create = function(buf)
-            vim.keymap.set({ 'n' }, 'q', '<cmd>hide<cr>', { buffer = buf })
+            vim.keymap.set({ 'n', 't' }, 'q', function()
+                if vim.api.nvim_win_is_valid(state.floating.win) then
+                    vim.api.nvim_win_hide(state.floating.win)
+                end
+                state.floating.win = -1
+            end, { buffer = buf })
         end,
     })
 end
@@ -132,6 +142,10 @@ local toggle_bottom_terminal = function()
 end
 
 vim.keymap.set({ 'n', 't', 'v', 'i', 'x' }, '<A-t>', function()
+    toggle_float_terminal()
+end, { desc = 'Toggle terminal' })
+
+vim.keymap.set({ 'n' }, '<leader>gg', function()
     toggle_float_terminal()
 end, { desc = 'Toggle terminal' })
 
