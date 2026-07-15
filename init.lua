@@ -21,6 +21,7 @@ vim.g.maplocalleader = ' '
 require 'options'
 require 'keymaps'
 require 'notes'
+require 'samerickson.terminal'
 
 if not require('samerickson.utils').is_windows then
     require('vim._core.ui2').enable {}
