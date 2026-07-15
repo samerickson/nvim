@@ -1,7 +1,6 @@
 local pack = require 'samerickson.pack'
 
 vim.pack.add {
-    'https://github.com/folke/snacks.nvim',
     'https://github.com/selimacerbas/live-server.nvim',
     'https://github.com/selimacerbas/markdown-preview.nvim',
     'https://github.com/MeanderingProgrammer/render-markdown.nvim',
@@ -36,21 +35,6 @@ require('render-markdown').setup {
         enabled = true,
     },
 }
-
-Snacks.toggle({
-    name = 'Render Markdown',
-    get = function()
-        return require('render-markdown.state').enabled
-    end,
-    set = function(enabled)
-        local m = require 'render-markdown'
-        if enabled then
-            m.enable()
-        else
-            m.disable()
-        end
-    end,
-}):map '<leader>um'
 
 vim.keymap.set('i', '<c-p>', '<cmd>PasteImage<cr>', { desc = 'Paste Image' })
 

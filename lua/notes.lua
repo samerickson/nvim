@@ -93,20 +93,6 @@ local function handle_daily_picker()
             table.insert(items, { file = f, cwd = cwd })
         end
     end
-
-    Snacks.picker {
-        items = items,
-
-        confirm = function(picker, item, action)
-            if item ~= nil and item.note_action ~= nil then
-                picker:close()
-                run_daily_note(item.note_action)
-                return
-            end
-
-            require('snacks.picker.actions').confirm(picker, item, action)
-        end,
-    }
 end
 
 local function daily(day)
@@ -138,18 +124,18 @@ vim.keymap.set('n', '<leader>nT', function()
     daily 'next'
 end, { desc = 'Next business day note' })
 
-vim.keymap.set('n', '<leader>nn', function()
-    Snacks.input.input({ prompt = 'File name: ' }, function(file_name)
-        new_note(file_name)
-    end)
-end, { desc = 'New note' })
+-- vim.keymap.set('n', '<leader>nn', function()
+--     Snacks.input.input({ prompt = 'File name: ' }, function(file_name)
+--         new_note(file_name)
+--     end)
+-- end, { desc = 'New note' })
 
-vim.keymap.set('n', '<leader>ne', function()
-    Snacks.picker.explorer { cwd = notes_dir }
-end, { desc = 'Explore notes' })
+-- vim.keymap.set('n', '<leader>ne', function()
+--     Snacks.picker.explorer { cwd = notes_dir }
+-- end, { desc = 'Explore notes' })
 
-vim.keymap.set('n', '<leader>nff', function()
-    Snacks.picker.files { cwd = notes_dir }
-end, { desc = 'Find file' })
+-- vim.keymap.set('n', '<leader>nff', function()
+--     Snacks.picker.files { cwd = notes_dir }
+-- end, { desc = 'Find file' })
 
 vim.keymap.set('n', '<leader>nd', handle_daily_picker, { desc = 'Search Daily Files' })
