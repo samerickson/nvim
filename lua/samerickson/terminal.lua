@@ -4,6 +4,11 @@ local state = {
         win = -1,
         source_win = -1,
     },
+    lazygit_floating = {
+        buf = -1,
+        win = -1,
+        source_win = -1,
+    },
     bottom = {
         buf = -1,
         win = -1,
@@ -103,11 +108,24 @@ local toggle_terminal = function(terminal_state, create_function, opts)
     end
 end
 
-local toggle_float_terminal = function()
-    state.floating = toggle_terminal(state.floating, create_floating_window, {
+local toggle_lazygit_float_terminal = function()
+    state.lazygit_floating = toggle_terminal(state.lazygit_floating, create_floating_window, {
         cmd = 'lazygit',
         on_create = function(buf)
             vim.keymap.set({ 'n', 't' }, 'q', function()
+                if vim.api.nvim_win_is_valid(state.lazygit_floating.win) then
+                    vim.api.nvim_win_hide(state.lazygit_floating.win)
+                end
+                state.lazygit_floating.win = -1
+            end, { buffer = buf })
+        end,
+    })
+end
+
+local toggle_float_terminal = function()
+    state.floating = toggle_terminal(state.floating, create_floating_window, {
+        on_create = function(buf)
+            vim.keymap.set({ 'n' }, 'q', function()
                 if vim.api.nvim_win_is_valid(state.floating.win) then
                     vim.api.nvim_win_hide(state.floating.win)
                 end
@@ -146,7 +164,7 @@ vim.keymap.set({ 'n', 't', 'v', 'i', 'x' }, '<A-t>', function()
 end, { desc = 'Toggle terminal' })
 
 vim.keymap.set({ 'n' }, '<leader>gg', function()
-    toggle_float_terminal()
+    toggle_lazygit_float_terminal()
 end, { desc = 'Toggle terminal' })
 
 vim.keymap.set({ 'n', 'i', 'v', 'x', 't' }, '<C-/>', function()
