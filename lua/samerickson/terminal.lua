@@ -2,10 +2,12 @@ local state = {
     floating = {
         buf = -1,
         win = -1,
+        source_win = -1,
     },
     bottom = {
         buf = -1,
         win = -1,
+        source_win = -1,
     },
 }
 
@@ -43,10 +45,11 @@ local function create_floating_window(opts)
         border = 'rounded',
     }
 
+    local source_win = vim.api.nvim_get_current_win()
     local buf = create_or_reuse_buffer(opts)
     local win = vim.api.nvim_open_win(buf, true, win_config)
 
-    return { win = win, buf = buf }
+    return { win = win, buf = buf, source_win = source_win }
 end
 
 local function create_bottom_window(opts)
@@ -62,19 +65,26 @@ local function create_bottom_window(opts)
         style = 'minimal',
     }
 
+    local source_win = vim.api.nvim_get_current_win()
     local buf = create_or_reuse_buffer(opts)
-
     local win = vim.api.nvim_open_win(buf, true, win_config)
 
-    return { buf = buf, win = win }
+    return { buf = buf, win = win, source_win = source_win }
 end
 
-local toggle_terminal = function(terminal_state, create_function)
+local toggle_terminal = function(terminal_state, create_function, opts)
+    opts = opts or {}
     if not vim.api.nvim_win_is_valid(terminal_state.win) then
         terminal_state = create_function { buf = terminal_state.buf }
 
-        if vim.bo[terminal_state.buf].buftype ~= 'terminal' then
-            vim.cmd.terminal()
+        vim.api.nvim_buf_call(terminal_state.buf, function()
+            if vim.bo.buftype ~= 'terminal' then
+                vim.cmd.terminal()
+            end
+        end)
+
+        if opts.on_create then
+            opts.on_create(terminal_state.buf)
         end
 
         -- unlist the terminal from buffer list
@@ -94,10 +104,30 @@ local toggle_float_terminal = function()
 end
 
 local toggle_bottom_terminal = function()
-    state.bottom = toggle_terminal(state.bottom, create_bottom_window)
+    state.bottom = toggle_terminal(state.bottom, create_bottom_window, {
+        on_create = function(buf)
+            vim.keymap.set('n', 'gf', function()
+                local f = vim.fn.findfile(vim.fn.expand '<cfile>', '**')
+
+                if f == '' then
+                    vim.notify('no file under cursor', vim.log.levels.WARN)
+                else
+                    if vim.api.nvim_win_is_valid(state.bottom.source_win) then
+                        vim.api.nvim_set_current_win(state.bottom.source_win)
+                    end
+                    vim.schedule(function()
+                        vim.cmd('e ' .. f)
+                    end)
+                end
+            end, {
+                buffer = buf,
+                desc = 'Open file under cursor in previous window',
+            })
+        end,
+    })
 end
 
-vim.keymap.set({ 'n', 't' }, '<A-t>', function()
+vim.keymap.set({ 'n', 't', 'v', 'i', 'x' }, '<A-t>', function()
     toggle_float_terminal()
 end, { desc = 'Toggle terminal' })
 
