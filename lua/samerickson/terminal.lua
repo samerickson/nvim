@@ -100,7 +100,11 @@ local toggle_terminal = function(terminal_state, create_function, opts)
 end
 
 local toggle_float_terminal = function()
-    state.floating = toggle_terminal(state.floating, create_floating_window)
+    state.floating = toggle_terminal(state.floating, create_floating_window, {
+        on_create = function(buf)
+            vim.keymap.set({ 'n' }, 'q', '<cmd>hide<cr>', { buffer = buf })
+        end,
+    })
 end
 
 local toggle_bottom_terminal = function()
