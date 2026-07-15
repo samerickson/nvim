@@ -86,9 +86,3 @@ require('gitsigns').setup {
         map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'GitSigns Select Hunk')
     end,
 }
-
-
--- stylua: ignore start
--- Oil
-vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
--- stylua: ignore stop
