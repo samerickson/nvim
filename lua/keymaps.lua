@@ -74,3 +74,11 @@ map('t', '<c-k>', '<C-\\><C-n><C-w>k', { desc = 'Window up' })
 map({ 'v', 'x' }, '<leader>t', function()
     require('samerickson.translate').translate_selection 'fr'
 end, { desc = 'Translate selection to French' })
+
+vim.keymap.set('n', '<leader>bh', function()
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_is_valid(buf) and vim.bo[buf].buflisted and vim.fn.bufwinid(buf) == -1 then
+            vim.api.nvim_buf_delete(buf, { force = false })
+        end
+    end
+end, { desc = 'Delete hidden buffers' })
