@@ -42,14 +42,16 @@ require('nvim-treesitter').setup {
     highlight = { enable = true },
 }
 
+vim.api.nvim_create_user_command('SamTSInstall', function()
+    require('nvim-treesitter').install(parsers):wait(300000)
+end, {})
+
 vim.api.nvim_create_autocmd('FileType', {
     pattern = { 'cpp' },
     callback = function()
         vim.treesitter.start()
     end,
 })
-
-require('nvim-treesitter').install(parsers):wait(300000)
 
 vim.api.nvim_create_autocmd('FileType', {
     callback = function(args)
