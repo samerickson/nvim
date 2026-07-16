@@ -4,7 +4,6 @@ vim.pack.add {
     'https://github.com/selimacerbas/live-server.nvim',
     'https://github.com/selimacerbas/markdown-preview.nvim',
     'https://github.com/MeanderingProgrammer/render-markdown.nvim',
-    'https://github.com/HakonHarnes/img-clip.nvim',
 }
 
 pack.on_plugin_update('markdown-preview', function()
@@ -35,8 +34,6 @@ require('render-markdown').setup {
         enabled = true,
     },
 }
-
-vim.keymap.set('i', '<c-p>', '<cmd>PasteImage<cr>', { desc = 'Paste Image' })
 
 vim.api.nvim_create_autocmd('FileType', {
     pattern = { 'markdown' },
