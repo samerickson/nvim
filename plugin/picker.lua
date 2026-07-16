@@ -21,6 +21,8 @@ fzf.setup {
     },
 }
 
+fzf.register_ui_select()
+
 -- Search available pickers
 vim.keymap.set('n', '<leader>fp', '<cmd>FzfLua<cr>', { desc = 'Pickers' })
 
