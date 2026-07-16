@@ -82,3 +82,6 @@ vim.keymap.set('n', '<leader>bh', function()
         end
     end
 end, { desc = 'Delete hidden buffers' })
+
+map('n', '<F3>', 'i<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>')
+map('i', '<F3>', '<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>')
