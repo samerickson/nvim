@@ -1,23 +1,8 @@
 -- Use Windows clipboard via clip.exe in WSL
 -- Install with: winget install win32yank
-if vim.fn.has 'wsl' == 1 then
-    vim.schedule(function()
-        vim.g.clipboard = {
-            name = 'win32yank',
-            copy = {
-                ['+'] = 'win32yank.exe -i --crlf',
-                ['*'] = 'win32yank.exe -i --crlf',
-            },
-            paste = {
-                ['+'] = 'win32yank.exe -o --lf',
-                ['*'] = 'win32yank.exe -o --lf',
-            },
-            cache_enabled = 1,
-        }
-
-        vim.opt.clipboard = 'unnamedplus'
-    end)
-end
+vim.schedule(function()
+    vim.opt.clipboard = 'unnamedplus'
+end)
 
 -- Use a default of 4 spaces for indentation
 vim.opt.shiftwidth = 4
