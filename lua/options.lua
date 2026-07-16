@@ -66,3 +66,12 @@ vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_node_provider = 0
+
+-- Indent wrapped lines to match the parent line
+vim.opt.breakindent = true
+
+-- Don't break lines in the middle of words when formatting
+vim.opt.formatoptions = 'l'
+
+-- Wrap long lines at word boundaries
+vim.opt.linebreak = true
