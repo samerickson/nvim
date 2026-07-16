@@ -16,10 +16,21 @@ map('n', '<C-Left>', '<cmd>vertical resize -2<cr>', { desc = 'Decrease Window Wi
 map('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase Window Width' })
 
 -- Move Lines
-map({ 'i', 'n' }, '<A-Up>', "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = 'Move Up' })
-map({ 'i', 'n' }, '<A-k>', "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = 'Move Up' })
-map({ 'i', 'n' }, '<A-j>', "<cmd>execute 'move .+' . v:count1<cr>==", { desc = 'Move Down' })
-map({ 'i', 'n' }, '<A-Down>', "<cmd>execute 'move .+' . v:count1<cr>==", { desc = 'Move Down' })
+map('n', '<A-Up>', "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = 'Move Up' })
+map('n', '<A-k>', "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = 'Move Up' })
+map('i', '<A-Up>', "<cmd>execute 'move .-' . (v:count1 + 1)<cr><C-o>==", { desc = 'Move Up' })
+map('i', '<A-k>', "<cmd>execute 'move .-' . (v:count1 + 1)<cr><C-o>==", { desc = 'Move Up' })
+
+map('n', '<A-j>', "<cmd>execute 'move .+' . v:count1<cr>==", { desc = 'Move Down' })
+map('n', '<A-Down>', "<cmd>execute 'move .+' . v:count1<cr>==", { desc = 'Move Down' })
+map('i', '<A-j>', "<cmd>execute 'move .+' . v:count1<cr><C-o>==", { desc = 'Move Down' })
+map('i', '<A-Down>', "<cmd>execute 'move .+' . v:count1<cr><C-o>==", { desc = 'Move Down' })
+
+vim.keymap.set('n', '<A-k>', '<cmd>move .-2<CR>==', { silent = true })
+vim.keymap.set('n', '<A-j>', '<cmd>move .+1<CR>==', { silent = true })
+
+vim.keymap.set('i', '<A-k>', '<Esc><cmd>move .-2<CR>==gi', { silent = true })
+vim.keymap.set('i', '<A-j>', '<Esc><cmd>move .+1<CR>==gi', { silent = true })
 
 map('v', '<A-j>', ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = 'Move Down' })
 map('v', '<A-k>', ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = 'Move Up' })
