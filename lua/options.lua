@@ -1,5 +1,3 @@
--- Use Windows clipboard via clip.exe in WSL
--- Install with: winget install win32yank
 vim.schedule(function()
     vim.opt.clipboard = 'unnamedplus'
 end)
@@ -56,7 +54,7 @@ vim.opt.hidden = true
 vim.opt.autoread = true
 vim.opt.termguicolors = true
 
--- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
+-- If performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
 vim.o.confirm = true
