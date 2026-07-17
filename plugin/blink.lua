@@ -22,8 +22,9 @@ vim.api.nvim_create_autocmd('InsertEnter', {
                 ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
             },
             sources = {
-                default = { 'lsp', 'path', 'snippets', 'buffer' },
+                default = { 'lsp', 'buffer' },
             },
+            cmdline = { enabled = false },
             fuzzy = { implementation = 'prefer_rust_with_warning' },
             completion = {
                 list = { selection = { preselect = false, auto_insert = false } },
