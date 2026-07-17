@@ -1,3 +1,7 @@
+---@class SamTerminalOptions: vim.api.keyset.win_config
+---@field cmd? string Command to run in the terminal.
+---@field on_create? function callback to run when terminal window and buffer are created.
+
 local state = {
     floating = {
         buf = -1,
@@ -77,8 +81,13 @@ local function create_bottom_window(opts)
     return { buf = buf, win = win, source_win = source_win }
 end
 
+---Create a terminal window
+---@param opts? SamTerminalOptions
+---@return {buf: integer, win: integer, source_win: integer}
 local toggle_terminal = function(terminal_state, create_function, opts)
     opts = opts or {}
+
+    -- If the window is not open create it and use it
     if not vim.api.nvim_win_is_valid(terminal_state.win) then
         terminal_state = create_function { buf = terminal_state.buf }
 
@@ -99,13 +108,14 @@ local toggle_terminal = function(terminal_state, create_function, opts)
         -- unlist the terminal from buffer list
         vim.api.nvim_set_option_value('buflisted', false, { buf = terminal_state.buf })
 
-        vim.cmd 'startinsert'
-        return terminal_state
+        vim.cmd.startinsert()
+    elseif vim.api.nvim_get_current_win() ~= terminal_state.win then
+        vim.api.nvim_set_current_win(terminal_state.win)
     else
         vim.api.nvim_win_hide(terminal_state.win)
         terminal_state.win = -1
-        return terminal_state
     end
+    return terminal_state
 end
 
 local toggle_lazygit_float_terminal = function()
