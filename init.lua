@@ -1,57 +1,52 @@
-local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+local start = vim.loop.hrtime()
 
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-    -- stylua: ignore
-    vim.fn.system({ 'git', 'clone', '--filter=blob:none', 'https://github.com/folke/lazy.nvim.git', '--branch=stable', lazypath })
-end
+-- Enable faster startup by caching compiled Lua modules
+vim.loader.enable()
 
-vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
+vim.api.nvim_create_autocmd('VimEnter', {
+    callback = function()
+        local ms = (vim.loop.hrtime() - start) / 1e6
+        vim.schedule(function()
+            print('Startup: ' .. string.format('%.2f ms', ms))
+        end)
+    end,
+})
+
+vim.o.shell = '/bin/bash'
+
+-- Set <space> as the leader key.
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 require 'options'
 require 'keymaps'
-require 'autocmds'
+require 'notes'
+require 'samerickson.terminal'
 
 if not require('samerickson.utils').is_windows then
     require('vim._core.ui2').enable {}
 end
 
-require('lazy').setup {
-    spec = {
-        { import = 'plugins' },
-    },
-    defaults = {
-        lazy = true,
-        version = false,
-    },
-    install = {
-        missing = true,
-        colorscheme = { 'kanagawa', 'habamax' },
-    },
-    checker = { enabled = false },
-    change_detection = {
-        notify = false,
-    },
-    dev = {
-        path = '~/dev/nvim-plugins',
-        patterns = { 'samerickson', 'serickson' },
-    },
-    performance = {
-        cache = { enabled = true },
-        reset_packpath = true,
-        rtp = {
-            disabled_plugins = {
-                '2html_plugin',
-                'gzip',
-                'matchit',
-                'matchparen',
-                'netrwPlugin',
-                'netrwSettings',
-                'netrwFileHandlers',
-                'tarPlugin',
-                'tohtml',
-                'tutor',
-                'zipPlugin',
-            },
-        },
-    },
-}
+vim.lsp.enable 'lua_ls'
+vim.lsp.enable 'bashls'
+vim.lsp.enable 'vue_ls'
+vim.lsp.enable 'vtsls'
+vim.lsp.enable 'gopls'
+vim.lsp.enable 'eslint'
+vim.lsp.enable 'harper_ls'
+vim.lsp.enable 'marksman'
+vim.lsp.enable 'clangd'
+
+vim.api.nvim_create_autocmd('TextYankPost', {
+    desc = 'Highlight when yanking (copying) text',
+    group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+    callback = function()
+        vim.hl.hl_op()
+    end,
+})
+
+vim.keymap.set('n', '<leader>R', function()
+    local session = vim.fn.stdpath 'state' .. '/restart_session.vim'
+    vim.cmd('mksession! ' .. vim.fn.fnameescape(session))
+    vim.cmd('restart source ' .. vim.fn.fnameescape(session))
+end, { desc = 'Restart Neovim' })
