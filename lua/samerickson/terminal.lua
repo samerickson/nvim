@@ -122,12 +122,33 @@ local toggle_lazygit_float_terminal = function()
     state.lazygit_floating = toggle_terminal(state.lazygit_floating, create_floating_window, {
         cmd = 'lazygit',
         on_create = function(buf)
-            vim.keymap.set({ 'n', 't' }, 'q', function()
+            -- Let lazygit handle `q` in terminal mode. It quits from the main
+            -- interface, but inserts a literal `q` in text inputs such as the
+            -- commit-message prompt.
+            vim.keymap.set('n', 'q', function()
                 if vim.api.nvim_win_is_valid(state.lazygit_floating.win) then
                     vim.api.nvim_win_hide(state.lazygit_floating.win)
                 end
                 state.lazygit_floating.win = -1
             end, { buffer = buf })
+
+            vim.api.nvim_create_autocmd('TermClose', {
+                buffer = buf,
+                once = true,
+                callback = function()
+                    vim.schedule(function()
+                        if vim.api.nvim_win_is_valid(state.lazygit_floating.win) then
+                            vim.api.nvim_win_hide(state.lazygit_floating.win)
+                        end
+                        state.lazygit_floating.win = -1
+                        state.lazygit_floating.buf = -1
+
+                        if vim.api.nvim_buf_is_valid(buf) then
+                            vim.api.nvim_buf_delete(buf, { force = true })
+                        end
+                    end)
+                end,
+            })
         end,
     })
 end
