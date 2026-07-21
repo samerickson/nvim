@@ -30,6 +30,7 @@ end
 vim.lsp.enable 'lua_ls'
 vim.lsp.enable 'bashls'
 vim.lsp.enable 'vue_ls'
+vim.lsp.enable 'rust_analyzer'
 vim.lsp.enable 'vtsls'
 vim.lsp.enable 'gopls'
 vim.lsp.enable 'eslint'
