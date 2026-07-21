@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd('InsertEnter', {
                 ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
             },
             sources = {
-                default = { 'lsp', 'buffer' },
+                default = { 'lsp', 'path', 'buffer' },
             },
             cmdline = { enabled = false },
             fuzzy = { implementation = 'prefer_rust_with_warning' },
