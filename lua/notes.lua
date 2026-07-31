@@ -41,8 +41,6 @@ local function daily(day)
     vim.cmd.edit(vim.fn.fnameescape(file))
 end
 
-local fzf = require 'fzf-lua'
-
 ---Create a new note with a specific filename
 ---@param name string - name of the note
 local function new_note(name)
@@ -64,11 +62,11 @@ vim.keymap.set('n', '<leader>nn', function()
 end, { desc = 'New note' })
 
 vim.keymap.set('n', '<leader>nd', function()
-    fzf.files { cwd = notes_dir .. '/daily' }
+    require('fzf-lua').files { cwd = notes_dir .. '/daily' }
 end, { desc = 'Search Daily Files' })
 
 vim.keymap.set('n', '<leader>nf', function()
-    fzf.files { cwd = notes_dir }
+    require('fzf-lua').files { cwd = notes_dir }
 end, { desc = 'Search Note Files' })
 
 vim.keymap.set('n', '<leader>ns', function()
