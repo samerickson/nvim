@@ -1,5 +1,4 @@
 vim.pack.add {
-    'https://github.com/selimacerbas/live-server.nvim',
     'https://github.com/MeanderingProgrammer/render-markdown.nvim',
 }
 
