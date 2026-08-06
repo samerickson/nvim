@@ -5,6 +5,7 @@ vim.pack.add {
     { src = 'https://github.com/saghen/blink.cmp' },
 }
 
+-- Effectively disables blink for testing built in completion
 vim.api.nvim_create_autocmd('InsertEnter', {
     once = true,
     callback = function()
@@ -22,7 +23,15 @@ vim.api.nvim_create_autocmd('InsertEnter', {
                 ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
             },
             sources = {
-                default = { 'lsp', 'path', 'buffer' },
+                default = { 'lazydev', 'lsp', 'path', 'buffer' },
+                providers = {
+                    lazydev = {
+                        name = 'LazyDev',
+                        module = 'lazydev.integrations.blink',
+                        -- make lazydev completions top priority (see `:h blink.cmp`)
+                        score_offset = 100,
+                    },
+                },
             },
             cmdline = { enabled = false },
             fuzzy = { implementation = 'prefer_rust_with_warning' },

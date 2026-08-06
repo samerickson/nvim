@@ -170,27 +170,3 @@ vim.lsp.config('vtsls', {
         'vue',
     },
 })
-
-vim.lsp.config('lua_ls', {
-    settings = {
-        Lua = {
-            runtime = {
-                version = 'LuaJIT',
-            },
-            diagnostics = {
-                globals = { 'vim' },
-            },
-            workspace = {
-                checkThirdParty = false,
-                library = {
-                    vim.env.VIMRUNTIME,
-                    -- For LSP Settings Type Annotations: https://github.com/neovim/nvim-lspconfig#lsp-settings-type-annotations
-                    vim.api.nvim_get_runtime_file('lua/lspconfig', false)[1],
-                },
-            },
-            telemetry = {
-                enable = false,
-            },
-        },
-    },
-})
