@@ -37,6 +37,8 @@ map('v', '<A-k>', ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", {
 map('v', '<A-Down>', ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = 'Move Down' })
 map('v', '<A-Up>', ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = 'Move Up' })
 
+map('i', '<C-Space>', '<C-x><C-o>', { desc = 'Trigger auto complete' })
+
 -- Shell (like) mappings
 map('i', '<C-a>', '<C-o>^', { desc = 'Move to begining of text on line' })
 map('i', '<A-f>', '<A-w>', { desc = 'Move forward a word' })
