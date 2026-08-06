@@ -3,13 +3,13 @@ vim.schedule(function()
 end)
 
 -- Use a default of 4 spaces for indentation
-vim.opt.shiftwidth = 4
-vim.opt.tabstop = 4
-vim.opt.expandtab = true
+vim.o.shiftwidth = 4
+vim.o.tabstop = 4
+vim.o.expandtab = true
 
 -- Show whitespace.
-vim.opt.list = true
-vim.opt.listchars = { space = '⋅', trail = '⋅', tab = '  ↦' }
+vim.o.list = true
+vim.o.listchars = { space = '⋅', trail = '⋅', tab = '  ↦' }
 
 -- Save undo history
 vim.o.undofile = true
@@ -50,9 +50,9 @@ vim.o.splitbelow = true
 
 vim.o.scrolloff = 12
 
-vim.opt.hidden = true
-vim.opt.autoread = true
-vim.opt.termguicolors = true
+vim.o.hidden = true
+vim.o.autoread = true
+vim.o.termguicolors = true
 
 -- If performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
