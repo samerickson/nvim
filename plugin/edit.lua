@@ -3,10 +3,6 @@ vim.pack.add {
     'https://github.com/lewis6991/gitsigns.nvim',
 }
 
-vim.keymap.set('n', '<leader>e', function()
-    MiniFiles.open()
-end, { desc = 'Mini Files' })
-
 require('guess-indent').setup {}
 require('gitsigns').setup {
     -- signs = {

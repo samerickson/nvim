@@ -14,3 +14,7 @@ require('mini.files').setup {
         -- go_out_plus = '<tab>',
     },
 }
+
+vim.keymap.set('n', '<leader>e', function()
+    MiniFiles.open()
+end, { desc = 'Mini Files' })
