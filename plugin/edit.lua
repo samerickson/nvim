@@ -1,8 +1,10 @@
 vim.pack.add {
     'https://github.com/NMAC427/guess-indent.nvim',
     'https://github.com/lewis6991/gitsigns.nvim',
+    'https://github.com/nvim-lualine/lualine.nvim',
 }
 
+require('lualine').setup {}
 require('guess-indent').setup {}
 require('gitsigns').setup {
     -- signs = {
