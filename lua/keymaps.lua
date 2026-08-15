@@ -107,3 +107,16 @@ map('n', '<F3>', 'i<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>')
 map('i', '<F3>', '<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>')
 
 map('n', '<F5>', '<cmd>restart<cr>')
+
+local function handle_url()
+    local line = vim.api.nvim_get_current_line()
+    local uri = line:match '[a-z]*://[^ >,;\'"]*'
+
+    if uri then
+        vim.ui.open(uri)
+    else
+        vim.notify('No URI found in line.', vim.log.levels.INFO)
+    end
+end
+
+vim.keymap.set('n', 'gx', handle_url, { desc = 'Open URL' })
