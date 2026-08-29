@@ -120,3 +120,4 @@ local function handle_url()
 end
 
 vim.keymap.set('n', 'gx', handle_url, { desc = 'Open URL' })
+vim.keymap.set({ 'n', 'i', 'c' }, '<C-S-Insert>', '<C-R>+')
