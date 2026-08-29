@@ -3,7 +3,21 @@ local on_plugin_update = require('samerickson.pack').on_plugin_update
 vim.pack.add {
     { src = 'https://github.com/saghen/blink.lib', setup = false },
     { src = 'https://github.com/saghen/blink.cmp' },
+    { src = 'https://github.com/folke/lazydev.nvim' },
 }
+vim.api.nvim_create_autocmd('FileType', {
+    once = true,
+    pattern = { 'lua' },
+    callback = function()
+        require('lazydev').setup {
+            library = {
+                -- See the configuration section for more details
+                -- Load luvit types when the `vim.uv` word is found
+                { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+            },
+        }
+    end,
+})
 
 -- Effectively disables blink for testing built in completion
 vim.api.nvim_create_autocmd('InsertEnter', {
