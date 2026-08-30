@@ -3,10 +3,14 @@ vim.pack.add {
     'https://github.com/nvim-mini/mini.tabline',
     'https://github.com/echasnovski/mini.icons',
     'https://github.com/nvim-mini/mini.bufremove',
+    'https://github.com/nvim-mini/mini.statusline',
+    'https://github.com/nvim-mini/mini.statuscolumn',
 }
 
 require('mini.icons').setup()
 require('mini.tabline').setup()
+require('mini.statusline').setup()
+require('mini.statuscolumn').setup()
 
 require('mini.files').setup {
     mappings = {
