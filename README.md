@@ -1,9 +1,5 @@
 # Sam Erickson's Neovim Configuration
 
-## Dependencies
-
-- `win32yank`: better clipboard management in WSL [link](https://github.com/equalsraf/win32yank)
-
 ### Language servers
 
 I have switched to manually installing language servers. Here are my notes on how I installed each of them
