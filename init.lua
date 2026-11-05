@@ -38,16 +38,20 @@ if not require('samerickson.utils').is_windows then
     require('vim._core.ui2').enable {}
 end
 
-vim.lsp.enable 'lua_ls'
-vim.lsp.enable 'bashls'
-vim.lsp.enable 'vue_ls'
-vim.lsp.enable 'rust_analyzer'
-vim.lsp.enable 'vtsls'
-vim.lsp.enable 'gopls'
-vim.lsp.enable 'eslint'
-vim.lsp.enable 'harper_ls'
-vim.lsp.enable 'marksman'
-vim.lsp.enable 'clangd'
+vim.lsp.enable {
+    'lua_ls',
+    'bashls',
+    'vue_ls',
+    'oxlint',
+    'oxfmt',
+    'rust_analyzer',
+    'vtsls',
+    'gopls',
+    'eslint',
+    'harper_ls',
+    'marksman',
+    'clangd',
+}
 
 vim.api.nvim_create_autocmd('TextYankPost', {
     desc = 'Highlight when yanking (copying) text',
