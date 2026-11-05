@@ -34,3 +34,26 @@ end, { desc = 'Open MiniFiles at current file' })
 vim.keymap.set('n', '<leader>bd', function()
     require('mini.bufremove').delete()
 end, { desc = 'Mini Files' })
+
+-- Open file under cursor in mini.files in vertical split using <C-v>
+vim.api.nvim_create_autocmd('User', {
+    pattern = 'MiniFilesBufferCreate',
+    callback = function(args)
+        local buf_id = args.data.buf_id
+
+        vim.keymap.set('n', '<C-v>', function()
+            local cur_target = MiniFiles.get_explorer_state().target_window
+
+            local new_target = vim.api.nvim_win_call(cur_target, function()
+                vim.cmd 'belowright vertical split'
+                return vim.api.nvim_get_current_win()
+            end)
+
+            MiniFiles.set_target_window(new_target)
+            MiniFiles.go_in()
+        end, {
+            buffer = buf_id,
+            desc = 'Open in vertical split',
+        })
+    end,
+})
