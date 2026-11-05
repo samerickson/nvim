@@ -71,6 +71,8 @@ vim.api.nvim_create_autocmd('VimEnter', {
         vim.keymap.set('n', 'gr', '<cmd>FzfLua lsp_references<cr>', { desc = 'LSP References' })
         vim.keymap.set('n', 'gI', '<cmd>FzfLua lsp_incoming_calls<cr>', { desc = 'LSP Incomming calls' })
         vim.keymap.set('n', 'gO', '<cmd>FzfLua lsp_outgoing_calls<cr>', { desc = 'LSP Outgoing calls' })
+        vim.keymap.set('n', '<leader>ss', '<cmd>FzfLua lsp_document_symbols<cr>', { desc = 'Live grep' })
+        vim.keymap.set('n', '<leader>sS', '<cmd>FzfLua lsp_workspace_symbols<cr>', { desc = 'Help' })
 
         -- Misc
         vim.keymap.set('n', '<leader>sm', '<cmd>FzfLua manpages<cr>', { desc = 'Manpages' })
