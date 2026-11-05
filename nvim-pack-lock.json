@@ -12,6 +12,10 @@
       "rev": "fd9a48ebbe6ec30d5dfcc5b42c243941ccdca1aa",
       "src": "https://github.com/saghen/blink.lib"
     },
+    "cbas.nvim": {
+      "rev": "6890a59eb9c4256b81433eb2513d96fa1ca738bd",
+      "src": "/home/serickson/dev/nvim-plugins/cbas.nvim"
+    },
     "conform.nvim": {
       "rev": "016802de402556da54c36bd7359b441266b01cdd",
       "src": "https://github.com/stevearc/conform.nvim"

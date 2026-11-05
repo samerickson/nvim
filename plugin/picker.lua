@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd('VimEnter', {
 
         fzf.setup {
             grep = {
-                hidden = true,
+                rg_opts = "--hidden --column --line-number --no-heading --color=always --smart-case --glob '!.git/*'",
             },
             helptags = {
                 actions = {
