@@ -23,6 +23,11 @@ require 'keymaps'
 require 'notes'
 require 'samerickson.terminal'
 
+local ok, module = pcall(require, 'private')
+if ok then
+    module.setup()
+end
+
 if not require('samerickson.utils').is_windows then
     require('vim._core.ui2').enable {}
 end
