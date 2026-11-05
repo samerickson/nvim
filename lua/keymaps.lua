@@ -4,10 +4,10 @@ local map = vim.keymap.set
 map('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit All', silent = true })
 
 -- Move to window using the <ctrl> hjkl keys
-map('n', '<C-h>', '<C-w>h', { desc = 'Go to Left Window' })
-map('n', '<C-j>', '<C-w>j', { desc = 'Go to Lower Window' })
-map('n', '<C-k>', '<C-w>k', { desc = 'Go to Upper Window' })
-map('n', '<C-l>', '<C-w>l', { desc = 'Go to Right Window' })
+-- map('n', '<C-h>', '<C-w>h', { desc = 'Go to Left Window' })
+-- map('n', '<C-j>', '<C-w>j', { desc = 'Go to Lower Window' })
+-- map('n', '<C-k>', '<C-w>k', { desc = 'Go to Upper Window' })
+-- map('n', '<C-l>', '<C-w>l', { desc = 'Go to Right Window' })
 
 -- Resize window using <ctrl> arrow keys
 map('n', '<C-Up>', '<cmd>resize +2<cr>', { desc = 'Increase Window Height' })
