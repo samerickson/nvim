@@ -16,13 +16,20 @@ require('mini.files').setup {
     mappings = {
         show_help = '?',
         -- go_in_plus = '<cr>',
-        -- go_out_plus = '<tab>',
+        -- go_out_plus = '-',
     },
 }
 
 vim.keymap.set('n', '<leader>e', function()
     MiniFiles.open()
 end, { desc = 'Mini Files' })
+
+vim.keymap.set('n', '-', function()
+    local buf_name = vim.api.nvim_buf_get_name(0)
+    local dir = vim.fs.dirname(buf_name)
+
+    MiniFiles.open(dir)
+end, { desc = 'Open MiniFiles at current file' })
 
 vim.keymap.set('n', '<leader>bd', function()
     require('mini.bufremove').delete()
