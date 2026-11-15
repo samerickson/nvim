@@ -7,10 +7,16 @@ vim.pack.add {
     'https://github.com/nvim-mini/mini.statuscolumn',
 }
 
-require('mini.icons').setup()
-require('mini.tabline').setup()
-require('mini.statusline').setup()
-require('mini.statuscolumn').setup()
+-- Defer visual stuff until the first screen has drawn
+vim.api.nvim_create_autocmd('UIEnter', {
+    once = true,
+    callback = function()
+        require('mini.icons').setup()
+        require('mini.tabline').setup()
+        require('mini.statusline').setup()
+        require('mini.statuscolumn').setup()
+    end,
+})
 
 require('mini.files').setup {
     mappings = {
