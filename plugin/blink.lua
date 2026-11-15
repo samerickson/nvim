@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 -- Effectively disables blink for testing built in completion
-vim.api.nvim_create_autocmd('InsertEnter', {
+vim.api.nvim_create_autocmd('UIEnter', {
     once = true,
     callback = function()
         require('blink.cmp').setup {
@@ -57,9 +57,6 @@ vim.api.nvim_create_autocmd('InsertEnter', {
                     end,
                     border = 'rounded',
                     winhighlight = 'Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None',
-                    draw = {
-                        treesitter = { 'lsp' },
-                    },
                 },
                 accept = {
                     auto_brackets = { enabled = false },
